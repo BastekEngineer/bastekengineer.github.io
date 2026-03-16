@@ -8,172 +8,249 @@
   <!-- Lekka czcionka -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Meta do podglądu w social (zastąp assets/og-image.jpg własnym obrazem jeśli chcesz) -->
   <meta name="description" content="CyberProjects — portfolio inżyniera: embedded, mechatronika, systemy pomiarowe.">
   <meta property="og:image" content="assets/og-image.jpg">
 
-  <!-- =========================
-       STYLES - proste, skondensowane
-       ========================= -->
+  <!-- ========== STYLES (z komentarzami, edytuj wg potrzeby) ========== -->
   <style>
     :root{
-      --bg:#0b1020;
-      --panel:#0f1724;
-      --accent1:#2563eb;
-      --accent2:#7c3aed;
-      --muted: rgba(230,238,248,0.75);
-      --radius:12px;
+      /* kolory: nowy, profesjonalny szaro-niebieski motyw */
+      --bg-1: #0b1319;      /* very dark */
+      --bg-2: #0f2432;      /* dark blue/teal */
+      --bg-3: #213846;      /* desaturated blue */
+      --panel: rgba(255,255,255,0.02); /* glass panels */
+      --accent1: #4f7ea1;   /* steel blue */
+      --accent2: #9fb4c8;   /* light blue gray */
+      --muted: rgba(210,225,235,0.85);
+      --muted-strong: rgba(210,225,235,0.65);
+      --radius:14px;
       --maxw:1100px;
+      --nav-height:64px;
     }
 
-    /* podstawowy reset */
+    /* ---------------- basic reset ---------------- */
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth} /* prosty smooth scroll */
-   
+    html{scroll-behavior:smooth}
     body{
-  margin:0;
-  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background: linear-gradient(120deg, #10213a, #16203b, #2b1058, #0b1020);
-  background-size: 400% 400%;
-  animation: bgShift 16s ease infinite;
-  color:#e6eef8;
-}
-@keyframes bgShift {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:#e6eef8;
+      /* subtelny animowany gradient szaro-niebieski */
+      background: linear-gradient(120deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
+      background-size: 300% 300%;
+      animation: bgShift 18s ease infinite;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    @keyframes bgShift {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
 
-    /* wrapper centrujący */
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
-    /* ---------- NAVBAR (fixed) ---------- */
+    /* ---------------- NAV (fixed) + mobile menu ---------------- */
     nav{
-      position:fixed; left:0; right:0; top:18px; z-index:80;
+      position:fixed; left:0; right:0; top:14px; z-index:100;
       margin:0 auto; max-width:var(--maxw);
       display:flex; align-items:center; justify-content:space-between;
-      padding:10px 18px; border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      padding:10px 18px; border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       backdrop-filter: blur(8px);
-      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
     }
     .brand{display:flex; gap:12px; align-items:center}
-    .logo{ width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
-           background:linear-gradient(135deg,var(--accent1),var(--accent2)); font-weight:700;}
-    .navlinks{display:flex; gap:16px; align-items:center}
-    .navlinks a{color:var(--muted); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px}
-    .navlinks a:hover{color:white; background:rgba(255,255,255,0.03)}
-    .cta-nav{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none}
+    .logo{
+      width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2)); font-weight:700;
+      font-size:15px;
+    }
 
-    /* ---------- HERO ---------- */
+    .site-title{ font-weight:700 }
+    .site-title small{ display:block; font-size:11px; color:var(--muted); margin-top:2px; font-weight:500 }
+
+    .navlinks{display:flex; gap:12px; align-items:center}
+    .navlinks a{ color:var(--muted); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:10px; font-size:14px }
+    .navlinks a:hover, .navlinks a:focus{ color:white; background:rgba(255,255,255,0.03); outline:none }
+
+    .cta-nav{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none }
+
+    /* hamburger (mobile) */
+    .hamburger{ display:none; width:44px; height:44px; align-items:center; justify-content:center; border-radius:10px; background:rgba(255,255,255,0.01); cursor:pointer; }
+    .hamburger:focus{ outline:2px solid rgba(255,255,255,0.06) }
+
+    /* mobile off-canvas menu */
+    .mobile-menu{
+      position:fixed; top:calc(var(--nav-height) + 20px); right:12px; z-index:140;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px; padding:10px; box-shadow:0 20px 40px rgba(2,6,23,0.6); display:none;
+      min-width:200px;
+    }
+    .mobile-menu a{ display:block; padding:8px 12px; color:var(--muted); text-decoration:none; border-radius:8px; font-weight:600 }
+    .mobile-menu a:hover{ background: rgba(255,255,255,0.02); color:white }
+
+    /* ---------------- HERO ---------------- */
     header.hero{
       min-height:100vh; display:grid; place-items:center; position:relative;
       padding:120px 0 80px; overflow:hidden;
     }
     .hero-inner{ display:grid; grid-template-columns:1fr 420px; gap:36px; width:100%; padding:40px 0; }
-    .hero-left{ max-width:680px }
+    .hero-left{ max-width:720px }
     .eyebrow{ display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2)); padding:6px 12px; border-radius:999px; font-weight:700; color:white; font-size:13px; margin-bottom:16px }
     .hero h1{ font-size:48px; line-height:1.02; margin:0 0 18px }
-    .hero p{ color:rgba(230,238,248,0.92); font-size:18px; margin-bottom:22px }
-    .hero-actions{ display:flex; gap:12px; }
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; border:0; cursor:pointer; font-weight:700; text-decoration:none }
-    .btn-primary{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(37,99,235,0.12) }
-    .btn-ghost{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04) }
+    .hero p{ color:var(--muted-strong); font-size:18px; margin-bottom:22px }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap }
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; border:0; cursor:pointer; font-weight:700; text-decoration:none; font-size:15px }
+    .btn-primary{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(79,126,161,0.12) }
+    .btn-ghost{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03) }
 
-    /* hero preview (prawa kolumna) */
-    .hero-preview{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px; padding:12px; box-shadow:0 20px 50px rgba(2,6,23,0.6); display:flex; flex-direction:column; gap:12px }
-    .preview-img{ width:100%; height:360px; background:#081226; border-radius:12px; overflow:hidden; display:grid; place-items:center }
-    .preview-img img{ width:100%; height:100%; object-fit:cover }
+    /* hero preview jako "device/card" */
+    .hero-preview{
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius:18px; padding:14px;
+      box-shadow:0 30px 60px rgba(2,6,23,0.6); display:flex; flex-direction:column; gap:12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .preview-img{
+      width:100%; height:380px; background:#0b1620; border-radius:14px; overflow:hidden; display:grid; place-items:center;
+      border: 10px solid rgba(10,18,26,0.6); /* telefonowe obramowanie */
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 12px 30px rgba(2,6,23,0.6);
+    }
+    .preview-img img{ width:100%; height:100%; object-fit:cover; display:block }
+
     .preview-meta{ display:flex; justify-content:space-between; align-items:center; padding:6px 10px; font-size:13px; color:var(--muted) }
+    .preview-mini-btn{ padding:6px 8px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.02); color:var(--muted); cursor:pointer }
 
-    /* ---------- SEKCJA PROJEKTÓW ---------- */
+    /* ---------------- PROJEKTY ---------------- */
     section{ padding:80px 0 }
     .section-title{ font-size:28px; text-align:center; margin-bottom:26px }
     .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
-    .project{ background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02)); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:transform .28s, box-shadow .28s }
-    .project:hover{ transform:translateY(-10px); box-shadow:0 30px 60px rgba(2,6,23,0.6) }
+    .project{ background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:transform .28s, box-shadow .28s; border:1px solid rgba(255,255,255,0.02) }
+    .project:hover{ transform:translateY(-8px); box-shadow:0 30px 60px rgba(2,6,23,0.45) }
     .project img{ width:100%; height:200px; object-fit:cover; display:block }
     .project .meta{ padding:16px }
     .tags{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap }
-    .tag{ background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:999px; font-size:12px }
+    .tag{ background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted) }
 
-    /* ---------- FEATURES row ---------- */
     .features{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px }
-    .feature{ background:rgba(255,255,255,0.03); padding:18px; border-radius:12px; text-align:center }
+    .feature{ background:rgba(255,255,255,0.02); padding:18px; border-radius:12px; text-align:center; border:1px solid rgba(255,255,255,0.02) }
     .feature p{ color:var(--muted); margin:0; font-size:14px }
 
-    /* contact-strip */
-    .contact-strip{ margin-top:36px; background:linear-gradient(90deg, rgba(37,99,235,0.06), rgba(124,58,237,0.04)); padding:22px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; gap:20px }
+    .contact-strip{ margin-top:36px; background:linear-gradient(90deg, rgba(79,126,161,0.04), rgba(159,180,200,0.02)); padding:22px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; gap:20px; border:1px solid rgba(79,126,161,0.04) }
 
-    /* footer */
-    footer{ padding:36px 0; text-align:center; color:rgba(230,238,248,0.65) }
+    /* ---------------- FOOTER (wyraźne odcięcie) ---------------- */
+    footer{
+      padding:40px 0 70px;
+      color:var(--muted);
+      position:relative;
+      z-index:10;
+    }
+    /* karta stopki, lekko uniesiona i z ramką */
+    .footer-card{
+      margin-top:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));
+      border-radius:14px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 18px 40px rgba(2,6,23,0.55);
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .footer-sep{
+      margin-top:18px;
+      color:rgba(230,238,248,0.5);
+      font-size:13px;
+      text-align:center;
+    }
 
-    /* responsive */
-    @media (max-width:1000px){ .grid{grid-template-columns:repeat(2,1fr)} .hero-inner{grid-template-columns:1fr 360px} }
+    /* ---------------- responsive tweaks ---------------- */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero-inner{grid-template-columns:1fr 360px}
+    }
     @media (max-width:780px){
-      nav{ left:10px; right:10px }
-      .hero-inner{ grid-template-columns:1fr; gap:18px }
-      .preview-img{ height:240px }
+      /* mobile adjustments: hamburger visible, navlinks hidden */
+      .navlinks{ display:none }
+      .hamburger{ display:flex }
+      .mobile-menu{ display:none } /* shown by JS toggle */
+
+      nav{ left:10px; right:10px; padding:8px }
+      .hero-inner{ grid-template-columns:1fr; gap:18px; padding-top:30px }
+      .preview-img{ height:260px }
       .grid{ grid-template-columns:1fr }
       .features{ grid-template-columns:1fr }
       .hero h1{ font-size:34px }
-      .hero p{ font-size:16px }
+      .hero p{ font-size:15px }
+      .btn{ padding:12px 14px; font-size:15px }
     }
 
-    /* ANIMACJA: reveal on scroll (początkowo elementy są przesunięte i przezroczyste) */
-    .fade-up{ opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease }
+    /* reveal on scroll */
+    .fade-up{ opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease }
     .fade-up.in{ opacity:1; transform:none }
 
+    /* small utilities */
+    .muted{ color:var(--muted); font-size:13px }
   </style>
 </head>
 <body>
 
-  <!-- =========================
-       NAVBAR
-       - linki do sekcji: "Co potrafię", "Artykuły", "Projekty", "O mnie", "Skontaktuj się"
-       - linki są zwykłymi anchorami (#id) więc smooth scroll działa przez CSS
-       ========================= -->
-  <nav class="wrap" role="navigation" aria-label="Główne menu">
+  <!-- ========================= NAVBAR =========================
+       - Mobile: hamburger toggluje .mobile-menu (JS poniżej)
+       - Edytuj linki tak jak chcesz; jeśli chcesz link do zewnętrznych podstron, użyj pełnych href
+       ========================================================= -->
+  <nav class="wrap" role="navigation" aria-label="Główne menu" style="height:var(--nav-height);">
     <div class="brand" aria-hidden="true">
       <div class="logo">CP</div>
-      <div class="site-title" style="font-weight:700">CyberProjects
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">embedded • mechatronics • measurement</div>
-      </div>
+      <div class="site-title">CyberProjects <small>embedded • mechatronics • measurement</small></div>
     </div>
 
-    <div class="navlinks" role="menubar">
-      <a href="#features">Co potrafię</a>
-      <a href="#articles">Artykuły</a>
-      <a href="#projekty">Projekty</a>
-      <a href="#about">O mnie</a>
-      <a href="#contact" class="cta-nav">Skontaktuj się</a>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="navlinks" role="menubar">
+        <a href="#features">Co potrafię</a>
+        <a href="#articles">Artykuły</a>
+        <a href="#projekty">Projekty</a>
+        <a href="#about">O mnie</a>
+        <a href="#contact" class="cta-nav">Skontaktuj się</a>
+      </div>
+
+      <!-- hamburger tylko na mobile -->
+      <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu">
+        <!-- prosta ikonka -->
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="18" height="2" rx="1" fill="white" opacity="0.9"></rect>
+          <rect y="5" width="18" height="2" rx="1" fill="white" opacity="0.9"></rect>
+          <rect y="10" width="18" height="2" rx="1" fill="white" opacity="0.9"></rect>
+        </svg>
+      </button>
+    </div>
+
+    <!-- mobile menu (JS pokazuje/ukrywa) -->
+    <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
+      <a href="#features" role="menuitem">Co potrafię</a>
+      <a href="#articles" role="menuitem">Artykuły</a>
+      <a href="#projekty" role="menuitem">Projekty</a>
+      <a href="#about" role="menuitem">O mnie</a>
+      <a href="#contact" role="menuitem" class="cta-nav" style="display:inline-block;margin-top:8px">Skontaktuj się</a>
     </div>
   </nav>
 
-  <!-- =========================
-       HERO - pierwszy widok
-       - prawa kolumna pokazuje obraz z assets (podmień pliki)
-       ========================= -->
+  <!-- ========================= HERO ========================= -->
   <header class="hero">
     <div class="wrap hero-inner">
-      <!-- lewa kolumna: tytuł, opis, CTA -->
       <div class="hero-left">
         <span class="eyebrow">Inżynieria • Embedded • Mechatronika</span>
         <h1 class="fade-up">Projektuję systemy, które działają w rzeczywistości.</h1>
         <p class="fade-up">Buduję sterowniki, loggery i roboty. Od schematu, przez PCB, po firmware — dokumentuję i testuję każdy etap.</p>
 
         <div class="hero-actions">
-          <!-- Przycisk przenosi do sekcji #projekty -->
           <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
-          <!-- Przycisk otwiera klienta poczty -->
           <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
         </div>
       </div>
 
-      <!-- prawa kolumna: podgląd grafiki (użyj swoich plików z assets/) -->
       <aside class="hero-preview" aria-label="Podgląd projektów">
-        <div class="preview-img">
-          <!-- główny obraz (lazy) -->
+        <div class="preview-img" role="img" aria-label="Podgląd projektu">
           <img src="assets/hero-1.jpg" alt="Podgląd projektu" loading="lazy" onerror="this.style.display='none'">
         </div>
 
@@ -183,26 +260,23 @@
             <div style="font-size:13px;color:var(--muted)">STM32 • PCB • Embedded C</div>
           </div>
 
-          <!-- miniaturki: klik -> otwiera modal z dużym obrazem -->
           <div style="display:flex;gap:8px">
-            <button class="btn" onclick="openPreview('assets/hero-1.jpg','Sterownik BLDC')">1</button>
-            <button class="btn" onclick="openPreview('assets/hero-2.jpg','Logger danych')">2</button>
-            <button class="btn" onclick="openPreview('assets/hero-3.jpg','Robot mobilny')">3</button>
+            <button class="preview-mini-btn" onclick="openPreview('assets/hero-1.jpg','Sterownik BLDC')">1</button>
+            <button class="preview-mini-btn" onclick="openPreview('assets/hero-2.jpg','Logger danych')">2</button>
+            <button class="preview-mini-btn" onclick="openPreview('assets/hero-3.jpg','Robot mobilny')">3</button>
           </div>
         </div>
       </aside>
     </div>
   </header>
 
-  <!-- =========================
-       MAIN CONTENT
-       ========================= -->
+  <!-- ========================= MAIN CONTENT ========================= -->
   <main class="wrap">
-    <!-- PROJEKTY -->
+    <!-- ========== PROJEKTY ========== -->
     <section id="projekty">
       <div class="section-title">Wybrane projekty</div>
 
-      <!-- GRID PROJEKTÓW: edytuj / dodawaj <article class="project"> ... -->
+      <!-- GRID: kopiuj <article class="project"> ... </article> aby dodać projekt -->
       <div class="grid">
         <article class="project fade-up">
           <img src="assets/project-01.jpg" alt="Sterownik BLDC" loading="lazy" onerror="this.style.display='none'">
@@ -232,7 +306,7 @@
         </article>
       </div>
 
-      <!-- FEATURES (CO POTRAFIĘ) -->
+      <!-- FEATURES -->
       <div id="features" class="features" style="margin-top:40px">
         <div class="feature fade-up">
           <h4>Pełny cykl</h4>
@@ -248,35 +322,48 @@
         </div>
       </div>
 
-      <!-- CTA strip: propozycja kontaktu -->
+      <!-- CTA strip -->
       <div class="contact-strip fade-up">
         <div>
           <strong>Masz pomysł? Potrzebujesz prototypu?</strong>
           <div style="color:var(--muted);margin-top:6px">Napisz — pomogę z proof-of-concept lub konsultacją techniczną.</div>
         </div>
         <div>
-          <!-- mailto wymagany przez Ciebie -->
           <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Skontaktuj się ze mną</a>
         </div>
       </div>
     </section>
 
-    <!-- ARTYKUŁY -->
+    <!-- ========== ARTYKUŁY (Sekcja wizualna) ==========
+         >> GDZIE WKLEIĆ PEŁNE ARTYKUŁY:
+         - Najprościej: stwórz folder /articles/ i każdemu artykułowi daj osobny plik HTML (np. /articles/sterownik-bldc.html).
+         - Alternatywa (prostsze): wstaw rozszerzony tekst bezpośrednio tutaj jako <article class="post"> ... </article>
+         - W pliku artykułu dodaj meta (title, description, og:image) aby social preview działał dobrze.
+         - Poniżej przykład bloku artykułu do skopiowania.
+    -->
     <section id="articles">
       <div class="section-title">Artykuły</div>
       <div style="max-width:760px;margin:0 auto">
-        <div style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02)); padding:20px; border-radius:12px; margin-bottom:16px">
-          <h3>Jak działa sterownik BLDC</h3>
-          <p style="color:var(--muted)">Krótki opis działania i główne wyzwania projektu.</p>
-        </div>
-        <div style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02)); padding:20px; border-radius:12px">
-          <h3>Budowa systemu pomiarowego</h3>
-          <p style="color:var(--muted)">Opis projektu systemu pomiaru temperatury i wilgotności.</p>
-        </div>
+        <!-- PRZYKŁAD: krótki preview artykułu (link do osobnej strony z pełnym tekstem) -->
+        <article style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.01)); padding:20px; border-radius:12px; margin-bottom:12px">
+          <h3><a href="articles/sterownik-bldc.html" style="color:inherit;text-decoration:none">Jak działa sterownik BLDC</a></h3>
+          <p class="muted">Krótki opis działania i główne wyzwania projektu.</p>
+          <div style="margin-top:10px">
+            <a class="btn btn-ghost" href="articles/sterownik-bldc.html">Czytaj więcej</a>
+          </div>
+        </article>
+
+        <article style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.01)); padding:20px; border-radius:12px">
+          <h3><a href="articles/system-pomiarowy.html" style="color:inherit;text-decoration:none">Budowa systemu pomiarowego</a></h3>
+          <p class="muted">Opis projektu systemu pomiaru temperatury i wilgotności.</p>
+          <div style="margin-top:10px">
+            <a class="btn btn-ghost" href="articles/system-pomiarowy.html">Czytaj więcej</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- O MNIE -->
+    <!-- ========== O MNIE ========== -->
     <section id="about">
       <div class="section-title">O mnie</div>
       <div style="max-width:760px;margin:0 auto;text-align:center;color:var(--muted)">
@@ -287,7 +374,7 @@
       </div>
     </section>
 
-    <!-- KONTAKT -->
+    <!-- ========== KONTAKT ========== -->
     <section id="contact">
       <div class="section-title">Skontaktuj się</div>
       <div style="text-align:center">
@@ -295,28 +382,36 @@
         <div style="margin-top:18px">
           <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
         </div>
-        <p style="margin-top:18px;color:var(--muted)">LinkedIn: <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:#60a5fa;text-decoration:none">sebastiandziewit</a></p>
+        <p style="margin-top:18px;color:var(--muted)">LinkedIn: <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:var(--accent1);text-decoration:none">sebastiandziewit</a></p>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER - tylko LinkedIn (usunięte GitHub/Twitter) -->
+  <!-- ========================= FOOTER ========================= -->
   <footer>
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="logo" style="width:40px;height:40px">CP</div>
-        <div style="color:var(--muted)">CyberProjects — embedded & mechatronics</div>
+    <div class="wrap">
+      <div class="footer-card">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="logo" style="width:48px;height:48px;border-radius:12px">CP</div>
+          <div>
+            <div style="font-weight:700">CyberProjects</div>
+            <div style="color:var(--muted);font-size:13px">embedded & mechatronics</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <!-- Tutaj możesz dodać dodatkowe linki lub ikony social -->
+          <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:var(--muted);text-decoration:none">LinkedIn</a>
+        </div>
       </div>
-      <div style="color:var(--muted)">
-        <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:var(--muted);text-decoration:none">LinkedIn</a>
-      </div>
+
+      <div class="footer-sep">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
     </div>
-    <div style="margin-top:18px;color:rgba(230,238,248,0.5)">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
   </footer>
 
-  <!-- MODAL PREVIEW: proste okno do powiększenia obrazów -->
-  <div id="modal" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:120">
-    <div style="max-width:960px;width:calc(100% - 40px);background:var(--panel);border-radius:12px;overflow:hidden;">
+  <!-- ========================= MODAL PREVIEW ========================= -->
+  <div id="modal" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:220">
+    <div style="max-width:960px;width:calc(100% - 40px);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.03)">
         <strong id="modal-title">Preview</strong>
         <button onclick="closeModal()" style="background:transparent;border:0;color:var(--muted);font-weight:700;padding:8px 12px;cursor:pointer">Zamknij</button>
@@ -327,39 +422,60 @@
     </div>
   </div>
 
-  <!-- =========================
-       SCRIPTS - proste i czytelne
-       ========================= -->
+  <!-- ========================= SCRIPTS (z komentarzami) ========================= -->
   <script>
-    /* Otwiera modal z obrazem (używane w hero, miniaturki) */
+    /* ========== Modal preview ========== */
     function openPreview(src, title){
-      document.getElementById('modal-img').src = src;
-      document.getElementById('modal-img').alt = title || '';
+      const img = document.getElementById('modal-img');
+      const modal = document.getElementById('modal');
+      img.src = src;
+      img.alt = title || '';
       document.getElementById('modal-title').textContent = title || '';
-      document.getElementById('modal').style.display = 'grid';
-      // fokus na przycisk Zamknij (mały accessibility boost)
-      setTimeout(()=> document.querySelector('#modal button').focus(), 80);
+      modal.style.display = 'grid';
+      setTimeout(()=> {
+        const btn = modal.querySelector('button');
+        if(btn) btn.focus();
+      }, 80);
     }
     function closeModal(){
-      document.getElementById('modal').style.display = 'none';
+      const modal = document.getElementById('modal');
       document.getElementById('modal-img').src = '';
+      modal.style.display = 'none';
     }
-    // kliknięcie poza modal zamyka go
     document.getElementById('modal').addEventListener('click', (e)=> { if(e.target === e.currentTarget) closeModal(); });
-    // ESC zamyka modal
     document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
 
-    /* Reveal on scroll:
-       - obserwujemy elementy z klasą .fade-up
-       - kiedy wchodzą do widoku dodajemy klasę .in (powoduje pojawienie się)
-       - proste i wydajne (IntersectionObserver)
-    */
+    /* ========== Mobile menu toggle ========== */
+    (function(){
+      const btn = document.getElementById('hambtn');
+      const menu = document.getElementById('mobile-menu');
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(!expanded){
+          menu.style.display = 'block';
+          menu.setAttribute('aria-hidden','false');
+        } else {
+          menu.style.display = 'none';
+          menu.setAttribute('aria-hidden','true');
+        }
+      });
+
+      // zamknij menu po kliknięciu linku (mobile)
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        menu.style.display = 'none';
+        btn.setAttribute('aria-expanded','false');
+        menu.setAttribute('aria-hidden','true');
+      }));
+    })();
+
+    /* ========== Reveal on scroll (IntersectionObserver) ========== */
     (function(){
       const obs = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
             entry.target.classList.add('in');
-            observer.unobserve(entry.target); // tylko raz
+            observer.unobserve(entry.target);
           }
         });
       }, { threshold: 0.12 });
@@ -367,16 +483,45 @@
       document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
     })();
 
-    /* Preload mini zdjęć hero dla płynności (opcjonalne) */
+    /* ========== Preload hero mini images ========== */
     (function(){ ['assets/hero-1.jpg','assets/hero-2.jpg','assets/hero-3.jpg'].forEach(s => { const i = new Image(); i.src = s; }); })();
   </script>
 
-  <!-- Krótkie wskazówki:
-       - Edytuj teksty w sekcjach: hero, projekty, articles, about.
-       - Aby dodać kolejny projekt: skopiuj <article class="project"> ... </article> i podmień obraz i treść.
-       - Jeśli chcesz inny obraz w hero: podmień assets/hero-1.jpg (i hero-2/3 jeśli chcesz miniaturki).
-       - Kontakt: wszystkie mailto prowadzą do gall.anonim305@gmail.com.
-  -->
+  <!-- ========================= DODATKOWE WSKAZÓWKI / KOMENTARZE ==========
 
+       1) Gdzie wkleić pełne artykuły?
+          - Najprościej (statyczne GitHub Pages):
+            /articles/sterownik-bldc.html
+            /articles/system-pomiarowy.html
+          - Każdy artykuł to pełny plik HTML (możesz skopiować head/meta z tego pliku i zmienić title/og:image/description).
+          - Alternatywa: użyj generatora statycznego (Eleventy, Hugo) – wtedy trzymasz artykuły w markdown i generujesz layout.
+
+       2) Przykładowy szkielet artykułu (pliki w /articles/):
+          <!doctype html>
+          <html lang="pl"> ... head (title/meta/og:image) ...
+          <body>
+            <main class="wrap" style="padding-top:80px">
+              <article style="max-width:850px;margin:40px auto">
+                <h1>Tytuł artykułu</h1>
+                <p class="muted">Data • Kategoria</p>
+                <p>Wstęp...</p>
+                <h2>Sekcja</h2>
+                <p>Treść artykułu...</p>
+                <a href="/index.html">← Powrót</a>
+              </article>
+            </main>
+          </body>
+          </html>
+
+       3) Komentarze w kodzie:
+          - W tym pliku zostawiłem komentarze przy sekcji ARTYKUŁY, PROJEKTY i FOOTER — to miejsca, które najczęściej edytujesz.
+          - Jeśli chcesz więcej inline-komentarzy (np. w CSS), daj znać — mogę oznaczyć każdą regułę dokładnie.
+
+       4) Dodatkowe pomysły „wow”:
+          - Dodaj drobne mikroanimacje do przycisków (scale) i delikatne hovery dla tagów.
+          - Jeśli chcesz wygląd jeszcze bardziej „app-like”: zainstaluj ikonę aplikacji (manifest) i Service Worker -> PWA.
+          - Dla artykułów: warto dodać front-matter + RSS (jeśli będziesz mieć >5 wpisów).
+
+    =================================================================== -->
 </body>
 </html>
