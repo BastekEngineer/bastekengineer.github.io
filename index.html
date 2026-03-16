@@ -1,440 +1,379 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberProjects | Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CyberProjects — Portfolio</title>
 
-<!--
-====================================================
-PROSTA WERSJA STRONY PORTFOLIO
-====================================================
-Cel:
-- kod łatwy do zrozumienia
-- dużo komentarzy
-- jedna strona (landing page)
-- grafiki z folderu /assets
+  <!-- Lekka czcionka -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-Aby podmienić grafiki:
-assets/project1.jpg
-assets/project2.jpg
-assets/project3.jpg
+  <!-- Meta do podglądu w social (zastąp assets/og-image.jpg własnym obrazem jeśli chcesz) -->
+  <meta name="description" content="CyberProjects — portfolio inżyniera: embedded, mechatronika, systemy pomiarowe.">
+  <meta property="og:image" content="assets/og-image.jpg">
 
-Możesz dodać dowolne kolejne.
-====================================================
--->
+  <!-- =========================
+       STYLES - proste, skondensowane
+       ========================= -->
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f1724;
+      --accent1:#2563eb;
+      --accent2:#7c3aed;
+      --muted: rgba(230,238,248,0.75);
+      --radius:12px;
+      --maxw:1100px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    /* podstawowy reset */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth} /* prosty smooth scroll */
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(37,99,235,0.08), transparent 6%),
+        radial-gradient(1000px 500px at 90% 90%, rgba(124,58,237,0.06), transparent 6%),
+        var(--bg);
+      color:#e6eef8;
+      line-height:1.4;
+    }
 
-<style>
+    /* wrapper centrujący */
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
-/* ========================================
-PODSTAWOWE STYLE STRONY
-======================================== */
+    /* ---------- NAVBAR (fixed) ---------- */
+    nav{
+      position:fixed; left:0; right:0; top:18px; z-index:80;
+      margin:0 auto; max-width:var(--maxw);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px; border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+    }
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{ width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+           background:linear-gradient(135deg,var(--accent1),var(--accent2)); font-weight:700;}
+    .navlinks{display:flex; gap:16px; align-items:center}
+    .navlinks a{color:var(--muted); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px}
+    .navlinks a:hover{color:white; background:rgba(255,255,255,0.03)}
+    .cta-nav{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none}
 
-body{
-font-family: 'Inter', sans-serif;
-margin:0;
-background:#0f172a;
-color:white;
-}
+    /* ---------- HERO ---------- */
+    header.hero{
+      min-height:100vh; display:grid; place-items:center; position:relative;
+      padding:120px 0 80px; overflow:hidden;
+    }
+    .hero-inner{ display:grid; grid-template-columns:1fr 420px; gap:36px; width:100%; padding:40px 0; }
+    .hero-left{ max-width:680px }
+    .eyebrow{ display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2)); padding:6px 12px; border-radius:999px; font-weight:700; color:white; font-size:13px; margin-bottom:16px }
+    .hero h1{ font-size:48px; line-height:1.02; margin:0 0 18px }
+    .hero p{ color:rgba(230,238,248,0.92); font-size:18px; margin-bottom:22px }
+    .hero-actions{ display:flex; gap:12px; }
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; border:0; cursor:pointer; font-weight:700; text-decoration:none }
+    .btn-primary{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(37,99,235,0.12) }
+    .btn-ghost{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04) }
 
-/* maksymalna szerokość treści */
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
-}
+    /* hero preview (prawa kolumna) */
+    .hero-preview{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px; padding:12px; box-shadow:0 20px 50px rgba(2,6,23,0.6); display:flex; flex-direction:column; gap:12px }
+    .preview-img{ width:100%; height:360px; background:#081226; border-radius:12px; overflow:hidden; display:grid; place-items:center }
+    .preview-img img{ width:100%; height:100%; object-fit:cover }
+    .preview-meta{ display:flex; justify-content:space-between; align-items:center; padding:6px 10px; font-size:13px; color:var(--muted) }
 
-h1,h2,h3{
-margin-top:0;
-}
+    /* ---------- SEKCJA PROJEKTÓW ---------- */
+    section{ padding:80px 0 }
+    .section-title{ font-size:28px; text-align:center; margin-bottom:26px }
+    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+    .project{ background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02)); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:transform .28s, box-shadow .28s }
+    .project:hover{ transform:translateY(-10px); box-shadow:0 30px 60px rgba(2,6,23,0.6) }
+    .project img{ width:100%; height:200px; object-fit:cover; display:block }
+    .project .meta{ padding:16px }
+    .tags{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap }
+    .tag{ background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:999px; font-size:12px }
 
-section{
-padding:80px 0;
-}
+    /* ---------- FEATURES row ---------- */
+    .features{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px }
+    .feature{ background:rgba(255,255,255,0.03); padding:18px; border-radius:12px; text-align:center }
+    .feature p{ color:var(--muted); margin:0; font-size:14px }
 
-/* ========================================
-GÓRNA BELKA (NAWIGACJA)
-======================================== */
+    /* contact-strip */
+    .contact-strip{ margin-top:36px; background:linear-gradient(90deg, rgba(37,99,235,0.06), rgba(124,58,237,0.04)); padding:22px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; gap:20px }
 
-nav{
-position:fixed;
-top:0;
-left:0;
-right:0;
-background:#020617;
-padding:15px;
-}
+    /* footer */
+    footer{ padding:36px 0; text-align:center; color:rgba(230,238,248,0.65) }
 
-nav .menu{
-display:flex;
-justify-content:center;
-gap:30px;
-}
+    /* responsive */
+    @media (max-width:1000px){ .grid{grid-template-columns:repeat(2,1fr)} .hero-inner{grid-template-columns:1fr 360px} }
+    @media (max-width:780px){
+      nav{ left:10px; right:10px }
+      .hero-inner{ grid-template-columns:1fr; gap:18px }
+      .preview-img{ height:240px }
+      .grid{ grid-template-columns:1fr }
+      .features{ grid-template-columns:1fr }
+      .hero h1{ font-size:34px }
+      .hero p{ font-size:16px }
+    }
 
-nav a{
-color:white;
-text-decoration:none;
-font-size:14px;
-opacity:0.8;
-}
+    /* ANIMACJA: reveal on scroll (początkowo elementy są przesunięte i przezroczyste) */
+    .fade-up{ opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease }
+    .fade-up.in{ opacity:1; transform:none }
 
-nav a:hover{
-opacity:1;
-}
-
-/* ========================================
-SEKCJA HERO (PIERWSZY WIDOK STRONY)
-======================================== */
-
-.hero{
-text-align:center;
-padding-top:140px; /* odstęp przez fixed navbar */
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-}
-
-.hero h1{
-font-size:48px;
-}
-
-.hero p{
-font-size:20px;
-max-width:600px;
-margin:auto;
-}
-
-.hero button{
-margin-top:30px;
-padding:15px 30px;
-border:none;
-border-radius:8px;
-background:white;
-color:#2563eb;
-font-size:16px;
-cursor:pointer;
-}
-
-/* ========================================
-SEKCJA PROJEKTÓW
-======================================== */
-
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-
-.project-card{
-background:#1e293b;
-border-radius:10px;
-overflow:hidden;
-}
-
-.project-card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-.project-content{
-padding:20px;
-}
-
-/* ========================================
-SEKCJA UMIEJĘTNOŚCI
-======================================== */
-
-.skills{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-justify-content:center;
-}
-
-.skills span{
-background:#1e293b;
-padding:10px 20px;
-border-radius:20px;
-font-size:14px;
-}
-
-/* ========================================
-SEKCJA ARTYKUŁÓW
-======================================== */
-
-.article{
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-}
-
-/* ========================================
-STOPKA
-======================================== */
-
-footer{
-text-align:center;
-padding:50px 20px;
-background:#020617;
-}
-
-.contact-btn{
-margin-top:20px;
-padding:15px 30px;
-background:#2563eb;
-border:none;
-border-radius:8px;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-</style>
-
-<script>
-
-/* ======================================================
-PROSTE PŁYNNE PRZEWIJANIE DO SEKCJI
-====================================================== */
-
-function scrollToSection(id){
-
-const section=document.getElementById(id);
-
-section.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-</script>
-
+  </style>
 </head>
-
 <body>
 
-<!-- ========================================
-NAWIGACJA
-Kliknięcie przenosi do sekcji strony
-======================================== -->
-
-<nav>
-<div class="menu">
-
-<a href="#" onclick="scrollToSection('skills')">Co potrafię</a>
-
-<a href="#" onclick="scrollToSection('articles')">Artykuły</a>
-
-<a href="#" onclick="scrollToSection('projects')">Projekty</a>
-
-<a href="#" onclick="scrollToSection('about')">O mnie</a>
-
-<a href="#" onclick="scrollToSection('contact')">Skontaktuj się</a>
-
-</div>
-</nav>
-
-
-<!-- ========================================
-HERO
-Pierwsza sekcja strony
-======================================== -->
-
-<section class="hero">
-
-<div class="container">
-
-<h1>CyberProjects</h1>
-
-<p>
-Eksperymentalne projekty z elektroniki, mechatroniki
-oraz systemów pomiarowych.
-</p>
-
-<button onclick="scrollToSection('projects')">
-Zobacz projekty
-</button>
-
-</div>
-
-</section>
-
-
-<!-- ========================================
-SEKCJA UMIEJĘTNOŚCI
-======================================== -->
-
-<section id="skills">
-
-<div class="container">
-
-<h2>Co potrafię</h2>
-
-<div class="skills">
-
-<span>Embedded C</span>
-<span>STM32</span>
-<span>Arduino</span>
-<span>Python</span>
-<span>Electronics</span>
-<span>Control Systems</span>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ========================================
-SEKCJA PROJEKTÓW
-======================================== -->
-
-<section id="projects">
-
-<div class="container">
-
-<h2>Projekty</h2>
-
-<div class="projects">
-
-<div class="project-card">
-<img src="assets/project1.jpg">
-<div class="project-content">
-<h3>Sterownik BLDC</h3>
-<p>
-Sterownik silnika BLDC oparty o mikrokontroler STM32.
-</p>
-</div>
-</div>
-
-<div class="project-card">
-<img src="assets/project2.jpg">
-<div class="project-content">
-<h3>Logger danych</h3>
-<p>
-System zapisu danych z czujników na kartę SD.
-</p>
-</div>
-</div>
-
-<div class="project-card">
-<img src="assets/project3.jpg">
-<div class="project-content">
-<h3>Robot mobilny</h3>
-<p>
-Robot eksperymentalny z czujnikami odległości.
-</p>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ========================================
-SEKCJA ARTYKUŁÓW
-Możesz tu dodawać wpisy
-======================================== -->
-
-<section id="articles">
-
-<div class="container">
-
-<h2>Artykuły</h2>
-
-<div class="article">
-
-<h3>Jak działa sterownik BLDC</h3>
-
-<p>
-Krótki artykuł opisujący działanie sterowania silnikiem BLDC.
-</p>
-
-</div>
-
-<div class="article">
-
-<h3>Budowa systemu pomiarowego</h3>
-
-<p>
-Opis projektu systemu pomiaru temperatury i wilgotności.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ========================================
-SEKCJA O MNIE
-======================================== -->
-
-<section id="about">
-
-<div class="container">
-
-<h2>O mnie</h2>
-
-<p>
-Jestem pasjonatem elektroniki i mechatroniki.
-Tworzę projekty związane z mikrokontrolerami,
-systemami pomiarowymi oraz automatyką.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ========================================
-SEKCJA KONTAKT
-======================================== -->
-
-<section id="contact">
-
-<div class="container" style="text-align:center;">
-
-<h2>Skontaktuj się</h2>
-
-<p>
-Jeśli chcesz współpracować lub masz pytanie — napisz.
-</p>
-
-<a href="mailto:gall.anonim305@gmail.com">
-<button class="contact-btn">
-Napisz do mnie
-</button>
-</a>
-
-<p style="margin-top:30px;">
-LinkedIn:
-<a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:#60a5fa">
-sebastiandziewit
-</a>
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ========================================
-STOPKA
-======================================== -->
-
-<footer>
-
-CyberProjects © 2026
-
-</footer>
+  <!-- =========================
+       NAVBAR
+       - linki do sekcji: "Co potrafię", "Artykuły", "Projekty", "O mnie", "Skontaktuj się"
+       - linki są zwykłymi anchorami (#id) więc smooth scroll działa przez CSS
+       ========================= -->
+  <nav class="wrap" role="navigation" aria-label="Główne menu">
+    <div class="brand" aria-hidden="true">
+      <div class="logo">CP</div>
+      <div class="site-title" style="font-weight:700">CyberProjects
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">embedded • mechatronics • measurement</div>
+      </div>
+    </div>
+
+    <div class="navlinks" role="menubar">
+      <a href="#features">Co potrafię</a>
+      <a href="#articles">Artykuły</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#about">O mnie</a>
+      <a href="#contact" class="cta-nav">Skontaktuj się</a>
+    </div>
+  </nav>
+
+  <!-- =========================
+       HERO - pierwszy widok
+       - prawa kolumna pokazuje obraz z assets (podmień pliki)
+       ========================= -->
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <!-- lewa kolumna: tytuł, opis, CTA -->
+      <div class="hero-left">
+        <span class="eyebrow">Inżynieria • Embedded • Mechatronika</span>
+        <h1 class="fade-up">Projektuję systemy, które działają w rzeczywistości.</h1>
+        <p class="fade-up">Buduję sterowniki, loggery i roboty. Od schematu, przez PCB, po firmware — dokumentuję i testuję każdy etap.</p>
+
+        <div class="hero-actions">
+          <!-- Przycisk przenosi do sekcji #projekty -->
+          <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
+          <!-- Przycisk otwiera klienta poczty -->
+          <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+        </div>
+      </div>
+
+      <!-- prawa kolumna: podgląd grafiki (użyj swoich plików z assets/) -->
+      <aside class="hero-preview" aria-label="Podgląd projektów">
+        <div class="preview-img">
+          <!-- główny obraz (lazy) -->
+          <img src="assets/hero-1.jpg" alt="Podgląd projektu" loading="lazy" onerror="this.style.display='none'">
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="preview-meta">
+            <strong>Sterownik BLDC</strong>
+            <div style="font-size:13px;color:var(--muted)">STM32 • PCB • Embedded C</div>
+          </div>
+
+          <!-- miniaturki: klik -> otwiera modal z dużym obrazem -->
+          <div style="display:flex;gap:8px">
+            <button class="btn" onclick="openPreview('assets/hero-1.jpg','Sterownik BLDC')">1</button>
+            <button class="btn" onclick="openPreview('assets/hero-2.jpg','Logger danych')">2</button>
+            <button class="btn" onclick="openPreview('assets/hero-3.jpg','Robot mobilny')">3</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- =========================
+       MAIN CONTENT
+       ========================= -->
+  <main class="wrap">
+    <!-- PROJEKTY -->
+    <section id="projekty">
+      <div class="section-title">Wybrane projekty</div>
+
+      <!-- GRID PROJEKTÓW: edytuj / dodawaj <article class="project"> ... -->
+      <div class="grid">
+        <article class="project fade-up">
+          <img src="assets/project-01.jpg" alt="Sterownik BLDC" loading="lazy" onerror="this.style.display='none'">
+          <div class="meta">
+            <h3>Sterownik BLDC</h3>
+            <p>Projekt sterownika silnika BLDC z pomiarami prądu i estymacją pozycji.</p>
+            <div class="tags"><span class="tag">STM32</span><span class="tag">PWM</span><span class="tag">PCB</span></div>
+          </div>
+        </article>
+
+        <article class="project fade-up">
+          <img src="assets/project-02.jpg" alt="Logger danych" loading="lazy" onerror="this.style.display='none'">
+          <div class="meta">
+            <h3>Logger danych</h3>
+            <p>Wysokorozdzielczy logger na kartę SD z timestampem i filtrowaniem sygnału.</p>
+            <div class="tags"><span class="tag">STM32</span><span class="tag">SD</span><span class="tag">Analog</span></div>
+          </div>
+        </article>
+
+        <article class="project fade-up">
+          <img src="assets/project-03.jpg" alt="Robot mobilny" loading="lazy" onerror="this.style.display='none'">
+          <div class="meta">
+            <h3>Robot mobilny</h3>
+            <p>Robot z autonomicznym omijaniem przeszkód i regulatorem PID.</p>
+            <div class="tags"><span class="tag">ROS</span><span class="tag">LIDAR</span><span class="tag">Control</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- FEATURES (CO POTRAFIĘ) -->
+      <div id="features" class="features" style="margin-top:40px">
+        <div class="feature fade-up">
+          <h4>Pełny cykl</h4>
+          <p>Od koncepcji, przez PCB, firmware, do testów.</p>
+        </div>
+        <div class="feature fade-up">
+          <h4>Dokumentacja</h4>
+          <p>Schematy, zdjęcia, instrukcje i repozytoria.</p>
+        </div>
+        <div class="feature fade-up">
+          <h4>Walidacja</h4>
+          <p>Testy na prototypach i benchy pomiarowe.</p>
+        </div>
+      </div>
+
+      <!-- CTA strip: propozycja kontaktu -->
+      <div class="contact-strip fade-up">
+        <div>
+          <strong>Masz pomysł? Potrzebujesz prototypu?</strong>
+          <div style="color:var(--muted);margin-top:6px">Napisz — pomogę z proof-of-concept lub konsultacją techniczną.</div>
+        </div>
+        <div>
+          <!-- mailto wymagany przez Ciebie -->
+          <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Skontaktuj się ze mną</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTYKUŁY -->
+    <section id="articles">
+      <div class="section-title">Artykuły</div>
+      <div style="max-width:760px;margin:0 auto">
+        <div style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02)); padding:20px; border-radius:12px; margin-bottom:16px">
+          <h3>Jak działa sterownik BLDC</h3>
+          <p style="color:var(--muted)">Krótki opis działania i główne wyzwania projektu.</p>
+        </div>
+        <div style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02)); padding:20px; border-radius:12px">
+          <h3>Budowa systemu pomiarowego</h3>
+          <p style="color:var(--muted)">Opis projektu systemu pomiaru temperatury i wilgotności.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- O MNIE -->
+    <section id="about">
+      <div class="section-title">O mnie</div>
+      <div style="max-width:760px;margin:0 auto;text-align:center;color:var(--muted)">
+        <p>Jestem inżynierem pracującym z mikrokontrolerami, projektami PCB i systemami pomiarowymi. Projektuję rozwiązania od schematu po firmware i testy w rzeczywistych warunkach.</p>
+        <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px">
+          <a class="btn btn-ghost" href="#projekty">Zobacz projekty</a>
+          <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz e-mail</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact">
+      <div class="section-title">Skontaktuj się</div>
+      <div style="text-align:center">
+        <p style="color:var(--muted)">Masz pytanie lub chcesz omówić projekt? Napisz maila lub odwiedź mój LinkedIn.</p>
+        <div style="margin-top:18px">
+          <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+        </div>
+        <p style="margin-top:18px;color:var(--muted)">LinkedIn: <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:#60a5fa;text-decoration:none">sebastiandziewit</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER - tylko LinkedIn (usunięte GitHub/Twitter) -->
+  <footer>
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="logo" style="width:40px;height:40px">CP</div>
+        <div style="color:var(--muted)">CyberProjects — embedded & mechatronics</div>
+      </div>
+      <div style="color:var(--muted)">
+        <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:var(--muted);text-decoration:none">LinkedIn</a>
+      </div>
+    </div>
+    <div style="margin-top:18px;color:rgba(230,238,248,0.5)">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
+  </footer>
+
+  <!-- MODAL PREVIEW: proste okno do powiększenia obrazów -->
+  <div id="modal" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:120">
+    <div style="max-width:960px;width:calc(100% - 40px);background:var(--panel);border-radius:12px;overflow:hidden;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.03)">
+        <strong id="modal-title">Preview</strong>
+        <button onclick="closeModal()" style="background:transparent;border:0;color:var(--muted);font-weight:700;padding:8px 12px;cursor:pointer">Zamknij</button>
+      </div>
+      <div style="padding:14px;background:#081226;display:grid;place-items:center">
+        <img id="modal-img" src="" alt="" style="max-width:100%;height:auto;display:block">
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       SCRIPTS - proste i czytelne
+       ========================= -->
+  <script>
+    /* Otwiera modal z obrazem (używane w hero, miniaturki) */
+    function openPreview(src, title){
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal-img').alt = title || '';
+      document.getElementById('modal-title').textContent = title || '';
+      document.getElementById('modal').style.display = 'grid';
+      // fokus na przycisk Zamknij (mały accessibility boost)
+      setTimeout(()=> document.querySelector('#modal button').focus(), 80);
+    }
+    function closeModal(){
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('modal-img').src = '';
+    }
+    // kliknięcie poza modal zamyka go
+    document.getElementById('modal').addEventListener('click', (e)=> { if(e.target === e.currentTarget) closeModal(); });
+    // ESC zamyka modal
+    document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
+
+    /* Reveal on scroll:
+       - obserwujemy elementy z klasą .fade-up
+       - kiedy wchodzą do widoku dodajemy klasę .in (powoduje pojawienie się)
+       - proste i wydajne (IntersectionObserver)
+    */
+    (function(){
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target); // tylko raz
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    })();
+
+    /* Preload mini zdjęć hero dla płynności (opcjonalne) */
+    (function(){ ['assets/hero-1.jpg','assets/hero-2.jpg','assets/hero-3.jpg'].forEach(s => { const i = new Image(); i.src = s; }); })();
+  </script>
+
+  <!-- Krótkie wskazówki:
+       - Edytuj teksty w sekcjach: hero, projekty, articles, about.
+       - Aby dodać kolejny projekt: skopiuj <article class="project"> ... </article> i podmień obraz i treść.
+       - Jeśli chcesz inny obraz w hero: podmień assets/hero-1.jpg (i hero-2/3 jeśli chcesz miniaturki).
+       - Kontakt: wszystkie mailto prowadzą do gall.anonim305@gmail.com.
+  -->
 
 </body>
 </html>
