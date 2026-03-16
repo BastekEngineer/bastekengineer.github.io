@@ -1,425 +1,440 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CyberProjects — Portfolio</title>
-  <!-- Google font (slim) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- Basic meta for social preview (change image in assets for better preview) -->
-  <meta name="description" content="CyberProjects — portfolio inżyniera: embedded, mechatronika, systemy pomiarowe.">
-  <meta property="og:title" content="CyberProjects — Portfolio">
-  <meta property="og:description" content="Projekty: sterowniki, loggery, roboty. Kontakt: gall.anonim305@gmail.com">
-  <meta property="og:image" content="assets/og-image.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberProjects | Portfolio</title>
 
-  <!--
-    Styles: all in one file so możesz wrzucić index.html na GitHub Pages bez buildów.
-    Zmienne CSS ułatwiają szybką edycję kolorów i odstępów.
-  -->
-  <style>
-    :root{
-      --bg:#0b1020;              /* główne tło */
-      --panel:#0f1724;           /* karty */
-      --glass: rgba(255,255,255,0.06);
-      --accent1: #2563eb;        /* niebieski */
-      --accent2: #7c3aed;        /* fiolet */
-      --muted: rgba(255,255,255,0.75);
-      --radius: 14px;
-      --maxwidth: 1100px;
-    }
+<!--
+====================================================
+PROSTA WERSJA STRONY PORTFOLIO
+====================================================
+Cel:
+- kod łatwy do zrozumienia
+- dużo komentarzy
+- jedna strona (landing page)
+- grafiki z folderu /assets
 
-    /* Reset i prosta typografia */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(37,99,235,0.08), transparent 6%),
-                  radial-gradient(1000px 500px at 90% 90%, rgba(124,58,237,0.06), transparent 6%),
-                  var(--bg);
-      color: #e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.4;
-    }
+Aby podmienić grafiki:
+assets/project1.jpg
+assets/project2.jpg
+assets/project3.jpg
 
-    /* Wrapper centrujący zawartość */
-    .wrap{max-width:var(--maxwidth);margin:0 auto;padding:0 20px}
+Możesz dodać dowolne kolejne.
+====================================================
+-->
 
-    /* NAVBAR */
-    /* sticky, lekka glassmorphism, proste linki */
-    nav{
-      position:fixed;top:18px;left:0;right:0;z-index:60;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:10px 22px;border-radius:12px;margin:0 auto;width:calc(100% - 40px);
-      max-width:var(--maxwidth);backdrop-filter: blur(8px);background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;
-      background: linear-gradient(135deg,var(--accent1),var(--accent2));
-      display:grid;place-items:center;font-weight:700;color:white;font-size:18px;
-      box-shadow: 0 6px 18px rgba(37,99,235,0.12);
-    }
-    .site-title{font-weight:700}
+<style>
 
-    .navlinks{display:flex;gap:18px;align-items:center}
-    .navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px}
-    .navlinks a:hover{color:white;background:rgba(255,255,255,0.03)}
+/* ========================================
+PODSTAWOWE STYLE STRONY
+======================================== */
 
-    .cta-nav{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:10px;color:white;text-decoration:none;font-weight:700}
+body{
+font-family: 'Inter', sans-serif;
+margin:0;
+background:#0f172a;
+color:white;
+}
 
-    /* HERO: duży, centralny, z efektem tekstowym i obrazem po prawej */
-    header.hero{
-      min-height:100vh;display:grid;place-items:center;position:relative;padding:120px 0 80px;overflow:hidden;
-    }
+/* maksymalna szerokość treści */
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
 
-    /* dekoracyjne SVG / shape - pozycjonowane absolutnie */
-    .hero .shapes{position:absolute;inset:0;pointer-events:none;}
+h1,h2,h3{
+margin-top:0;
+}
 
-    .hero-inner{display:grid;grid-template-columns: 1fr 420px;gap:40px;align-items:center;width:100%;padding:40px 0}
+section{
+padding:80px 0;
+}
 
-    .hero-left{max-width:680px}
-    .eyebrow{display:inline-block;background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:6px 12px;border-radius:999px;font-weight:700;color:white;font-size:13px;margin-bottom:16px}
+/* ========================================
+GÓRNA BELKA (NAWIGACJA)
+======================================== */
 
-    .hero h1{font-size:48px;line-height:1.02;margin:0 0 18px}
-    .hero p{color:rgba(230,238,248,0.9);font-size:18px;margin-bottom:22px}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:#020617;
+padding:15px;
+}
 
-    .hero-actions{display:flex;gap:14px;align-items:center}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;box-shadow:0 12px 30px rgba(37,99,235,0.12)}
-    .btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+nav .menu{
+display:flex;
+justify-content:center;
+gap:30px;
+}
 
-    /* right column: mockup karta z Twoimi grafikami */
-    .hero-preview{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:12px;box-shadow:0 20px 50px rgba(2,6,23,0.6);display:flex;flex-direction:column;gap:12px}
-    .preview-img{width:100%;height:360px;background:#081226;border-radius:12px;overflow:hidden;display:grid;place-items:center}
-    .preview-img img{width:100%;height:100%;object-fit:cover}
-    .preview-meta{display:flex;justify-content:space-between;align-items:center;padding:6px 10px}
+nav a{
+color:white;
+text-decoration:none;
+font-size:14px;
+opacity:0.8;
+}
 
-    /* SECTION: projects */
-    section{padding:80px 0}
-    .section-title{font-size:28px;text-align:center;margin-bottom:26px}
+nav a:hover{
+opacity:1;
+}
 
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* ========================================
+SEKCJA HERO (PIERWSZY WIDOK STRONY)
+======================================== */
 
-    /* projekt karta */
-    .project{background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02));border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s}
-    .project:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(2,6,23,0.6)}
-    .project img{width:100%;height:200px;object-fit:cover;display:block}
-    .project .meta{padding:16px}
-    .project h3{margin:0 0 8px}
-    .project p{margin:0;color:var(--muted);font-size:14px}
-    .project .tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-    .tag{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:12px}
+.hero{
+text-align:center;
+padding-top:140px; /* odstęp przez fixed navbar */
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
 
-    /* FEATURES row */
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
-    .feature{background:var(--glass);padding:18px;border-radius:12px;text-align:center}
-    .feature h4{margin:0 0 8px}
-    .feature p{margin:0;color:var(--muted);font-size:14px}
+.hero h1{
+font-size:48px;
+}
 
-    /* Kontakt + CTA at bottom */
-    .contact-strip{margin-top:48px;background:linear-gradient(90deg, rgba(37,99,235,0.06), rgba(124,58,237,0.04));padding:28px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:20px}
-    .contact-strip p{margin:0}
+.hero p{
+font-size:20px;
+max-width:600px;
+margin:auto;
+}
 
-    /* footer */
-    footer{padding:36px 0;text-align:center;color:rgba(230,238,248,0.7)}
+.hero button{
+margin-top:30px;
+padding:15px 30px;
+border:none;
+border-radius:8px;
+background:white;
+color:#2563eb;
+font-size:16px;
+cursor:pointer;
+}
 
-    /* RESPONSIVE */
-    @media (max-width:1000px){
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .hero-inner{grid-template-columns:1fr 360px}
-    }
-    @media (max-width:780px){
-      nav{left:10px;right:10px}
-      .hero-inner{grid-template-columns:1fr;gap:20px}
-      .preview-img{height:240px}
-      .grid{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr}
-      .hero h1{font-size:34px}
-      .hero p{font-size:16px}
-    }
+/* ========================================
+SEKCJA PROJEKTÓW
+======================================== */
 
-    /* Tiny animation helpers */
-    .fade-up{opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
-    .fade-up.in{opacity:1;transform:none}
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
 
-  </style>
+.project-card{
+background:#1e293b;
+border-radius:10px;
+overflow:hidden;
+}
+
+.project-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.project-content{
+padding:20px;
+}
+
+/* ========================================
+SEKCJA UMIEJĘTNOŚCI
+======================================== */
+
+.skills{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+justify-content:center;
+}
+
+.skills span{
+background:#1e293b;
+padding:10px 20px;
+border-radius:20px;
+font-size:14px;
+}
+
+/* ========================================
+SEKCJA ARTYKUŁÓW
+======================================== */
+
+.article{
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+/* ========================================
+STOPKA
+======================================== */
+
+footer{
+text-align:center;
+padding:50px 20px;
+background:#020617;
+}
+
+.contact-btn{
+margin-top:20px;
+padding:15px 30px;
+background:#2563eb;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+</style>
+
+<script>
+
+/* ======================================================
+PROSTE PŁYNNE PRZEWIJANIE DO SEKCJI
+====================================================== */
+
+function scrollToSection(id){
+
+const section=document.getElementById(id);
+
+section.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
+
 </head>
+
 <body>
 
-  <!-- NAVBAR: brand (logo), nawigacja i krótki CTA -->
-  <nav class="wrap" role="navigation" aria-label="Główne menu">
-    <div class="brand">
-      <!-- logo: można zamienić na obraz w assets/logo.png -->
-      <div class="logo" aria-hidden="true">CP</div>
-      <div class="site-title">
-        <div style="font-weight:700">CyberProjects</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">embedded • mechatronics • measurement</div>
-      </div>
-    </div>
+<!-- ========================================
+NAWIGACJA
+Kliknięcie przenosi do sekcji strony
+======================================== -->
 
-    <div class="navlinks" aria-hidden="false">
-      <!-- Anchor links prowadzą do sekcji na tej samej stronie -->
-      <a href="#projekty">Projekty</a>
-      <a href="#features">Co potrafię</a>
-      <a href="#about">O mnie</a>
-      <!-- mailto w menu też może być wygodne -->
-      <a class="cta-nav" href="mailto:gall.anonim305@gmail.com">Skontaktuj się</a>
-    </div>
-  </nav>
+<nav>
+<div class="menu">
 
+<a href="#" onclick="scrollToSection('skills')">Co potrafię</a>
 
-  <!-- HERO: główne pierwsze wrażenie. Po prawej miejsce na Twoje grafiki z assets/ -->
-  <header class="hero">
-    <div class="hero .shapes" aria-hidden="true">
-      <!-- Dekoracyjne SVG: kształty, gradienty. Dzięki absolutnemu pozycjonowaniu tworzą "wow" effect -->
-      <svg class="shapes" width="100%" height="100%" viewBox="0 0 1200 800" style="position:absolute;left:0;top:0;pointer-events:none;mix-blend-mode:screen;opacity:0.8">
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1">
-            <stop offset="0%" stop-color="#2563eb" stop-opacity="0.35" />
-            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.35" />
-          </linearGradient>
-        </defs>
-        <circle cx="1100" cy="120" r="220" fill="url(#g1)" />
-        <circle cx="80" cy="700" r="260" fill="#7c3aed" opacity="0.06" />
-      </svg>
-    </div>
+<a href="#" onclick="scrollToSection('articles')">Artykuły</a>
 
-    <div class="wrap hero-inner">
-      <!-- LEWA KOLUMNA: tytuł, opis, CTA -->
-      <div class="hero-left">
-        <span class="eyebrow">Inżynieria • Embedded • Mechatronika</span>
-        <h1 class="fade-up">Projektuję systemy, które działają w rzeczywistości.</h1>
-        <p class="fade-up">Buduję sterowniki, loggery i roboty. Od schematu, przez PCB, po oprogramowanie wbudowane — pokazuję działające rozwiązania z dokumentacją i zdjęciami.</p>
+<a href="#" onclick="scrollToSection('projects')">Projekty</a>
 
-        <!-- CTA: primary -> link do sekcji projekty, secondary -> mailto -->
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
-          <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
-        </div>
+<a href="#" onclick="scrollToSection('about')">O mnie</a>
 
-      </div>
+<a href="#" onclick="scrollToSection('contact')">Skontaktuj się</a>
 
-      <!-- PRAWA KOLUMNA: mockup / galeria miniatur - korzysta z obrazów z folderu assets -->
-      <aside class="hero-preview" aria-label="Podgląd projektów">
-        <!-- Uwaga: podmień pliki w assets/hero-1.jpg, hero-2.jpg, hero-3.jpg na swoje obrazy -->
-        <div class="preview-img">
-          <!-- obraz główny (lazy loading). Jeśli obraz nie istnieje - tło pozostanie ciemne -->
-          <img src="assets/hero-1.jpg" alt="Podgląd projektu 1" loading="lazy" onerror="this.style.display='none'">
-        </div>
-        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;">
-          <div class="preview-meta">
-            <strong>Sterownik BLDC</strong>
-            <div style="font-size:13px;color:var(--muted)">STM32 • PCB • Embedded C</div>
-          </div>
-          <div style="display:flex;gap:8px">
-            <!-- małe miniaturki (z assets). Kliknięcie otwiera modal z dużym widokiem -->
-            <button class="btn" onclick="openPreview('assets/hero-1.jpg','Sterownik BLDC — zdjęcie')">1</button>
-            <button class="btn" onclick="openPreview('assets/hero-2.jpg','Logger danych — zdjęcie')">2</button>
-            <button class="btn" onclick="openPreview('assets/hero-3.jpg','Robot mobilny — zdjęcie')">3</button>
-          </div>
-        </div>
-      </aside>
-
-    </div>
-  </header>
+</div>
+</nav>
 
 
-  <!-- PROJECTS SECTION: siatka projektów z obrazami z assets/ -->
-  <main class="wrap">
-    <section id="projekty">
-      <div class="section-title">Wybrane projekty</div>
-      <!-- .grid zawiera karty projektów -->
-      <div class="grid">
+<!-- ========================================
+HERO
+Pierwsza sekcja strony
+======================================== -->
 
-        <!-- Każda karta projektu ma obraz (assets/...), tytuł, opis i tagi. -->
-        <article class="project fade-up">
-          <img src="assets/project-01.jpg" alt="Sterownik BLDC" loading="lazy" onerror="this.style.display='none'">
-          <div class="meta">
-            <h3>Sterownik BLDC</h3>
-            <p>Projekt sterownika silnika BLDC z pomiarami prądu i estymacją pozycji.</p>
-            <div class="tags"><span class="tag">STM32</span><span class="tag">PWM</span><span class="tag">PCB</span></div>
-          </div>
-        </article>
+<section class="hero">
 
-        <article class="project fade-up">
-          <img src="assets/project-02.jpg" alt="Logger danych" loading="lazy" onerror="this.style.display='none'">
-          <div class="meta">
-            <h3>Logger danych</h3>
-            <p>Wysokorozdzielczy logger na kartę SD z timestampem i filtrowaniem sygnału.</p>
-            <div class="tags"><span class="tag">STM32</span><span class="tag">SD</span><span class="tag">Analog</span></div>
-          </div>
-        </article>
+<div class="container">
 
-        <article class="project fade-up">
-          <img src="assets/project-03.jpg" alt="Robot mobilny" loading="lazy" onerror="this.style.display='none'">
-          <div class="meta">
-            <h3>Robot mobilny</h3>
-            <p>Robot z autonomicznym omijaniem przeszkód i regulatorem PID.</p>
-            <div class="tags"><span class="tag">ROS</span><span class="tag">LIDAR</span><span class="tag">Control</span></div>
-          </div>
-        </article>
+<h1>CyberProjects</h1>
 
-        <!-- Dodaj kolejne karty podobnie, zamieniając obrazki w assets/ -->
-      </div>
+<p>
+Eksperymentalne projekty z elektroniki, mechatroniki
+oraz systemów pomiarowych.
+</p>
 
-      <!-- Funkcjonalny rząd krótkich benefitów/features pod projektami -->
-      <div id="features" class="features">
-        <div class="feature fade-up">
-          <h4>Pełny cykl</h4>
-          <p>Od pomysłu, przez PCB, po firmware i testy.</p>
-        </div>
-        <div class="feature fade-up">
-          <h4>Dokumentacja</h4>
-          <p>Zdjęcia, schematy, repozytoria i instrukcje montażu.</p>
-        </div>
-        <div class="feature fade-up">
-          <h4>Testy w realu</h4>
-          <p>Walidacja na prototypach i testbenchach.</p>
-        </div>
-      </div>
+<button onclick="scrollToSection('projects')">
+Zobacz projekty
+</button>
 
-      <!-- CTA strip: na końcu sekcji projektów zachęta do kontaktu -->
-      <div class="contact-strip fade-up" style="margin-top:36px">
-        <div>
-          <strong>Masz pomysł? Potrzebujesz prototypu?</strong>
-          <div style="color:var(--muted);margin-top:6px">Napisz — chętnie pomogę z proof-of-concept lub konsultacją techniczną.</div>
-        </div>
-        <!-- Główny przycisk kontaktowy na dole (wymaganie użytkownika): mailto konkretny adres -->
-        <div>
-          <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Skontaktuj się ze mną</a>
-        </div>
-      </div>
+</div>
 
-    </section>
-
-    <!-- ABOUT: sekcja "o mnie" z krótkim bio i CTA do CV/GitHub -->
-    <section id="about">
-      <div class="section-title">O mnie</div>
-      <div style="max-width:760px;margin:0 auto;text-align:center;color:var(--muted)">
-        <!-- Krótki opis — edytuj treść poniżej zgodnie z własnym doświadczeniem. -->
-        <p>Jestem inżynierem pracującym z mikrokontrolerami, projektami PCB i systemami pomiarowymi. Projektuję rozwiązania od schematu po firmware i testy w rzeczywistych warunkach. W projektach preferuję dobre praktyki: testy, dokumentację i powtarzalne metody produkcji.</p>
-        <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px">
-          <a class="btn btn-ghost" href="#projekty">Zobacz projekty</a>
-          <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz e-mail</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER: dopracowany, z odnośnikami do social/GitHub (zamień linki) i małym copyright -->
-  <footer>
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="logo">CP</div>
-        <div style="color:var(--muted)">CyberProjects — embedded & mechatronics</div>
-      </div>
-      <div style="color:var(--muted)">
-        <!-- Zamień linki na swoje profile jeśli chcesz -->
-        <a href="https://github.com/bastekengineer" style="color:var(--muted);text-decoration:none;margin-right:14px">GitHub</a>
-        <a href="#" style="color:var(--muted);text-decoration:none;margin-right:14px">LinkedIn</a>
-        <a href="#" style="color:var(--muted);text-decoration:none">Twitter</a>
-      </div>
-    </div>
-    <div style="margin-top:18px;color:rgba(230,238,248,0.5)">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
-  </footer>
+</section>
 
 
-  <!-- MODAL PREVIEW: otwiera się po kliknięciu miniatury w hero -->
-  <div id="modal" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:120">
-    <div style="max-width:960px;width:calc(100% - 40px);background:var(--panel);border-radius:12px;overflow:hidden;">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.03)">
-        <strong id="modal-title">Preview</strong>
-        <button onclick="closeModal()" style="background:transparent;border:0;color:var(--muted);font-weight:700;padding:8px 12px;cursor:pointer">Zamknij</button>
-      </div>
-      <div style="padding:14px;background:#081226;display:grid;place-items:center">
-        <img id="modal-img" src="" alt="" style="max-width:100%;height:auto;display:block">
-      </div>
-    </div>
-  </div>
+<!-- ========================================
+SEKCJA UMIEJĘTNOŚCI
+======================================== -->
+
+<section id="skills">
+
+<div class="container">
+
+<h2>Co potrafię</h2>
+
+<div class="skills">
+
+<span>Embedded C</span>
+<span>STM32</span>
+<span>Arduino</span>
+<span>Python</span>
+<span>Electronics</span>
+<span>Control Systems</span>
+
+</div>
+
+</div>
+
+</section>
 
 
-  <!-- SKRYPTY: interaktywność, proste animacje i lazy reveal -->
-  <script>
-    // Przydatne małe helpery i komentarze poniżej — edytuj śmiało.
+<!-- ========================================
+SEKCJA PROJEKTÓW
+======================================== -->
 
-    // Funkcja otwierająca modal z podanym obrazem i tytułem.
-    function openPreview(src, title){
-      var modal = document.getElementById('modal');
-      var img = document.getElementById('modal-img');
-      var t = document.getElementById('modal-title');
-      img.src = src;
-      img.alt = title || '';
-      t.textContent = title || '';
-      modal.style.display = 'grid';
-      // prosty fokus accessibility
-      setTimeout(function(){ modal.querySelector('button').focus() }, 100);
-    }
+<section id="projects">
 
-    function closeModal(){
-      var modal = document.getElementById('modal');
-      modal.style.display = 'none';
-      document.getElementById('modal-img').src = '';
-    }
+<div class="container">
 
-    // Kliknięcie poza modalem zamyka go
-    document.getElementById('modal').addEventListener('click', function(e){
-      if(e.target === this) closeModal();
-    });
+<h2>Projekty</h2>
 
-    // Prosty Reveal on scroll: dodaje klasę .in do elementów .fade-up gdy wchodzą do viewportu
-    (function(){
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){
-            entry.target.classList.add('in');
-            obs.unobserve(entry.target);
-          }
-        });
-      },{threshold:0.12});
+<div class="projects">
 
-      document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el) });
-    })();
+<div class="project-card">
+<img src="assets/project1.jpg">
+<div class="project-content">
+<h3>Sterownik BLDC</h3>
+<p>
+Sterownik silnika BLDC oparty o mikrokontroler STM32.
+</p>
+</div>
+</div>
 
-    // Keyboard accessibility: ESC zamyka modal
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeModal();
-    });
+<div class="project-card">
+<img src="assets/project2.jpg">
+<div class="project-content">
+<h3>Logger danych</h3>
+<p>
+System zapisu danych z czujników na kartę SD.
+</p>
+</div>
+</div>
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){
-      a.addEventListener('click', function(e){
-        var href = this.getAttribute('href');
-        if(href.length > 1){
-          e.preventDefault();
-          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
-        }
-      });
-    });
+<div class="project-card">
+<img src="assets/project3.jpg">
+<div class="project-content">
+<h3>Robot mobilny</h3>
+<p>
+Robot eksperymentalny z czujnikami odległości.
+</p>
+</div>
+</div>
 
-    // Optional: preload a few asset images to make hero smooth (edytuj listę jeśli chcesz)
-    (function preload(){
-      var imgs = ['assets/hero-1.jpg','assets/hero-2.jpg','assets/hero-3.jpg'];
-      imgs.forEach(function(s){ var i = new Image(); i.src = s });
-    })();
+</div>
 
-  </script>
+</div>
 
-  <!--
-    Instrukcje deploymentu / edycji:
-    1) Wrzucić ten plik jako index.html do głównego katalogu repozytorium GitHub Pages (bastekengineer.github.io).
-    2) Utwórz folder "assets" i wrzuć tam swoje pliki:
-       - hero-1.jpg, hero-2.jpg, hero-3.jpg (do podglądu w hero)
-       - project-01.jpg, project-02.jpg, project-03.jpg (do kart projektów)
-       - og-image.jpg (opcjonalnie, do podglądu w socialach)
-    3) W treści HTML znajdziesz komentarze i proste wskazówki, które elementy możesz podmienić (logo, linki social, opisy projektów).
-    4) Jeśli chcesz dodać kolejne projekty: skopiuj strukturę <article class="project"> ... </article> i podmień nazwy obrazów i teksty.
-    5) Jeśli chcesz automatycznie pobierać README projektów z GitHub — mogę dodać skrypt korzystający z GitHub API (wymaga dodatkowego kroku z tokenem lub CORS).
-  -->
+</section>
+
+
+<!-- ========================================
+SEKCJA ARTYKUŁÓW
+Możesz tu dodawać wpisy
+======================================== -->
+
+<section id="articles">
+
+<div class="container">
+
+<h2>Artykuły</h2>
+
+<div class="article">
+
+<h3>Jak działa sterownik BLDC</h3>
+
+<p>
+Krótki artykuł opisujący działanie sterowania silnikiem BLDC.
+</p>
+
+</div>
+
+<div class="article">
+
+<h3>Budowa systemu pomiarowego</h3>
+
+<p>
+Opis projektu systemu pomiaru temperatury i wilgotności.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================================
+SEKCJA O MNIE
+======================================== -->
+
+<section id="about">
+
+<div class="container">
+
+<h2>O mnie</h2>
+
+<p>
+Jestem pasjonatem elektroniki i mechatroniki.
+Tworzę projekty związane z mikrokontrolerami,
+systemami pomiarowymi oraz automatyką.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ========================================
+SEKCJA KONTAKT
+======================================== -->
+
+<section id="contact">
+
+<div class="container" style="text-align:center;">
+
+<h2>Skontaktuj się</h2>
+
+<p>
+Jeśli chcesz współpracować lub masz pytanie — napisz.
+</p>
+
+<a href="mailto:gall.anonim305@gmail.com">
+<button class="contact-btn">
+Napisz do mnie
+</button>
+</a>
+
+<p style="margin-top:30px;">
+LinkedIn:
+<a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:#60a5fa">
+sebastiandziewit
+</a>
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ========================================
+STOPKA
+======================================== -->
+
+<footer>
+
+CyberProjects © 2026
+
+</footer>
 
 </body>
 </html>
