@@ -29,16 +29,18 @@
     /* podstawowy reset */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth} /* prosty smooth scroll */
+   
     body{
-      margin:0;
-      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(37,99,235,0.08), transparent 6%),
-        radial-gradient(1000px 500px at 90% 90%, rgba(124,58,237,0.06), transparent 6%),
-        var(--bg);
-      color:#e6eef8;
-      line-height:1.4;
-    }
+  background: linear-gradient(120deg, #10213a, #16203b, #2b1058, #0b1020);
+  background-size: 400% 400%;
+  animation: bgShift 16s ease infinite;
+  color:#e6eef8;
+}
+@keyframes bgShift {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 
     /* wrapper centrujący */
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
