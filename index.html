@@ -5,46 +5,167 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bastek Engineer</title>
+
+<title>Cyberprojects</title>
 
 <style>
 
 body{
-font-family: Arial;
 margin:0;
-background:#f4f4f4;
+font-family:Arial, Helvetica, sans-serif;
+background:#f2f6fa;
+color:#333;
 }
 
-nav{
-background:#111;
-padding:15px;
-}
-
-nav a{
-color:white;
-margin-right:20px;
-text-decoration:none;
-font-weight:bold;
-}
+/* GÓRNA BELKA */
 
 header{
-background:#222;
+
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 color:white;
-padding:80px;
 text-align:center;
+padding:70px 20px;
+
 }
 
-section{
-max-width:900px;
-margin:auto;
-padding:40px;
+header h1{
+
+font-size:50px;
+margin:0;
+
 }
+
+header p{
+
+margin-top:10px;
+font-size:18px;
+opacity:0.8;
+
+}
+
+/* SEKCJE */
+
+.section{
+
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+position:relative;
+
+}
+
+.section::before{
+
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,0.55);
+
+}
+
+.section-content{
+
+position:relative;
+max-width:700px;
+
+}
+
+.section h2{
+
+font-size:40px;
+margin-bottom:10px;
+
+}
+
+.section p{
+
+font-size:18px;
+
+}
+
+.button{
+
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:#00b894;
+color:white;
+text-decoration:none;
+border-radius:5px;
+font-weight:bold;
+
+}
+
+/* TŁA */
+
+.projects{
+
+background:url("assets/projects.jpg");
+background-size:cover;
+background-position:center;
+
+}
+
+.articles{
+
+background:url("assets/articles.jpg");
+background-size:cover;
+background-position:center;
+
+}
+
+.about{
+
+background:url("assets/about.jpg");
+background-size:cover;
+background-position:center;
+
+}
+
+.contact{
+
+background:url("assets/contact.jpg");
+background-size:cover;
+background-position:center;
+
+}
+
+/* WIADOMOŚĆ */
+
+.message{
+
+text-align:center;
+padding:60px;
+background:#e9f0f5;
+
+}
+
+.message a{
+
+padding:15px 30px;
+background:#0984e3;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-size:18px;
+
+}
+
+/* STOPKA */
 
 footer{
+
 background:#111;
 color:#aaa;
 text-align:center;
 padding:20px;
+
 }
 
 </style>
@@ -53,40 +174,106 @@ padding:20px;
 
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="projekty.html">Projekty</a>
-<a href="artykuly.html">Artykuły</a>
-<a href="o-mnie.html">O mnie</a>
-<a href="kontakt.html">Kontakt</a>
-</nav>
-
 <header>
 
-<h1>Bastek Engineer</h1>
-
-<p>
-Portfolio projektów inżynierskich,
-badań oraz artykułów technicznych.
-</p>
+<h1>Cyberprojects</h1>
+<p>by Sebastian Dziewit</p>
 
 </header>
 
-<section>
+<!-- PROJEKTY -->
 
-<h2>Witaj na mojej stronie</h2>
+<section class="section projects">
+
+<div class="section-content">
+
+<h2>Projekty</h2>
 
 <p>
-Strona prezentuje moje projekty z zakresu
-mechatroniki, systemów pomiarowych,
-embedded oraz analizy technicznej.
+Eksperymentalne projekty inżynierskie
+z zakresu mechatroniki, elektroniki
+i systemów pomiarowych.
 </p>
+
+<a class="button" href="projekty.html">Zobacz projekty</a>
+
+</div>
 
 </section>
 
+<!-- ARTYKUŁY -->
+
+<section class="section articles">
+
+<div class="section-content">
+
+<h2>Artykuły</h2>
+
+<p>
+Publikacje techniczne oraz opisy projektów
+i badań.
+</p>
+
+<a class="button" href="artykuly.html">Czytaj artykuły</a>
+
+</div>
+
+</section>
+
+<!-- O MNIE -->
+
+<section class="section about">
+
+<div class="section-content">
+
+<h2>O mnie</h2>
+
+<p>
+Informacje o moim doświadczeniu,
+projektach oraz zainteresowaniach
+technicznych.
+</p>
+
+<a class="button" href="o-mnie.html">Poznaj mnie</a>
+
+</div>
+
+</section>
+
+<!-- KONTAKT -->
+
+<section class="section contact">
+
+<div class="section-content">
+
+<h2>Kontakt</h2>
+
+<p>
+Masz pytanie lub chcesz współpracować?
+Skontaktuj się ze mną.
+</p>
+
+<a class="button" href="kontakt.html">Przejdź do kontaktu</a>
+
+</div>
+
+</section>
+
+<!-- WYŚLIJ WIADOMOŚĆ -->
+
+<div class="message">
+
+<h2>Wyślij wiadomość</h2>
+
+<a href="mailto:twojmail@example.com">Napisz do mnie</a>
+
+</div>
+
 <footer>
 
-<p>© 2026 Bastek Engineer</p>
+<p>
+© 2026 • Cyberprojects • Rzeszów • Projekty
+</p>
 
 </footer>
 
