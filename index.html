@@ -5,511 +5,1141 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CyberProjects — Portfolio</title>
 
-  <!-- Lekka czcionka -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="CyberProjects — portfolio inżyniera: embedded, mechatronika, systemy pomiarowe, projekty PCB i firmware." />
+  <meta property="og:title" content="CyberProjects — Portfolio" />
+  <meta property="og:description" content="Portfolio inżyniera: embedded, mechatronika, systemy pomiarowe, projekty PCB i firmware." />
+  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta name="theme-color" content="#0b1319" />
 
-  <meta name="description" content="CyberProjects — portfolio inżyniera: embedded, mechatronika, systemy pomiarowe.">
-  <meta property="og:image" content="assets/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- ========== STYLES (z komentarzami, edytuj wg potrzeby) ========== -->
   <style>
     :root{
-      /* kolory: nowy, profesjonalny szaro-niebieski motyw */
-      --bg-1: #0b1319;      /* very dark */
-      --bg-2: #0f2432;      /* dark blue/teal */
-      --bg-3: #213846;      /* desaturated blue */
-      --panel: rgba(255,255,255,0.02); /* glass panels */
-      --accent1: #4f7ea1;   /* steel blue */
-      --accent2: #9fb4c8;   /* light blue gray */
-      --muted: rgba(210,225,235,0.85);
-      --muted-strong: rgba(210,225,235,0.65);
-      --radius:14px;
-      --maxw:1100px;
-      --nav-height:64px;
+      --bg-1:#071018;
+      --bg-2:#0b1a26;
+      --bg-3:#123044;
+      --panel:rgba(255,255,255,.045);
+      --panel-strong:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.08);
+      --text:#eaf2fb;
+      --muted:rgba(234,242,251,.72);
+      --muted-2:rgba(234,242,251,.52);
+      --accent:#67a6d9;
+      --accent-2:#9fc1e2;
+      --accent-3:#4e86b8;
+      --shadow:0 24px 70px rgba(0,0,0,.38);
+      --radius:20px;
+      --radius-sm:14px;
+      --maxw:1180px;
+      --nav-h:72px;
     }
 
-    /* ---------------- basic reset ---------------- */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:#e6eef8;
-      /* subtelny animowany gradient szaro-niebieski */
-      background: linear-gradient(120deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
-      background-size: 300% 300%;
-      animation: bgShift 18s ease infinite;
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      line-height:1.55;
+      background:
+        radial-gradient(1000px 600px at 15% 10%, rgba(103,166,217,.16), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(159,193,226,.10), transparent 55%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+      background-attachment: fixed;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-    }
-    @keyframes bgShift {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
+      overflow-x:hidden;
     }
 
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:80px 80px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.28), transparent 75%);
+      opacity:.35;
+    }
 
-    /* ---------------- NAV (fixed) + mobile menu ---------------- */
+    a{color:inherit}
+    img{max-width:100%; display:block}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar{
+      position:fixed;
+      top:14px;
+      left:0;
+      right:0;
+      z-index:1000;
+      pointer-events:none;
+    }
     nav{
-      position:fixed; left:0; right:0; top:14px; z-index:100;
-      margin:0 auto; max-width:var(--maxw);
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px 18px; border-radius:14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      backdrop-filter: blur(8px);
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      pointer-events:auto;
+      height:var(--nav-h);
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:0 18px;
     }
-    .brand{display:flex; gap:12px; align-items:center}
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
     .logo{
-      width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
-      background:linear-gradient(135deg,var(--accent1),var(--accent2)); font-weight:700;
-      font-size:15px;
-    }
-
-    .site-title{ font-weight:700 }
-    .site-title small{ display:block; font-size:11px; color:var(--muted); margin-top:2px; font-weight:500 }
-
-    .navlinks{display:flex; gap:12px; align-items:center}
-    .navlinks a{ color:var(--muted); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:10px; font-size:14px }
-    .navlinks a:hover, .navlinks a:focus{ color:white; background:rgba(255,255,255,0.03); outline:none }
-
-    .cta-nav{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none }
-
-    /* hamburger (mobile) */
-    .hamburger{ display:none; width:44px; height:44px; align-items:center; justify-content:center; border-radius:10px; background:rgba(255,255,255,0.01); cursor:pointer; }
-    .hamburger:focus{ outline:2px solid rgba(255,255,255,0.06) }
-
-    /* mobile off-canvas menu */
-    .mobile-menu{
-      position:fixed; top:calc(var(--nav-height) + 20px); right:12px; z-index:140;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px; padding:10px; box-shadow:0 20px 40px rgba(2,6,23,0.6); display:none;
-      min-width:200px;
-    }
-    .mobile-menu a{ display:block; padding:8px 12px; color:var(--muted); text-decoration:none; border-radius:8px; font-weight:600 }
-    .mobile-menu a:hover{ background: rgba(255,255,255,0.02); color:white }
-
-    /* ---------------- HERO ---------------- */
-    header.hero{
-      min-height:100vh; display:grid; place-items:center; position:relative;
-      padding:120px 0 80px; overflow:hidden;
-    }
-    .hero-inner{ display:grid; grid-template-columns:1fr 420px; gap:36px; width:100%; padding:40px 0; }
-    .hero-left{ max-width:720px }
-    .eyebrow{ display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2)); padding:6px 12px; border-radius:999px; font-weight:700; color:white; font-size:13px; margin-bottom:16px }
-    .hero h1{ font-size:48px; line-height:1.02; margin:0 0 18px }
-    .hero p{ color:var(--muted-strong); font-size:18px; margin-bottom:22px }
-    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap }
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; border:0; cursor:pointer; font-weight:700; text-decoration:none; font-size:15px }
-    .btn-primary{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(79,126,161,0.12) }
-    .btn-ghost{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03) }
-
-    /* hero preview jako "device/card" */
-    .hero-preview{
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      border-radius:18px; padding:14px;
-      box-shadow:0 30px 60px rgba(2,6,23,0.6); display:flex; flex-direction:column; gap:12px;
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-    .preview-img{
-      width:100%; height:380px; background:#0b1620; border-radius:14px; overflow:hidden; display:grid; place-items:center;
-      border: 10px solid rgba(10,18,26,0.6); /* telefonowe obramowanie */
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 12px 30px rgba(2,6,23,0.6);
-    }
-    .preview-img img{ width:100%; height:100%; object-fit:cover; display:block }
-
-    .preview-meta{ display:flex; justify-content:space-between; align-items:center; padding:6px 10px; font-size:13px; color:var(--muted) }
-    .preview-mini-btn{ padding:6px 8px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.02); color:var(--muted); cursor:pointer }
-
-    /* ---------------- PROJEKTY ---------------- */
-    section{ padding:80px 0 }
-    .section-title{ font-size:28px; text-align:center; margin-bottom:26px }
-    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
-    .project{ background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:transform .28s, box-shadow .28s; border:1px solid rgba(255,255,255,0.02) }
-    .project:hover{ transform:translateY(-8px); box-shadow:0 30px 60px rgba(2,6,23,0.45) }
-    .project img{ width:100%; height:200px; object-fit:cover; display:block }
-    .project .meta{ padding:16px }
-    .tags{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap }
-    .tag{ background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted) }
-
-    .features{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px }
-    .feature{ background:rgba(255,255,255,0.02); padding:18px; border-radius:12px; text-align:center; border:1px solid rgba(255,255,255,0.02) }
-    .feature p{ color:var(--muted); margin:0; font-size:14px }
-
-    .contact-strip{ margin-top:36px; background:linear-gradient(90deg, rgba(79,126,161,0.04), rgba(159,180,200,0.02)); padding:22px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; gap:20px; border:1px solid rgba(79,126,161,0.04) }
-
-    /* ---------------- FOOTER (wyraźne odcięcie) ---------------- */
-    footer{
-      padding:40px 0 70px;
-      color:var(--muted);
-      position:relative;
-      z-index:10;
-    }
-    /* karta stopki, lekko uniesiona i z ramką */
-    .footer-card{
-      margin-top:14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));
+      width:46px;
+      height:46px;
       border-radius:14px;
-      padding:18px;
-      border:1px solid rgba(255,255,255,0.04);
-      box-shadow: 0 18px 40px rgba(2,6,23,0.55);
-      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--accent-3), var(--accent-2));
+      color:#fff;
+      font-weight:800;
+      letter-spacing:.4px;
+      box-shadow:0 12px 30px rgba(79,134,184,.35);
+      flex:0 0 auto;
     }
-    .footer-sep{
-      margin-top:18px;
-      color:rgba(230,238,248,0.5);
+    .site-title{
+      min-width:0;
+      font-weight:800;
+      letter-spacing:.2px;
+      line-height:1.1;
+    }
+    .site-title small{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-weight:500;
+      font-size:12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .navlinks a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:600;
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.22s ease;
+    }
+    .navlinks a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+    }
+    .cta-nav{
+      background:linear-gradient(135deg, var(--accent-3), var(--accent-2));
+      color:#fff !important;
+      box-shadow:0 10px 24px rgba(79,134,184,.24);
+    }
+
+    .hamburger{
+      display:none;
+      width:46px;
+      height:46px;
+      align-items:center;
+      justify-content:center;
+      border:0;
+      border-radius:14px;
+      color:#fff;
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+    }
+    .hamburger:focus{outline:2px solid rgba(159,193,226,.35); outline-offset:2px}
+
+    .mobile-menu{
+      position:fixed;
+      top:90px;
+      right:20px;
+      z-index:1100;
+      width:min(300px, calc(100vw - 40px));
+      padding:10px;
+      border-radius:18px;
+      display:none;
+    }
+    .mobile-menu a{
+      display:block;
+      text-decoration:none;
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .mobile-menu a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+    }
+
+    header.hero{
+      min-height:100vh;
+      padding:120px 0 70px;
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+
+    .hero-grid{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      color:#fff;
+      background:rgba(103,166,217,.16);
+      border:1px solid rgba(159,193,226,.22);
       font-size:13px;
+      font-weight:700;
+      letter-spacing:.2px;
+      margin-bottom:18px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#9fc1e2;
+      box-shadow:0 0 0 6px rgba(159,193,226,.12);
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      max-width:12ch;
+    }
+    .hero p.lead{
+      max-width:62ch;
+      margin:18px 0 0;
+      color:var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.16rem);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:.22s ease;
+      cursor:pointer;
+      will-change:transform;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent-3), var(--accent-2));
+      color:#fff;
+      box-shadow:0 14px 28px rgba(79,134,184,.24);
+    }
+    .btn-ghost{
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border-color:rgba(255,255,255,.08);
+    }
+    .btn-ghost:hover{background:rgba(255,255,255,.06)}
+
+    .hero-card{
+      border-radius:26px;
+      overflow:hidden;
+      position:relative;
+      padding:16px;
+    }
+
+    .hero-card-inner{
+      border-radius:22px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .slider{
+      position:relative;
+      aspect-ratio: 4 / 4.4;
+      min-height:420px;
+      background:#08131e;
+      overflow:hidden;
+    }
+    .slider img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transform:scale(1.02);
+      transition:opacity .7s ease, transform .8s ease;
+    }
+    .slider img.active{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    .slider-overlay{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding:18px;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.72) 58%);
+      display:flex;
+      align-items:end;
+      min-height:38%;
+    }
+    .slider-caption{
+      width:100%;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .slider-caption h3{
+      margin:0 0 6px;
+      font-size:1.15rem;
+    }
+    .slider-caption p{
+      margin:0;
+      color:rgba(255,255,255,.74);
+      font-size:.95rem;
+    }
+
+    .slider-controls{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .slide-btn{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .slide-btn:hover,
+    .slide-btn.active{
+      background:linear-gradient(135deg, var(--accent-3), var(--accent-2));
+      border-color:transparent;
+    }
+
+    .slider-bar{
+      height:4px;
+      background:rgba(255,255,255,.10);
+      position:relative;
+      overflow:hidden;
+      border-radius:999px;
+      margin-top:12px;
+    }
+    .slider-bar span{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:0%;
+      background:linear-gradient(90deg, var(--accent-3), var(--accent-2));
+      transition:none;
+    }
+
+    section{
+      padding:72px 0;
+      position:relative;
+      z-index:1;
+    }
+
+    .section-head{
+      margin-bottom:24px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing:-.03em;
+    }
+    .section-head p{
+      margin:8px 0 0;
+      max-width:70ch;
+      color:var(--muted);
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .feature,
+    .project,
+    .article-card,
+    .about-card,
+    .contact-card{
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border:1px solid var(--line);
+      box-shadow:0 18px 55px rgba(0,0,0,.22);
+    }
+
+    .feature{
+      padding:22px;
+      min-height:176px;
+    }
+    .feature .icon{
+      width:50px;
+      height:50px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      margin-bottom:14px;
+      background:rgba(159,193,226,.12);
+      border:1px solid rgba(159,193,226,.16);
+      color:#d9e9f7;
+      font-weight:800;
+    }
+    .feature h3{
+      margin:0 0 8px;
+      font-size:1.05rem;
+    }
+    .feature p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .project{
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .project img{
+      width:100%;
+      aspect-ratio: 16 / 10;
+      object-fit:cover;
+    }
+    .project .meta{
+      padding:18px;
+    }
+    .project h3{
+      margin:0 0 8px;
+      font-size:1.08rem;
+    }
+    .project p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:14px;
+    }
+    .tag{
+      font-size:.82rem;
+      color:var(--muted);
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .articles-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+
+    .article-card{
+      overflow:hidden;
+      padding:0;
+    }
+    .article-top{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:0;
+      min-height:240px;
+    }
+    .article-image{
+      position:relative;
+      background:#08131e;
+    }
+    .article-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .article-body{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .article-kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted-2);
+      font-size:.86rem;
+      font-weight:600;
+    }
+    .article-kicker .dot{
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:#9fc1e2;
+    }
+    .article-title{
+      margin:10px 0 10px;
+      font-size:1.55rem;
+      line-height:1.12;
+      letter-spacing:-.03em;
+    }
+    .article-content{
+      color:var(--muted);
+      white-space:pre-wrap;
+    }
+    .article-content p{margin:0 0 14px}
+    .article-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:6px;
+    }
+
+    .about-card,
+    .contact-card{
+      padding:24px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:start;
+    }
+    .stat-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .stat{
+      padding:16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
       text-align:center;
     }
-
-    /* ---------------- responsive tweaks ---------------- */
-    @media (max-width:1000px){
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .hero-inner{grid-template-columns:1fr 360px}
+    .stat strong{
+      display:block;
+      font-size:1.25rem;
     }
-    @media (max-width:780px){
-      /* mobile adjustments: hamburger visible, navlinks hidden */
-      .navlinks{ display:none }
-      .hamburger{ display:flex }
-      .mobile-menu{ display:none } /* shown by JS toggle */
-
-      nav{ left:10px; right:10px; padding:8px }
-      .hero-inner{ grid-template-columns:1fr; gap:18px; padding-top:30px }
-      .preview-img{ height:260px }
-      .grid{ grid-template-columns:1fr }
-      .features{ grid-template-columns:1fr }
-      .hero h1{ font-size:34px }
-      .hero p{ font-size:15px }
-      .btn{ padding:12px 14px; font-size:15px }
+    .stat span{
+      color:var(--muted);
+      font-size:.88rem;
     }
 
-    /* reveal on scroll */
-    .fade-up{ opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease }
-    .fade-up.in{ opacity:1; transform:none }
+    .contact-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
 
-    /* small utilities */
-    .muted{ color:var(--muted); font-size:13px }
+    footer{
+      padding:30px 0 50px;
+      color:var(--muted);
+    }
+    .footer-card{
+      padding:18px 20px;
+      border-radius:var(--radius);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .social-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .social-link:hover{color:#fff}
+    .footer-note{
+      text-align:center;
+      margin-top:16px;
+      color:var(--muted-2);
+      font-size:.92rem;
+    }
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .65s ease, transform .65s ease;
+    }
+    .fade-up.in{
+      opacity:1;
+      transform:none;
+    }
+
+    .muted{color:var(--muted)}
+    .hidden{display:none !important}
+
+    @media (max-width: 1040px){
+      .hero-grid,
+      .about-grid,
+      .article-top{
+        grid-template-columns:1fr;
+      }
+      .grid-3{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px){
+      .navlinks{display:none}
+      .hamburger{display:inline-flex}
+      nav{
+        border-radius:22px;
+        padding:0 14px;
+      }
+      header.hero{
+        padding-top:112px;
+      }
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+      .slider{
+        min-height:360px;
+      }
+      .slider-caption{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .slider-controls{
+        justify-content:flex-start;
+      }
+      .article-body,
+      .feature,
+      .about-card,
+      .contact-card{
+        padding:18px;
+      }
+      .stat-row{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *, *::before, *::after{
+        animation:none !important;
+        transition:none !important;
+      }
+      body{background-attachment:scroll}
+    }
   </style>
 </head>
 <body>
 
-  <!-- ========================= NAVBAR =========================
-       - Mobile: hamburger toggluje .mobile-menu (JS poniżej)
-       - Edytuj linki tak jak chcesz; jeśli chcesz link do zewnętrznych podstron, użyj pełnych href
-       ========================================================= -->
-  <nav class="wrap" role="navigation" aria-label="Główne menu" style="height:var(--nav-height);">
-    <div class="brand" aria-hidden="true">
-      <div class="logo">CP</div>
-      <div class="site-title">CyberProjects <small>embedded • mechatronics • measurement</small></div>
+  <div class="topbar">
+    <div class="wrap">
+      <nav class="glass" aria-label="Główne menu">
+        <div class="brand">
+          <div class="logo">CP</div>
+          <div class="site-title">
+            CyberProjects
+            <small>embedded • mechatronics • measurement</small>
+          </div>
+        </div>
+
+        <div class="navlinks" aria-label="Nawigacja">
+          <a href="#features">Co potrafię</a>
+          <a href="#projekty">Projekty</a>
+          <a href="#articles">Artykuły</a>
+          <a href="#about">O mnie</a>
+          <a class="cta-nav" href="#contact">Skontaktuj się</a>
+        </div>
+
+        <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <rect width="18" height="2" rx="1" fill="currentColor"></rect>
+            <rect y="5" width="18" height="2" rx="1" fill="currentColor"></rect>
+            <rect y="10" width="18" height="2" rx="1" fill="currentColor"></rect>
+          </svg>
+        </button>
+      </nav>
     </div>
 
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="navlinks" role="menubar">
-        <a href="#features">Co potrafię</a>
-        <a href="#articles">Artykuły</a>
-        <a href="#projekty">Projekty</a>
-        <a href="#about">O mnie</a>
-        <a href="#contact" class="cta-nav">Skontaktuj się</a>
-      </div>
-
-      <!-- hamburger tylko na mobile -->
-      <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu">
-        <!-- prosta ikonka -->
-        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="18" height="2" rx="1" fill="white" opacity="0.9"></rect>
-          <rect y="5" width="18" height="2" rx="1" fill="white" opacity="0.9"></rect>
-          <rect y="10" width="18" height="2" rx="1" fill="white" opacity="0.9"></rect>
-        </svg>
-      </button>
+    <div id="mobile-menu" class="mobile-menu glass" aria-hidden="true">
+      <a href="#features">Co potrafię</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#articles">Artykuły</a>
+      <a href="#about">O mnie</a>
+      <a href="#contact">Skontaktuj się</a>
     </div>
+  </div>
 
-    <!-- mobile menu (JS pokazuje/ukrywa) -->
-    <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
-      <a href="#features" role="menuitem">Co potrafię</a>
-      <a href="#articles" role="menuitem">Artykuły</a>
-      <a href="#projekty" role="menuitem">Projekty</a>
-      <a href="#about" role="menuitem">O mnie</a>
-      <a href="#contact" role="menuitem" class="cta-nav" style="display:inline-block;margin-top:8px">Skontaktuj się</a>
-    </div>
-  </nav>
-
-  <!-- ========================= HERO ========================= -->
   <header class="hero">
-    <div class="wrap hero-inner">
-      <div class="hero-left">
-        <span class="eyebrow">Inżynieria • Embedded • Mechatronika</span>
-        <h1 class="fade-up">Projektuję systemy, które działają w rzeczywistości.</h1>
-        <p class="fade-up">Buduję sterowniki, loggery i roboty. Od schematu, przez PCB, po firmware — dokumentuję i testuję każdy etap.</p>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow fade-up">Inżynieria • Embedded • Mechatronika</span>
+        <h1 class="fade-up">Projektuję systemy, które działają w realnym świecie.</h1>
+        <p class="lead fade-up">
+          Buduję sterowniki, loggery i roboty. Łączę elektronikę, firmware, mechanikę i testy w spójne rozwiązania, które da się wdrożyć, uruchomić i rozwijać.
+        </p>
 
-        <div class="hero-actions">
+        <div class="hero-actions fade-up">
           <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
           <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
         </div>
       </div>
 
-      <aside class="hero-preview" aria-label="Podgląd projektów">
-        <div class="preview-img" role="img" aria-label="Podgląd projektu">
-          <img src="assets/hero-1.jpg" alt="Podgląd projektu" loading="lazy" onerror="this.style.display='none'">
-        </div>
+      <aside class="hero-card glass fade-up" aria-label="Podgląd projektów">
+        <div class="hero-card-inner">
+          <div class="slider">
+            <img id="slide-0" class="active" src="assets/hero-1.jpg" alt="Sterownik BLDC" loading="eager">
+            <img id="slide-1" src="assets/hero-2.jpg" alt="Logger danych" loading="lazy">
+            <img id="slide-2" src="assets/hero-3.jpg" alt="Robot mobilny" loading="lazy">
 
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div class="preview-meta">
-            <strong>Sterownik BLDC</strong>
-            <div style="font-size:13px;color:var(--muted)">STM32 • PCB • Embedded C</div>
-          </div>
+            <div class="slider-overlay">
+              <div style="width:100%">
+                <div class="slider-caption">
+                  <div>
+                    <h3 id="slider-title">Sterownik BLDC</h3>
+                    <p id="slider-desc">STM32 • PCB • Embedded C</p>
+                  </div>
 
-          <div style="display:flex;gap:8px">
-            <button class="preview-mini-btn" onclick="openPreview('assets/hero-1.jpg','Sterownik BLDC')">1</button>
-            <button class="preview-mini-btn" onclick="openPreview('assets/hero-2.jpg','Logger danych')">2</button>
-            <button class="preview-mini-btn" onclick="openPreview('assets/hero-3.jpg','Robot mobilny')">3</button>
+                  <div class="slider-controls" aria-label="Wybór slajdu">
+                    <button class="slide-btn active" data-slide="0" type="button">1</button>
+                    <button class="slide-btn" data-slide="1" type="button">2</button>
+                    <button class="slide-btn" data-slide="2" type="button">3</button>
+                  </div>
+                </div>
+
+                <div class="slider-bar" aria-hidden="true">
+                  <span id="slider-progress"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </aside>
     </div>
   </header>
 
-  <!-- ========================= MAIN CONTENT ========================= -->
   <main class="wrap">
-    <!-- ========== PROJEKTY ========== -->
-    <section id="projekty">
-      <div class="section-title">Wybrane projekty</div>
+    <section id="features">
+      <div class="section-head">
+        <h2 class="fade-up">Co robię najlepiej</h2>
+        <p class="fade-up">Skupiam się na projektach, które wymagają połączenia elektroniki, kodu i sensownej dokumentacji.</p>
+      </div>
 
-      <!-- GRID: kopiuj <article class="project"> ... </article> aby dodać projekt -->
-      <div class="grid">
+      <div class="grid-3">
+        <article class="feature fade-up">
+          <div class="icon">01</div>
+          <h3>Pełny cykl projektu</h3>
+          <p>Od koncepcji i schematu, przez PCB i firmware, aż po testy oraz poprawki na prototypie.</p>
+        </article>
+
+        <article class="feature fade-up">
+          <div class="icon">02</div>
+          <h3>Dokumentacja techniczna</h3>
+          <p>Opisuję projekty tak, aby dało się je zrozumieć, odtworzyć i rozwijać bez zgadywania.</p>
+        </article>
+
+        <article class="feature fade-up">
+          <div class="icon">03</div>
+          <h3>Walidacja i pomiary</h3>
+          <p>Weryfikuję działanie w praktyce: pomiary, testy obciążeniowe, analiza błędów i strojenie.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projekty">
+      <div class="section-head">
+        <h2 class="fade-up">Wybrane projekty</h2>
+        <p class="fade-up">Kilka przykładów prac, które pokazują zakres mojego działania.</p>
+      </div>
+
+      <div class="grid-3">
         <article class="project fade-up">
-          <img src="assets/project-01.jpg" alt="Sterownik BLDC" loading="lazy" onerror="this.style.display='none'">
+          <img src="assets/project-01.jpg" alt="Sterownik BLDC" loading="lazy" onerror="this.remove()">
           <div class="meta">
             <h3>Sterownik BLDC</h3>
-            <p>Projekt sterownika silnika BLDC z pomiarami prądu i estymacją pozycji.</p>
-            <div class="tags"><span class="tag">STM32</span><span class="tag">PWM</span><span class="tag">PCB</span></div>
+            <p>Projekt sterownika silnika BLDC z pomiarem prądu, sterowaniem PWM i elektroniką mocy.</p>
+            <div class="tags">
+              <span class="tag">STM32</span><span class="tag">PWM</span><span class="tag">PCB</span>
+            </div>
           </div>
         </article>
 
         <article class="project fade-up">
-          <img src="assets/project-02.jpg" alt="Logger danych" loading="lazy" onerror="this.style.display='none'">
+          <img src="assets/project-02.jpg" alt="Logger danych" loading="lazy" onerror="this.remove()">
           <div class="meta">
             <h3>Logger danych</h3>
-            <p>Wysokorozdzielczy logger na kartę SD z timestampem i filtrowaniem sygnału.</p>
-            <div class="tags"><span class="tag">STM32</span><span class="tag">SD</span><span class="tag">Analog</span></div>
+            <p>Wysokorozdzielczy logger na kartę SD z synchronizacją czasu i filtrowaniem sygnałów.</p>
+            <div class="tags">
+              <span class="tag">SD</span><span class="tag">Analog</span><span class="tag">Firmware</span>
+            </div>
           </div>
         </article>
 
         <article class="project fade-up">
-          <img src="assets/project-03.jpg" alt="Robot mobilny" loading="lazy" onerror="this.style.display='none'">
+          <img src="assets/project-03.jpg" alt="Robot mobilny" loading="lazy" onerror="this.remove()">
           <div class="meta">
             <h3>Robot mobilny</h3>
-            <p>Robot z autonomicznym omijaniem przeszkód i regulatorem PID.</p>
-            <div class="tags"><span class="tag">ROS</span><span class="tag">LIDAR</span><span class="tag">Control</span></div>
+            <p>Platforma z autonomicznym omijaniem przeszkód, regulacją PID i integracją czujników.</p>
+            <div class="tags">
+              <span class="tag">ROS</span><span class="tag">LIDAR</span><span class="tag">Control</span>
+            </div>
           </div>
         </article>
       </div>
+    </section>
 
-      <!-- FEATURES -->
-      <div id="features" class="features" style="margin-top:40px">
-        <div class="feature fade-up">
-          <h4>Pełny cykl</h4>
-          <p>Od koncepcji, przez PCB, firmware, do testów.</p>
-        </div>
-        <div class="feature fade-up">
-          <h4>Dokumentacja</h4>
-          <p>Schematy, zdjęcia, instrukcje i repozytoria.</p>
-        </div>
-        <div class="feature fade-up">
-          <h4>Walidacja</h4>
-          <p>Testy na prototypach i benchy pomiarowe.</p>
-        </div>
-      </div>
-
-    <!-- ========== ARTYKUŁY (Sekcja wizualna) ==========
-         >> GDZIE WKLEIĆ PEŁNE ARTYKUŁY:
-         - Najprościej: stwórz folder /articles/ i każdemu artykułowi daj osobny plik HTML (np. /articles/sterownik-bldc.html).
-         - Alternatywa (prostsze): wstaw rozszerzony tekst bezpośrednio tutaj jako <article class="post"> ... </article>
-         - W pliku artykułu dodaj meta (title, description, og:image) aby social preview działał dobrze.
-         - Poniżej przykład bloku artykułu do skopiowania.
-    -->
     <section id="articles">
-      <div class="section-title">Artykuły</div>
-      <div style="max-width:760px;margin:0 auto">
-        <!-- PRZYKŁAD: krótki preview artykułu (link do osobnej strony z pełnym tekstem) -->
-        <article style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.01)); padding:20px; border-radius:12px; margin-bottom:12px">
-          <h3><a href="articles/sterownik-bldc.html" style="color:inherit;text-decoration:none">Jak działa sterownik BLDC</a></h3>
-          <p class="muted">Krótki opis działania i główne wyzwania projektu.</p>
-          <div style="margin-top:10px">
-            <a class="btn btn-ghost" href="articles/sterownik-bldc.html">Czytaj więcej</a>
-          </div>
-        </article>
+      <div class="section-head">
+        <h2 class="fade-up">Artykuły</h2>
+        <p class="fade-up">
+          Sekcja ładuje wpisy automatycznie z pliku <strong>articles.json</strong>. Każdy wpis może mieć osobny plik tekstowy <strong>.txt</strong> oraz grafikę <strong>.jpg</strong>.
+        </p>
+      </div>
 
-        <article style="background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.01)); padding:20px; border-radius:12px">
-          <h3><a href="articles/system-pomiarowy.html" style="color:inherit;text-decoration:none">Budowa systemu pomiarowego</a></h3>
-          <p class="muted">Opis projektu systemu pomiaru temperatury i wilgotności.</p>
-          <div style="margin-top:10px">
-            <a class="btn btn-ghost" href="articles/system-pomiarowy.html">Czytaj więcej</a>
-          </div>
-        </article>
+      <div id="articles-container" class="articles-grid">
+        <div class="article-card glass fade-up" style="padding:22px;">
+          Ładowanie artykułów...
+        </div>
       </div>
     </section>
 
-    <!-- ========== O MNIE ========== -->
     <section id="about">
-      <div class="section-title">O mnie</div>
-      <div style="max-width:760px;margin:0 auto;text-align:center;color:var(--muted)">
-        <p>Jestem inżynierem pracującym z mikrokontrolerami, projektami PCB i systemami pomiarowymi. Projektuję rozwiązania od schematu po firmware i testy w rzeczywistych warunkach.</p>
-        <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px">
-          <a class="btn btn-ghost" href="#projekty">Zobacz projekty</a>
+      <div class="section-head">
+        <h2 class="fade-up">O mnie</h2>
+        <p class="fade-up">Stawiam na czytelność, funkcjonalność i inżynierską konsekwencję.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass fade-up">
+          <p class="muted" style="margin:0 0 14px;">Jestem inżynierem pracującym z mikrokontrolerami, projektami PCB i systemami pomiarowymi. Buduję rozwiązania od schematu po firmware i testy w rzeczywistych warunkach.</p>
+          <p class="muted" style="margin:0;">Jeśli pracujesz nad projektem elektronicznym, automatyki lub embedded, ta strona może służyć jako hub do prezentacji wyników, dokumentacji i artykułów technicznych.</p>
+        </div>
+
+        <div class="about-card glass fade-up">
+          <div class="stat-row">
+            <div class="stat">
+              <strong>PCB</strong>
+              <span>schematy i layout</span>
+            </div>
+            <div class="stat">
+              <strong>FW</strong>
+              <span>firmware i logika</span>
+            </div>
+            <div class="stat">
+              <strong>TEST</strong>
+              <span>pomiary i walidacja</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== KONTAKT ========== -->
     <section id="contact">
-      <div class="section-title">Skontaktuj się</div>
-      <div style="text-align:center">
-        <p style="color:var(--muted)">Masz pytanie lub chcesz omówić projekt? Napisz maila lub odwiedź mój LinkedIn.</p>
-        <div style="margin-top:18px">
+      <div class="section-head">
+        <h2 class="fade-up">Skontaktuj się</h2>
+        <p class="fade-up">Mail albo LinkedIn — najprostsza droga do kontaktu.</p>
+      </div>
+
+      <div class="contact-card glass fade-up">
+        <p style="margin-top:0;color:var(--muted);max-width:70ch">
+          Masz pytanie, chcesz omówić projekt albo potrzebujesz pomocy przy rozwiązaniu technicznym? Napisz maila lub przejdź do mojego profilu LinkedIn.
+        </p>
+
+        <div class="contact-actions">
           <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/sebastiandziewit/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <p style="margin-top:18px;color:var(--muted)">LinkedIn: <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:var(--accent1);text-decoration:none">sebastiandziewit</a></p>
       </div>
     </section>
   </main>
 
-  <!-- ========================= FOOTER ========================= -->
   <footer>
     <div class="wrap">
-      <div class="footer-card">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="logo" style="width:48px;height:48px;border-radius:12px">CP</div>
-          <div>
-            <div style="font-weight:700">CyberProjects</div>
-            <div style="color:var(--muted);font-size:13px">embedded & mechatronics</div>
+      <div class="footer-card glass">
+        <div style="display:flex;align-items:center;gap:12px;min-width:0">
+          <div class="logo" style="width:48px;height:48px;border-radius:16px;">CP</div>
+          <div style="min-width:0">
+            <div style="font-weight:800;color:#fff">CyberProjects</div>
+            <div style="font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">embedded & mechatronics</div>
           </div>
         </div>
 
-        <div style="display:flex;gap:12px;align-items:center">
-          <!-- Tutaj możesz dodać dodatkowe linki lub ikony social -->
-          <a href="https://www.linkedin.com/in/sebastiandziewit/" style="color:var(--muted);text-decoration:none">LinkedIn</a>
-        </div>
+        <a class="social-link" href="https://www.linkedin.com/in/sebastiandziewit/" target="_blank" rel="noopener" aria-label="Profil LinkedIn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true">
+            <path d="M20.447 20.452H16.9V14.89c0-1.327-.026-3.036-1.85-3.036-1.853 0-2.136 1.445-2.136 2.939v5.659H9.367V9h3.405v1.561h.049c.474-.9 1.632-1.85 3.357-1.85 3.588 0 4.248 2.361 4.248 5.431v6.31zM5.337 7.433a2.063 2.063 0 11-.001-4.126 2.063 2.063 0 01.001 4.126zM6.814 20.452H3.859V9h2.955v11.452z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
       </div>
 
-      <div class="footer-sep">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
+      <div class="footer-note">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
     </div>
   </footer>
 
-  <!-- ========================= MODAL PREVIEW ========================= -->
-  <div id="modal" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:220">
-    <div style="max-width:960px;width:calc(100% - 40px);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.03)">
-        <strong id="modal-title">Preview</strong>
-        <button onclick="closeModal()" style="background:transparent;border:0;color:var(--muted);font-weight:700;padding:8px 12px;cursor:pointer">Zamknij</button>
-      </div>
-      <div style="padding:14px;background:#081226;display:grid;place-items:center">
-        <img id="modal-img" src="" alt="" style="max-width:100%;height:auto;display:block">
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================= SCRIPTS (z komentarzami) ========================= -->
   <script>
-    /* ========== Modal preview ========== */
-    function openPreview(src, title){
-      const img = document.getElementById('modal-img');
-      const modal = document.getElementById('modal');
-      img.src = src;
-      img.alt = title || '';
-      document.getElementById('modal-title').textContent = title || '';
-      modal.style.display = 'grid';
-      setTimeout(()=> {
-        const btn = modal.querySelector('button');
-        if(btn) btn.focus();
-      }, 80);
-    }
-    function closeModal(){
-      const modal = document.getElementById('modal');
-      document.getElementById('modal-img').src = '';
-      modal.style.display = 'none';
-    }
-    document.getElementById('modal').addEventListener('click', (e)=> { if(e.target === e.currentTarget) closeModal(); });
-    document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
-
-    /* ========== Mobile menu toggle ========== */
-    (function(){
-      const btn = document.getElementById('hambtn');
-      const menu = document.getElementById('mobile-menu');
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if(!expanded){
-          menu.style.display = 'block';
-          menu.setAttribute('aria-hidden','false');
-        } else {
-          menu.style.display = 'none';
-          menu.setAttribute('aria-hidden','true');
+    document.addEventListener("DOMContentLoaded", () => {
+      const slides = [
+        {
+          img: "assets/hero-1.jpg",
+          title: "Sterownik BLDC",
+          desc: "STM32 • PCB • Embedded C"
+        },
+        {
+          img: "assets/hero-2.jpg",
+          title: "Logger danych",
+          desc: "SD • pomiary • firmware"
+        },
+        {
+          img: "assets/hero-3.jpg",
+          title: "Robot mobilny",
+          desc: "ROS • LIDAR • Control"
         }
+      ];
+
+      const slideImages = [
+        document.getElementById("slide-0"),
+        document.getElementById("slide-1"),
+        document.getElementById("slide-2")
+      ];
+      const titleEl = document.getElementById("slider-title");
+      const descEl = document.getElementById("slider-desc");
+      const progressEl = document.getElementById("slider-progress");
+      const buttons = Array.from(document.querySelectorAll(".slide-btn"));
+
+      let current = 0;
+      let timer = null;
+      let progressTimer = null;
+
+      function setActiveSlide(index, userAction = false) {
+        current = index;
+
+        slideImages.forEach((img, i) => {
+          img.classList.toggle("active", i === index);
+        });
+
+        buttons.forEach((btn, i) => {
+          btn.classList.toggle("active", i === index);
+          btn.setAttribute("aria-pressed", i === index ? "true" : "false");
+        });
+
+        titleEl.textContent = slides[index].title;
+        descEl.textContent = slides[index].desc;
+
+        if (userAction) restartTimer();
+      }
+
+      function nextSlide() {
+        const next = (current + 1) % slides.length;
+        setActiveSlide(next);
+      }
+
+      function restartTimer() {
+        clearInterval(timer);
+        clearInterval(progressTimer);
+
+        let progress = 0;
+        progressEl.style.width = "0%";
+
+        progressTimer = setInterval(() => {
+          progress += 2;
+          progressEl.style.width = progress + "%";
+          if (progress >= 100) {
+            clearInterval(progressTimer);
+          }
+        }, 100);
+
+        timer = setInterval(() => {
+          nextSlide();
+          restartTimer();
+        }, 5000);
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = Number(btn.dataset.slide);
+          setActiveSlide(idx, true);
+        });
       });
 
-      // zamknij menu po kliknięciu linku (mobile)
-      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        menu.style.display = 'none';
-        btn.setAttribute('aria-expanded','false');
-        menu.setAttribute('aria-hidden','true');
-      }));
-    })();
+      restartTimer();
 
-    /* ========== Reveal on scroll (IntersectionObserver) ========== */
-    (function(){
-      const obs = new IntersectionObserver((entries, observer) => {
+      const hamburger = document.getElementById("hambtn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      hamburger.addEventListener("click", () => {
+        const expanded = hamburger.getAttribute("aria-expanded") === "true";
+        hamburger.setAttribute("aria-expanded", String(!expanded));
+        mobileMenu.style.display = expanded ? "none" : "block";
+        mobileMenu.setAttribute("aria-hidden", expanded ? "true" : "false");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          hamburger.setAttribute("aria-expanded", "false");
+          mobileMenu.style.display = "none";
+          mobileMenu.setAttribute("aria-hidden", "true");
+        });
+      });
+
+      const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add('in');
-            observer.unobserve(entry.target);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            obs.unobserve(entry.target);
           }
         });
       }, { threshold: 0.12 });
 
-      document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-    })();
+      document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 
-    /* ========== Preload hero mini images ========== */
-    (function(){ ['assets/hero-1.jpg','assets/hero-2.jpg','assets/hero-3.jpg'].forEach(s => { const i = new Image(); i.src = s; }); })();
+      async function renderArticles() {
+        const container = document.getElementById("articles-container");
+
+        try {
+          const manifestResponse = await fetch("articles.json", { cache: "no-store" });
+          if (!manifestResponse.ok) throw new Error("Brak articles.json");
+          const manifest = await manifestResponse.json();
+
+          if (!Array.isArray(manifest) || manifest.length === 0) {
+            container.innerHTML = `<div class="article-card glass fade-up" style="padding:22px;">Brak artykułów do wyświetlenia.</div>`;
+            return;
+          }
+
+          container.innerHTML = "";
+
+          for (const item of manifest) {
+            const txtResp = await fetch(item.text, { cache: "no-store" });
+            const articleText = txtResp.ok ? await txtResp.text() : "";
+
+            const article = document.createElement("article");
+            article.className = "article-card glass fade-up";
+
+            const imageHtml = item.image
+              ? `<div class="article-image">
+                   <img src="${item.image}" alt="${item.title || 'Artykuł'}" loading="lazy">
+                 </div>`
+              : "";
+
+            article.innerHTML = `
+              <div class="article-top">
+                ${imageHtml}
+                <div class="article-body">
+                  <div>
+                    <div class="article-kicker">
+                      <span class="dot"></span>
+                      <span>${item.date || "Artykuł"}</span>
+                    </div>
+                    <h3 class="article-title">${item.title || "Bez tytułu"}</h3>
+                    <div class="article-content"></div>
+                  </div>
+
+                  <div class="article-actions">
+                    <div class="muted">${item.category || "Technologia / Embedded"}</div>
+                    ${item.link ? `<a class="btn btn-ghost" href="${item.link}">Czytaj więcej</a>` : ""}
+                  </div>
+                </div>
+              </div>
+            `;
+
+            const content = article.querySelector(".article-content");
+            content.innerHTML = formatTextToHtml(articleText);
+
+            container.appendChild(article);
+            observer.observe(article);
+          }
+        } catch (err) {
+          console.error(err);
+          container.innerHTML = `
+            <div class="article-card glass fade-up" style="padding:22px;">
+              <strong>Nie udało się załadować artykułów.</strong>
+              <p class="muted" style="margin:10px 0 0;">Sprawdź plik <code>articles.json</code> oraz ścieżki do plików .txt i .jpg.</p>
+            </div>
+          `;
+        }
+      }
+
+      function formatTextToHtml(text) {
+        if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
+
+        const clean = text
+          .replace(/\r/g, "")
+          .trim();
+
+        const paragraphs = clean
+          .split(/\n\s*\n+/)
+          .map(p => p.trim())
+          .filter(Boolean);
+
+        return paragraphs
+          .map(p => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      renderArticles();
+    });
   </script>
-
-  <!-- ========================= DODATKOWE WSKAZÓWKI / KOMENTARZE ==========
-
-       1) Gdzie wkleić pełne artykuły?
-          - Najprościej (statyczne GitHub Pages):
-            /articles/sterownik-bldc.html
-            /articles/system-pomiarowy.html
-          - Każdy artykuł to pełny plik HTML (możesz skopiować head/meta z tego pliku i zmienić title/og:image/description).
-          - Alternatywa: użyj generatora statycznego (Eleventy, Hugo) – wtedy trzymasz artykuły w markdown i generujesz layout.
-
-       2) Przykładowy szkielet artykułu (pliki w /articles/):
-          <!doctype html>
-          <html lang="pl"> ... head (title/meta/og:image) ...
-          <body>
-            <main class="wrap" style="padding-top:80px">
-              <article style="max-width:850px;margin:40px auto">
-                <h1>Tytuł artykułu</h1>
-                <p class="muted">Data • Kategoria</p>
-                <p>Wstęp...</p>
-                <h2>Sekcja</h2>
-                <p>Treść artykułu...</p>
-                <a href="/index.html">← Powrót</a>
-              </article>
-            </main>
-          </body>
-          </html>
-
-       3) Komentarze w kodzie:
-          - W tym pliku zostawiłem komentarze przy sekcji ARTYKUŁY, PROJEKTY i FOOTER — to miejsca, które najczęściej edytujesz.
-          - Jeśli chcesz więcej inline-komentarzy (np. w CSS), daj znać — mogę oznaczyć każdą regułę dokładnie.
-
-       4) Dodatkowe pomysły „wow”:
-          - Dodaj drobne mikroanimacje do przycisków (scale) i delikatne hovery dla tagów.
-          - Jeśli chcesz wygląd jeszcze bardziej „app-like”: zainstaluj ikonę aplikacji (manifest) i Service Worker -> PWA.
-          - Dla artykułów: warto dodać front-matter + RSS (jeśli będziesz mieć >5 wpisów).
-
-    =================================================================== -->
 </body>
 </html>
