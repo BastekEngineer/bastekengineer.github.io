@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Jak działa sterownik BLDC",
+    "date": "2026-03-26",
+    "category": "Embedded / Power Electronics",
+    "text": "articles/1_artykuł.txt",
+    "image": "articles/1_grafika.jpg",
+    "link": "#"
+  },
+  {
+    "title": "Budowa systemu pomiarowego",
+    "date": "2026-03-26",
+    "category": "Instrumentation",
+    "text": "articles/2_artykuł.txt",
+    "image": "articles/2_grafika.jpg",
+    "link": "#"
+  }
+]
