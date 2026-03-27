@@ -1139,7 +1139,7 @@ window.addEventListener("scroll", () => {
 
                   <div class="article-actions">
                     <div class="muted">${item.category || "Technologia / Embedded"}</div>
-                    ${item.link ? `<a class="btn btn-ghost" href="${item.link}">Czytaj więcej</a>` : ""}
+                    <button class="btn btn-ghost toggle-article">Czytaj więcej</button>
                   </div>
                 </div>
               </div>
@@ -1147,9 +1147,28 @@ window.addEventListener("scroll", () => {
 
             const content = article.querySelector(".article-content");
             content.innerHTML = formatTextToHtml(articleText);
+            content.style.maxHeight = "120px";
+            content.style.overflow = "hidden";
 
             container.appendChild(article);
             observer.observe(article);
+
+            const btn = article.querySelector(".toggle-article");
+
+            btn.addEventListener("click", () => {
+
+            const expanded = content.classList.contains("expanded");
+
+             if (expanded) {
+              content.style.maxHeight = "120px";
+              btn.textContent = "Czytaj więcej";
+              content.classList.remove("expanded");
+                    } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    btn.textContent = "Czytaj mniej";
+                    content.classList.add("expanded");
+                      }
+});
           }
         } catch (err) {
           console.error(err);
