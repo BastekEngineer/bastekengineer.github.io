@@ -47,7 +47,7 @@
         radial-gradient(1000px 600px at 15% 10%, rgba(103,166,217,.16), transparent 60%),
         radial-gradient(900px 500px at 85% 0%, rgba(159,193,226,.10), transparent 55%),
         linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
-      background-attachment: fixed;
+      background-attachment: scroll;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
@@ -70,12 +70,11 @@
     img{max-width:100%; display:block}
     .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
 
-    .glass{
-      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(14px);
-    }
+   .glass{
+  background:rgba(20,30,40,.75);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  }
 
 .topbar{
   position:fixed;
@@ -319,6 +318,7 @@
       opacity:0;
       transform:scale(1.02);
       transition:opacity .7s ease, transform .8s ease;
+      will-change: opacity, transform;
     }
     .slider img.active{
       opacity:1;
@@ -695,8 +695,8 @@
 
 .cursor-glow{
   position:fixed;
-  width:500px;
-  height:500px;
+  width:320px;
+  height:320px;
   pointer-events:none;
   border-radius:50%;
   background:radial-gradient(circle, rgba(103,166,217,.18), transparent 60%);
@@ -1212,22 +1212,42 @@ window.addEventListener("scroll", () => {
 
 const glow = document.getElementById("cursorGlow");
 
+et glowX = 0;
+let glowY = 0;
+
 window.addEventListener("mousemove", e=>{
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
+  glowX = e.clientX;
+  glowY = e.clientY;
 });
 
+function animateGlow(){
+  glow.style.transform =
+   `translate(${glowX}px, ${glowY}px) translate(-50%,-50%)`;
+  requestAnimationFrame(animateGlow);
+}
+
+animateGlow();
+
+let scrollProgress = 0;
+
 window.addEventListener("scroll", ()=>{
+ scrollProgress = window.scrollY;
+});
+
+function updateScrollBar(){
 
  const height =
-  document.documentElement.scrollHeight - window.innerHeight;
+ document.documentElement.scrollHeight - window.innerHeight;
 
- const progress = (window.scrollY / height) * 100;
+ const progress = (scrollProgress / height) * 100;
 
  document.getElementById("scroll-progress").style.width =
   progress + "%";
 
-});
+ requestAnimationFrame(updateScrollBar);
+}
+
+updateScrollBar();
 
 });
   </script>
