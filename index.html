@@ -70,6 +70,10 @@
             position: relative;
         }
 
+        body.menu-open {
+            overflow: hidden;
+        }
+
         /* Lżejsze tło: bez fixed siatki i blurów na całym ekranie */
         body::before {
             content: "";
@@ -135,7 +139,6 @@
             right: 0;
             z-index: 1000;
             transition: transform 0.24s ease, filter 0.24s ease, top 0.24s ease;
-            contain: layout style paint;
         }
 
         .topbar.scrolled {
@@ -253,7 +256,7 @@
             position: fixed;
             top: 90px;
             right: 20px;
-            z-index: 1100;
+            z-index: 3000;
             width: min(320px, calc(100vw - 40px));
             padding: 10px;
             border-radius: 22px;
@@ -853,6 +856,11 @@
                 border-radius: 24px;
             }
             .cursor-glow { display: none; }
+            .mobile-menu {
+                top: 78px;
+                right: 16px;
+                width: min(320px, calc(100vw - 32px));
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1262,15 +1270,18 @@
                 hamburger.setAttribute("aria-expanded", "true");
                 mobileMenu.classList.add("open");
                 mobileMenu.setAttribute("aria-hidden", "false");
+                document.body.classList.add("menu-open");
             }
 
             function closeMenu() {
                 hamburger.setAttribute("aria-expanded", "false");
                 mobileMenu.classList.remove("open");
                 mobileMenu.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("menu-open");
             }
 
-            hamburger.addEventListener("click", () => {
+            hamburger.addEventListener("click", (e) => {
+                e.stopPropagation();
                 const expanded = hamburger.getAttribute("aria-expanded") === "true";
                 expanded ? closeMenu() : openMenu();
             });
