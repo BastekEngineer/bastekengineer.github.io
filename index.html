@@ -73,7 +73,7 @@
         /* Lżejsze tło: bez fixed siatki i blurów na całym ekranie */
         body::before {
             content: "";
-            position: fixed;
+            position: absolute;
             inset: 0;
             pointer-events: none;
             background-image:
@@ -128,15 +128,14 @@
             will-change: transform;
         }
 
-        .topbar {
-            position: fixed;
-            top: 14px;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: transform 0.24s ease, filter 0.24s ease, top 0.24s ease;
-            contain: layout style paint;
-        }
+            .topbar {
+                position: fixed;
+                top: 14px;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                transition: transform 0.24s ease, filter 0.24s ease, top 0.24s ease;
+
 
         .topbar.scrolled {
             transform: translateY(-2px);
@@ -144,19 +143,17 @@
         }
 
         nav {
-            pointer-events: auto;
-            height: var(--nav-h);
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 0 18px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background: rgba(12, 19, 30, 0.74);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-        }
+        pointer-events: auto;
+        height: var(--nav-h);
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 0 18px;
+        background: rgba(12, 19, 30, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+    }
 
         .brand {
             display: flex;
@@ -502,12 +499,10 @@
         }
 
         section {
-            padding: 76px 0;
-            position: relative;
-            z-index: 1;
-            content-visibility: auto;
-            contain-intrinsic-size: 800px;
-        }
+    padding: 76px 0;
+    position: relative;
+    z-index: 1;
+}
 
         .section-head { margin-bottom: 24px; }
         .section-head h2 {
@@ -723,13 +718,12 @@
             margin-top: 18px;
         }
 
-        footer {
-            padding: 30px 0 50px;
-            color: var(--muted);
-            position: relative;
-            z-index: 1;
-            content-visibility: auto;
-        }
+            footer {
+          padding: 30px 0 50px;
+         color: var(--muted);
+        position: relative;
+        z-index: 1;
+}
 
         .footer-card {
             padding: 18px 20px;
@@ -1448,8 +1442,8 @@
             if (!touchDevice) {
                 const animateGlow = () => {
                     glowRaf = 0;
-                    glowX += (glowTargetX - glowX) * 0.14;
-                    glowY += (glowTargetY - glowY) * 0.14;
+                    glowX += (glowTargetX - glowX) * 0.22;
+                    glowY += (glowTargetY - glowY) * 0.22;
                     glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
 
                     if (Math.abs(glowTargetX - glowX) > 0.2 || Math.abs(glowTargetY - glowY) > 0.2) {
