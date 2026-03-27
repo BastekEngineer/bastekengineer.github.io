@@ -1448,8 +1448,8 @@
             if (!touchDevice) {
                 const animateGlow = () => {
                     glowRaf = 0;
-                    glowX += (glowTargetX - glowX) * 0.14;
-                    glowY += (glowTargetY - glowY) * 0.14;
+                    glowX += (glowTargetX - glowX) * 0.22;
+                    glowY += (glowTargetY - glowY) * 0.22;
                     glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
 
                     if (Math.abs(glowTargetX - glowX) > 0.2 || Math.abs(glowTargetY - glowY) > 0.2) {
