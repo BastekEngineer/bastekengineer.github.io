@@ -66,7 +66,7 @@
             background-attachment: scroll;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: clip;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -128,19 +128,19 @@
             will-change: transform;
         }
 
-            .topbar {
-                position: fixed;
-                top: 14px;
-                left: 0;
-                right: 0;
-                z-index: 1000;
-                transition: transform 0.24s ease, filter 0.24s ease, top 0.24s ease;
-
+            topbar {
+    position: fixed;
+    top: 14px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.24s ease, filter 0.24s ease, top 0.24s ease;
+    }
 
         .topbar.scrolled {
-            transform: translateY(-2px);
-            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.22));
-        }
+        transform: translateY(-2px);
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.22));
+    }
 
         nav {
         pointer-events: auto;
