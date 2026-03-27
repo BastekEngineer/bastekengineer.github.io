@@ -704,10 +704,21 @@
   mix-blend-mode:screen;
 }
     
+#scroll-progress{
+ position:fixed;
+ top:0;
+ left:0;
+ height:3px;
+ width:0;
+ background:linear-gradient(90deg,#67a6d9,#9fc1e2);
+ z-index:2000;
+}
+    
   </style>
 </head>
 <body>
 <div class="cursor-glow" id="cursorGlow"></div>
+  <div id="scroll-progress"></div>
 
   <div class="topbar">
     <div class="wrap">
@@ -1178,7 +1189,27 @@ window.addEventListener("scroll", () => {
       }
 
       renderArticles();
-    });
+
+const glow = document.getElementById("cursorGlow");
+
+window.addEventListener("mousemove", e=>{
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+window.addEventListener("scroll", ()=>{
+
+ const height =
+  document.documentElement.scrollHeight - window.innerHeight;
+
+ const progress = (window.scrollY / height) * 100;
+
+ document.getElementById("scroll-progress").style.width =
+  progress + "%";
+
+});
+
+});
   </script>
 </body>
 </html>
