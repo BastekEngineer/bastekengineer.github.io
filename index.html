@@ -691,9 +691,23 @@
       }
       body{background-attachment:scroll}
     }
+
+.cursor-glow{
+  position:fixed;
+  width:500px;
+  height:500px;
+  pointer-events:none;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(103,166,217,.18), transparent 60%);
+  transform:translate(-50%,-50%);
+  z-index:0;
+  mix-blend-mode:screen;
+}
+    
   </style>
 </head>
 <body>
+<div class="cursor-glow" id="cursorGlow"></div>
 
   <div class="topbar">
     <div class="wrap">
