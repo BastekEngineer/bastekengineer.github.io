@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CyberProjects — Dziewit</title>
+
+    <meta
+        name="description"
+        content="CyberProjects — Portfolio inżynierskie: embedded, mechatronika, projekty CAD."
+    />
+    <meta property="og:title" content="CyberProjects — Dziewit" />
+    <meta
+        property="og:description"
+        content="Portfolio inżynierskie: embedded, mechatronika, projekty CAD."
+    />
+    <meta property="og:image" content="assets/og-image.jpg" />
+    <meta name="theme-color" content="#111c2b" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
+
+    <style>
+        :root {
+            --bg-1: #0f1726;
+            --bg-2: #152235;
+            --bg-3: #1c2f45;
+            --bg-4: #223a55;
+            --panel: rgba(255, 255, 255, 0.075);
+            --panel-strong: rgba(255, 255, 255, 0.13);
+            --line: rgba(255, 255, 255, 0.12);
+            --text: #f5f8fc;
+            --muted: rgba(245, 248, 252, 0.82);
+            --muted-2: rgba(245, 248, 252, 0.56);
+            --accent: #8cc8ff;
+            --accent-2: #d6e9ff;
+            --accent-3: #6ea8f2;
+            --accent-4: #93f0dc;
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.20);
+            --radius: 24px;
+            --radius-sm: 16px;
+            --maxw: 1180px;
+            --nav-h: 72px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 110px;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.55;
+            background:
+                radial-gradient(760px 520px at 14% 10%, rgba(140, 200, 255, 0.20), transparent 52%),
+                radial-gradient(640px 420px at 86% 8%, rgba(147, 240, 220, 0.10), transparent 50%),
+                linear-gradient(145deg, var(--bg-1), var(--bg-2) 42%, var(--bg-3) 74%, var(--bg-4));
+            background-attachment: scroll;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: clip;
+            position: relative;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Lżejsze tło: bez fixed siatki i blurów na całym ekranie */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.020) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.020) 1px, transparent 1px);
+            background-size: 112px 112px;
+            opacity: 0.10;
+            z-index: 0;
+        }
+
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass {
+            background: rgba(17, 26, 40, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent-3), var(--accent-4));
+            z-index: 2000;
+            will-change: width;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 180px;
+            height: 180px;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(140, 200, 255, 0.12), rgba(147, 240, 220, 0.05), transparent 72%);
+            transform: translate3d(-50%, -50%, 0);
+            z-index: 0;
+            mix-blend-mode: screen;
+            opacity: 0.45;
+            will-change: transform;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 14px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: transform 0.24s ease, filter 0.24s ease, top 0.24s ease;
+        }
+
+        .topbar.scrolled {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.22));
+        }
+
+        nav {
+            pointer-events: auto;
+            height: var(--nav-h);
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 18px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(12, 19, 30, 0.74);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+            color: #fff;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            box-shadow: 0 10px 24px rgba(110, 168, 242, 0.24);
+            flex: 0 0 auto;
+        }
+
+        .site-title {
+            min-width: 0;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            line-height: 1.1;
+        }
+
+        .site-title small {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navlinks a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 650;
+            padding: 10px 14px;
+            border-radius: 999px;
+            transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+        }
+
+        .navlinks a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+            color: #fff !important;
+            box-shadow: 0 10px 20px rgba(110, 168, 242, 0.18);
+        }
+
+        .hamburger {
+            display: none;
+            width: 46px;
+            height: 46px;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: 16px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+            cursor: pointer;
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .hamburger:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.11);
+        }
+
+        .hamburger:focus {
+            outline: 2px solid rgba(147, 240, 220, 0.34);
+            outline-offset: 2px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 3000;
+            width: min(320px, calc(100vw - 40px));
+            padding: 10px;
+            border-radius: 22px;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.98);
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(12, 18, 28, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .mobile-menu a {
+            display: block;
+            text-decoration: none;
+            padding: 13px 14px;
+            border-radius: 14px;
+            color: var(--muted);
+            font-weight: 650;
+            transition: background 0.18s ease, color 0.18s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        header.hero {
+            min-height: 100svh;
+            padding: 122px 0 70px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            color: #fff;
+            background: rgba(140, 200, 255, 0.12);
+            border: 1px solid rgba(214, 233, 255, 0.16);
+            font-size: 13px;
+            font-weight: 750;
+            letter-spacing: 0.2px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-4);
+            box-shadow: 0 0 0 5px rgba(147, 240, 220, 0.08);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.6rem, 5.8vw, 5.3rem);
+            line-height: 0.96;
+            letter-spacing: -0.055em;
+            max-width: 12ch;
+        }
+
+        .hero p.lead {
+            max-width: 62ch;
+            margin: 18px 0 0;
+            color: var(--muted);
+            font-size: clamp(1rem, 1.4vw, 1.16rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 50px;
+            padding: 0 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 750;
+            border: 1px solid transparent;
+            transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+        .btn:active { transform: translateY(0); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+            color: #fff;
+            box-shadow: 0 12px 22px rgba(110, 168, 242, 0.18);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.10);
+        }
+
+        .btn-ghost:hover { background: rgba(255, 255, 255, 0.08); }
+
+        .hero-card {
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            padding: 14px;
+            background: rgba(16, 24, 36, 0.64);
+            contain: layout paint;
+        }
+
+        .hero-card-inner {
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .slider {
+            position: relative;
+            aspect-ratio: 4 / 4.4;
+            min-height: 440px;
+            background: #0b1522;
+            overflow: hidden;
+            contain: layout paint;
+        }
+
+        .slider img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.018);
+            transition: opacity 0.55s ease, transform 0.7s ease;
+            will-change: opacity, transform;
+            filter: saturate(1.02) contrast(1.02);
+        }
+
+        .slider img.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slider-overlay {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 18px;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.70) 58%);
+            display: flex;
+            align-items: end;
+            min-height: 38%;
+        }
+
+        .slider-caption {
+            width: 100%;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .slider-caption h3 {
+            margin: 0 0 6px;
+            font-size: 1.18rem;
+        }
+
+        .slider-caption p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 0.95rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .slide-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+        }
+
+        .slide-btn:hover,
+        .slide-btn.active {
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+            border-color: transparent;
+            transform: translateY(-1px);
+        }
+
+        .slider-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.10);
+            position: relative;
+            overflow: hidden;
+            border-radius: 999px;
+            margin-top: 12px;
+        }
+
+        .slider-bar span {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-3), var(--accent-4));
+        }
+
+        section {
+            padding: 76px 0;
+            position: relative;
+            z-index: 1;
+            content-visibility: auto;
+            contain-intrinsic-size: 800px;
+        }
+
+        .section-head { margin-bottom: 24px; }
+        .section-head h2 {
+            margin: 0;
+            font-size: clamp(1.7rem, 3vw, 2.55rem);
+            letter-spacing: -0.04em;
+        }
+
+        .section-head p {
+            margin: 8px 0 0;
+            max-width: 70ch;
+            color: var(--muted);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature,
+        .project,
+        .article-card,
+        .about-card,
+        .contact-card {
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.14);
+            contain: content;
+        }
+
+        .feature {
+            padding: 22px;
+            min-height: 176px;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
+        }
+
+        .feature .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 14px;
+            background: rgba(147, 240, 220, 0.12);
+            border: 1px solid rgba(147, 240, 220, 0.16);
+            color: #eefcff;
+            font-weight: 900;
+        }
+
+        .feature h3 { margin: 0 0 8px; font-size: 1.05rem; }
+        .feature p { margin: 0; color: var(--muted); }
+
+        .project {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
+        }
+
+        .project img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .project .meta { padding: 18px; }
+        .project h3 { margin: 0 0 8px; font-size: 1.08rem; }
+        .project p { margin: 0; color: var(--muted); }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .tag {
+            font-size: 0.82rem;
+            color: var(--muted);
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .article-card {
+            overflow: hidden;
+            padding: 0;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.16);
+        }
+
+        .article-top {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+            min-height: 240px;
+        }
+
+        .article-image { position: relative; background: #0b1522; }
+        .article-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .article-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .article-kicker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted-2);
+            font-size: 0.86rem;
+            font-weight: 650;
+        }
+
+        .article-kicker .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-4);
+        }
+
+        .article-title {
+            margin: 10px 0 10px;
+            font-size: 1.55rem;
+            line-height: 1.1;
+            letter-spacing: -0.035em;
+        }
+
+        .article-content {
+            color: var(--muted);
+            white-space: pre-wrap;
+            transition: max-height 0.35s ease;
+        }
+
+        .article-content p { margin: 0 0 14px; }
+
+        .article-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 6px;
+        }
+
+        .about-card,
+        .contact-card { padding: 24px; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        footer {
+            padding: 30px 0 50px;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+            content-visibility: auto;
+        }
+
+        .footer-card {
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            background: rgba(17, 26, 40, 0.56);
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 650;
+        }
+
+        .social-link:hover { color: #fff; }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--muted-2);
+            font-size: 0.92rem;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.52s ease, transform 0.52s ease;
+            will-change: opacity, transform;
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        .muted { color: var(--muted); }
+        .hidden { display: none !important; }
+
+        @media (max-width: 1040px) {
+            .hero-grid,
+            .about-grid,
+            .article-top { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .slider { min-height: 420px; }
+        }
+
+        @media (max-width: 760px) {
+            .wrap { padding: 0 16px; }
+            .navlinks { display: none; }
+            .hamburger { display: inline-flex; }
+            .topbar { top: 10px; }
+            nav {
+                border-radius: 24px;
+                padding: 0 14px;
+                height: 64px;
+            }
+            .logo {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+                border-radius: 14px;
+            }
+            .site-title { font-size: 14px; }
+            header.hero {
+                min-height: auto;
+                padding-top: 112px;
+                padding-bottom: 42px;
+            }
+            h1 {
+                font-size: 2.25rem;
+                line-height: 1.02;
+                max-width: 100%;
+            }
+            .hero p.lead {
+                font-size: 1rem;
+                margin-top: 16px;
+            }
+            .hero-actions {
+                flex-direction: column;
+                margin-top: 24px;
+            }
+            .hero-actions .btn,
+            .contact-actions .btn { width: 100%; }
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .slider {
+                min-height: 300px;
+                aspect-ratio: 1 / 1;
+            }
+            .hero-card {
+                border-radius: 28px;
+                padding: 12px;
+            }
+            .hero-card-inner { border-radius: 22px; }
+            .slider-caption {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .slider-controls { justify-content: flex-start; }
+            .article-top { min-height: unset; }
+            .article-body,
+            .feature,
+            .about-card,
+            .contact-card,
+            .project .meta { padding: 18px; }
+            .article-title { font-size: 1.24rem; }
+            .article-content { font-size: 0.96rem; }
+            .stat-row { grid-template-columns: 1fr; }
+            section { padding: 54px 0; }
+            .footer-card {
+                padding: 18px;
+                border-radius: 24px;
+            }
+            .cursor-glow { display: none; }
+            .mobile-menu {
+                top: 78px;
+                right: 16px;
+                width: min(320px, calc(100vw - 32px));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+            body { background-attachment: scroll; }
+            .cursor-glow { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div id="scroll-progress"></div>
+
+    <div class="topbar" id="topbar">
+        <div class="wrap">
+            <nav class="glass" aria-label="Główne menu">
+                <div class="brand">
+                    <div class="logo">CP</div>
+                    <div class="site-title">
+                        CyberProjects
+                        <small>embedded • mechatronics • CAD</small>
+                    </div>
+                </div>
+
+                <div class="navlinks" aria-label="Nawigacja">
+                    <a href="#features">Co potrafię</a>
+                    <a href="#projekty">Projekty</a>
+                    <a href="#articles">Artykuły</a>
+                    <a href="#about">O mnie</a>
+                    <a class="cta-nav" href="#contact">Skontaktuj się</a>
+                </div>
+
+                <button
+                    class="hamburger"
+                    id="hambtn"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    aria-label="Otwórz menu"
+                    type="button"
+                >
+                    <svg
+                        width="18"
+                        height="12"
+                        viewBox="0 0 18 12"
+                        fill="none"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect width="18" height="2" rx="1" fill="currentColor"></rect>
+                        <rect y="5" width="18" height="2" rx="1" fill="currentColor"></rect>
+                        <rect y="10" width="18" height="2" rx="1" fill="currentColor"></rect>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <a href="#features">Co potrafię</a>
+            <a href="#projekty">Projekty</a>
+            <a href="#articles">Artykuły</a>
+            <a href="#about">O mnie</a>
+            <a href="#contact">Skontaktuj się</a>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow fade-up">Inżynieria • Embedded • Mechatronika</span>
+                <h1 class="fade-up">Projektuję systemy, od pomysłu po prototyp.</h1>
+                <p class="lead fade-up">
+                    Łączę elektronikę, firmware, mechanikę i testy w spójne rozwiązania, które da się wdrożyć,
+                    uruchomić i rozwijać.
+                </p>
+
+                <div class="hero-actions fade-up">
+                    <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
+                    <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+                </div>
+            </div>
+
+            <aside class="hero-card glass fade-up" aria-label="Podgląd projektów">
+                <div class="hero-card-inner">
+                    <div class="slider">
+                        <img
+                            id="slide-0"
+                            class="active"
+                            src="assets/hero-1.jpg"
+                            alt="Sterownik BLDC"
+                            loading="eager"
+                            decoding="async"
+                        />
+                        <img id="slide-1" src="assets/hero-2.jpg" alt="Logger danych" loading="lazy" decoding="async" />
+                        <img id="slide-2" src="assets/hero-3.jpg" alt="Robot mobilny" loading="lazy" decoding="async" />
+
+                        <div class="slider-overlay">
+                            <div style="width:100%">
+                                <div class="slider-caption">
+                                    <div>
+                                        <h3 id="slider-title">Sterownik BLDC</h3>
+                                        <p id="slider-desc">STM32 • PCB • Embedded C</p>
+                                    </div>
+
+                                    <div class="slider-controls" aria-label="Wybór slajdu">
+                                        <button class="slide-btn active" data-slide="0" type="button">1</button>
+                                        <button class="slide-btn" data-slide="1" type="button">2</button>
+                                        <button class="slide-btn" data-slide="2" type="button">3</button>
+                                    </div>
+                                </div>
+
+                                <div class="slider-bar" aria-hidden="true">
+                                    <span id="slider-progress"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section id="features">
+            <div class="section-head">
+                <h2 class="fade-up">Co robię najlepiej</h2>
+                <p class="fade-up">
+                    Skupiam się na projektach, które wymagają połączenia projektu CAD, elektroniki oraz
+                    oprogramowania.
+                </p>
+            </div>
+
+            <div class="grid-3">
+                <article class="feature fade-up">
+                    <div class="icon">01</div>
+                    <h3>Pełny cykl projektu</h3>
+                    <p>Od koncepcji i schematu, przez PCB i firmware, aż po testy oraz poprawki na prototypie.</p>
+                </article>
+
+                <article class="feature fade-up">
+                    <div class="icon">02</div>
+                    <h3>Dokumentacja techniczna</h3>
+                    <p>Opisuję projekty tak, aby dało się je zrozumieć, odtworzyć i rozwijać bez zgadywania.</p>
+                </article>
+
+                <article class="feature fade-up">
+                    <div class="icon">03</div>
+                    <h3>Walidacja i pomiary</h3>
+                    <p>Weryfikuję działanie w praktyce: pomiary, testy obciążeniowe, analiza błędów i strojenie.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="projekty">
+            <div class="section-head">
+                <h2 class="fade-up">Wybrane projekty</h2>
+                <p class="fade-up">Kilka przykładów prac, które pokazują zakres mojego działania.</p>
+            </div>
+
+            <div class="grid-3">
+                <article class="project fade-up">
+                    <img
+                        src="assets/project-01.jpg"
+                        alt="Sterownik BLDC"
+                        loading="lazy"
+                        decoding="async"
+                        onerror="this.remove()"
+                    />
+                    <div class="meta">
+                        <h3>Sterownik BLDC</h3>
+                        <p>Projekt sterownika silnika BLDC z pomiarem prądu, sterowaniem PWM i elektroniką mocy.</p>
+                        <div class="tags">
+                            <span class="tag">STM32</span>
+                            <span class="tag">PWM</span>
+                            <span class="tag">PCB</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project fade-up">
+                    <img
+                        src="assets/project-02.jpg"
+                        alt="Logger danych"
+                        loading="lazy"
+                        decoding="async"
+                        onerror="this.remove()"
+                    />
+                    <div class="meta">
+                        <h3>Logger danych</h3>
+                        <p>Wysokorozdzielczy logger na kartę SD z synchronizacją czasu i filtrowaniem sygnałów.</p>
+                        <div class="tags">
+                            <span class="tag">SD</span>
+                            <span class="tag">Analog</span>
+                            <span class="tag">Firmware</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project fade-up">
+                    <img
+                        src="assets/project-03.jpg"
+                        alt="Robot mobilny"
+                        loading="lazy"
+                        decoding="async"
+                        onerror="this.remove()"
+                    />
+                    <div class="meta">
+                        <h3>Robot mobilny</h3>
+                        <p>Platforma z autonomicznym omijaniem przeszkód, regulacją PID i integracją czujników.</p>
+                        <div class="tags">
+                            <span class="tag">ROS</span>
+                            <span class="tag">LIDAR</span>
+                            <span class="tag">Control</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="articles">
+            <div class="section-head">
+                <h2 class="fade-up">Artykuły</h2>
+                <p class="fade-up">
+                    <strong>Poniżej możesz przeczytać kilka artykułów mojego autorstwa</strong>.
+                </p>
+            </div>
+
+            <div id="articles-container" class="articles-grid">
+                <div class="article-card glass fade-up" style="padding:22px;">
+                    Ładowanie artykułów...
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-head">
+                <h2 class="fade-up">O mnie</h2>
+                <p class="fade-up">Stawiam na czytelność, funkcjonalność i inżynierską konsekwencję.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card glass fade-up">
+                    <p class="muted" style="margin:0 0 14px;">
+                        Jestem inżynierem pracującym z mikrokontrolerami, projektami PCB i systemami pomiarowymi.
+                        Buduję rozwiązania od schematu po firmware i testy w rzeczywistych warunkach.
+                    </p>
+                    <p class="muted" style="margin:0;">
+                        Jeśli pracujesz nad projektem elektronicznym, automatyki lub embedded, ta strona może służyć
+                        jako hub do prezentacji wyników, dokumentacji i artykułów technicznych.
+                    </p>
+                </div>
+
+                <div class="about-card glass fade-up">
+                    <div class="stat-row">
+                        <div class="stat">
+                            <strong>PCB</strong>
+                            <span>schematy i layout</span>
+                        </div>
+                        <div class="stat">
+                            <strong>FW</strong>
+                            <span>firmware i logika</span>
+                        </div>
+                        <div class="stat">
+                            <strong>TEST</strong>
+                            <span>pomiary i walidacja</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-head">
+                <h2 class="fade-up">Skontaktuj się</h2>
+                <p class="fade-up">Mail albo LinkedIn — najprostsza droga do kontaktu.</p>
+            </div>
+
+            <div class="contact-card glass fade-up">
+                <p style="margin-top:0;color:var(--muted);max-width:70ch">
+                    Masz pytanie, chcesz omówić projekt albo potrzebujesz pomocy przy rozwiązaniu technicznym?
+                    Napisz maila lub przejdź do mojego profilu LinkedIn.
+                </p>
+
+                <div class="contact-actions">
+                    <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+                    <a
+                        class="btn btn-ghost"
+                        href="https://www.linkedin.com/in/sebastiandziewit/"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="footer-card glass">
+                <div style="display:flex;align-items:center;gap:12px;min-width:0">
+                    <div class="logo" style="width:48px;height:48px;border-radius:16px;">CP</div>
+                    <div style="min-width:0">
+                        <div style="font-weight:900;color:#fff">CyberProjects</div>
+                        <div
+                            style="font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"
+                        >
+                            embedded & mechatronics
+                        </div>
+                    </div>
+                </div>
+
+                <a
+                    class="social-link"
+                    href="https://www.linkedin.com/in/sebastiandziewit/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Profil LinkedIn"
+                >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true">
+                        <path
+                            d="M20.447 20.452H16.9V14.89c0-1.327-.026-3.036-1.85-3.036-1.853 0-2.136 1.445-2.136 2.939v5.659H9.367V9h3.405v1.561h.049c.474-.9 1.632-1.85 3.357-1.85 3.588 0 4.248 2.361 4.248 5.431v6.31zM5.337 7.433a2.063 2.063 0 11-.001-4.126 2.063 2.063 0 01.001 4.126zM6.814 20.452H3.859V9h2.955v11.452z"
+                        />
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+
+            <div class="footer-note">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = [
+                { img: "assets/hero-1.jpg", title: "Sterownik BLDC", desc: "STM32 • PCB • Embedded C" },
+                { img: "assets/hero-2.jpg", title: "Logger danych", desc: "SD • pomiary • firmware" },
+                { img: "assets/hero-3.jpg", title: "Robot mobilny", desc: "ROS • LIDAR • Control" }
+            ];
+
+            const slideImages = [
+                document.getElementById("slide-0"),
+                document.getElementById("slide-1"),
+                document.getElementById("slide-2")
+            ];
+            const titleEl = document.getElementById("slider-title");
+            const descEl = document.getElementById("slider-desc");
+            const progressEl = document.getElementById("slider-progress");
+            const buttons = Array.from(document.querySelectorAll(".slide-btn"));
+
+            let current = 0;
+            let slideTimer = null;
+            let progressTimer = null;
+
+            function setActiveSlide(index, userAction = false) {
+                current = index;
+                slideImages.forEach((img, i) => img.classList.toggle("active", i === index));
+                buttons.forEach((btn, i) => {
+                    btn.classList.toggle("active", i === index);
+                    btn.setAttribute("aria-pressed", i === index ? "true" : "false");
+                });
+                titleEl.textContent = slides[index].title;
+                descEl.textContent = slides[index].desc;
+                if (userAction) restartTimer();
+            }
+
+            function nextSlide() {
+                setActiveSlide((current + 1) % slides.length);
+            }
+
+            function restartTimer() {
+                clearInterval(slideTimer);
+                clearInterval(progressTimer);
+
+                let progress = 0;
+                progressEl.style.width = "0%";
+
+                progressTimer = setInterval(() => {
+                    progress += 2;
+                    progressEl.style.width = progress + "%";
+                    if (progress >= 100) clearInterval(progressTimer);
+                }, 100);
+
+                slideTimer = setInterval(() => {
+                    nextSlide();
+                    restartTimer();
+                }, 5000);
+            }
+
+            buttons.forEach((btn) => {
+                btn.addEventListener("click", () => setActiveSlide(Number(btn.dataset.slide), true));
+            });
+
+            restartTimer();
+
+            const hamburger = document.getElementById("hambtn");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            function openMenu() {
+                hamburger.setAttribute("aria-expanded", "true");
+                mobileMenu.classList.add("open");
+                mobileMenu.setAttribute("aria-hidden", "false");
+                document.body.classList.add("menu-open");
+            }
+
+            function closeMenu() {
+                hamburger.setAttribute("aria-expanded", "false");
+                mobileMenu.classList.remove("open");
+                mobileMenu.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("menu-open");
+            }
+
+            hamburger.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const expanded = hamburger.getAttribute("aria-expanded") === "true";
+                expanded ? closeMenu() : openMenu();
+            });
+
+            mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+
+            document.addEventListener("click", (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+            });
+
+            let scrollRaf = 0;
+            const topbar = document.getElementById("topbar");
+            const scrollProgressBar = document.getElementById("scroll-progress");
+
+            const handleScroll = () => {
+                scrollRaf = 0;
+                const y = window.scrollY || window.pageYOffset;
+                topbar.classList.toggle("scrolled", y > 18);
+
+                const height = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = height > 0 ? (y / height) * 100 : 0;
+                scrollProgressBar.style.width = progress + "%";
+            };
+
+            const onScroll = () => {
+                if (!scrollRaf) scrollRaf = requestAnimationFrame(handleScroll);
+            };
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            window.addEventListener("resize", onScroll, { passive: true });
+            handleScroll();
+
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("in");
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "60px 0px" }
+            );
+
+            document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+
+            function formatTextToHtml(text) {
+                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
+                const clean = text.replace(/\r/g, "").trim();
+                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
+                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
+            }
+
+            function escapeHtml(str) {
+                return str
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            async function renderArticles() {
+                const container = document.getElementById("articles-container");
+
+                try {
+                    const manifestResponse = await fetch("articles.json", { cache: "no-store" });
+                    if (!manifestResponse.ok) throw new Error("Brak articles.json");
+
+                    const manifest = await manifestResponse.json();
+                    if (!Array.isArray(manifest) || manifest.length === 0) {
+                        container.innerHTML = `
+                            <div class="article-card glass fade-up" style="padding:22px;">
+                                Brak artykułów do wyświetlenia.
+                            </div>
+                        `;
+                        observer.observe(container.firstElementChild);
+                        return;
+                    }
+
+                    container.innerHTML = "";
+
+                    const texts = await Promise.all(
+                        manifest.map(async (item) => {
+                            try {
+                                const txtResp = await fetch(item.text, { cache: "no-store" });
+                                return txtResp.ok ? await txtResp.text() : "";
+                            } catch {
+                                return "";
+                            }
+                        })
+                    );
+
+                    manifest.forEach((item, index) => {
+                        const articleText = texts[index] || "";
+                        const article = document.createElement("article");
+                        article.className = "article-card glass fade-up";
+
+                        const imageHtml = item.image
+                            ? `
+                                <div class="article-image">
+                                    <img src="${item.image}" alt="${item.title || "Artykuł"}" loading="lazy" decoding="async">
+                                </div>
+                            `
+                            : "";
+
+                        article.innerHTML = `
+                            <div class="article-top">
+                                ${imageHtml}
+                                <div class="article-body">
+                                    <div>
+                                        <div class="article-kicker">
+                                            <span class="dot"></span>
+                                            <span>${item.date || "Artykuł"}</span>
+                                        </div>
+                                        <h3 class="article-title">${item.title || "Bez tytułu"}</h3>
+                                        <div class="article-content"></div>
+                                    </div>
+
+                                    <div class="article-actions">
+                                        <div class="muted">${item.category || "Technologia / Embedded"}</div>
+                                        <button class="btn btn-ghost toggle-article" type="button">Czytaj więcej</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        const content = article.querySelector(".article-content");
+                        content.innerHTML = formatTextToHtml(articleText);
+                        content.style.maxHeight = "120px";
+                        content.style.overflow = "hidden";
+
+                        const btn = article.querySelector(".toggle-article");
+                        btn.addEventListener("click", () => {
+                            const expanded = content.classList.contains("expanded");
+
+                            if (expanded) {
+                                content.style.maxHeight = "120px";
+                                btn.textContent = "Czytaj więcej";
+                                content.classList.remove("expanded");
+                            } else {
+                                content.style.maxHeight = content.scrollHeight + "px";
+                                btn.textContent = "Czytaj mniej";
+                                content.classList.add("expanded");
+                            }
+                        });
+
+                        container.appendChild(article);
+                        observer.observe(article);
+                    });
+                } catch (err) {
+                    console.error(err);
+                    container.innerHTML = `
+                        <div class="article-card glass fade-up" style="padding:22px;">
+                            <strong>Nie udało się załadować artykułów.</strong>
+                            <p class="muted" style="margin:10px 0 0;">
+                                Sprawdź plik <code>articles.json</code> oraz ścieżki do plików .txt i .jpg.
+                            </p>
+                        </div>
+                    `;
+                    observer.observe(container.firstElementChild);
+                }
+            }
+
+            renderArticles();
+
+            const glow = document.getElementById("cursorGlow");
+            const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+            let glowX = window.innerWidth / 2;
+            let glowY = window.innerHeight / 2;
+            let glowTargetX = glowX;
+            let glowTargetY = glowY;
+            let glowRaf = 0;
+
+            if (!touchDevice) {
+                const animateGlow = () => {
+                    glowRaf = 0;
+                    glowX += (glowTargetX - glowX) * 0.22;
+                    glowY += (glowTargetY - glowY) * 0.22;
+                    glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+
+                    if (Math.abs(glowTargetX - glowX) > 0.2 || Math.abs(glowTargetY - glowY) > 0.2) {
+                        glowRaf = requestAnimationFrame(animateGlow);
+                    }
+                };
+
+                window.addEventListener("pointermove", (e) => {
+                    glowTargetX = e.clientX;
+                    glowTargetY = e.clientY;
+                    if (!glowRaf) glowRaf = requestAnimationFrame(animateGlow);
+                }, { passive: true });
+            } else {
+                glow.style.display = "none";
+            }
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth > 760) closeMenu();
+                onScroll();
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>
