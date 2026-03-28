@@ -765,16 +765,19 @@
             font-size: 0.92rem;
         }
 
-        .fade-up {
-            --reveal: 0;
-            opacity: calc(0.18 + (var(--reveal) * 0.82));
-            transform:
-                translateY(calc(32px - (var(--reveal) * 32px)))
-                scale(calc(0.97 + (var(--reveal) * 0.03)));
-            filter: blur(calc(5px - (var(--reveal) * 5px)));
-            transition: none;
-            will-change: transform, opacity, filter;
-        }
+            .fade-up {
+                opacity: 0;
+                transform: translateY(12px) scale(0.992);
+                transition:
+                opacity 0.45s ease-out,
+                transform 0.45s ease-out;
+              A  will-change: opacity, transform;
+    }
+
+            .fade-up.in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            }
 
         .muted { color: var(--muted); }
         .hidden { display: none !important; }
