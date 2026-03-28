@@ -692,30 +692,21 @@
             align-items: start;
         }
 
-        .stat-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 18px;
+        .profile-pic-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
         }
 
-        .stat {
-            padding: 16px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            text-align: center;
-        }
-
-        .stat strong {
-            display: block;
-            font-size: 1.25rem;
-            letter-spacing: 0.02em;
-        }
-
-        .stat span {
-            color: var(--muted);
-            font-size: 0.88rem;
+        .profile-pic {
+            width: 220px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .contact-actions {
@@ -848,7 +839,6 @@
             .project .meta { padding: 18px; }
             .article-title { font-size: 1.24rem; }
             .article-content { font-size: 0.96rem; }
-            .stat-row { grid-template-columns: 1fr; }
             section { padding: 54px 0; }
             .footer-card {
                 padding: 18px;
@@ -859,6 +849,12 @@
                 top: 78px;
                 right: 16px;
                 width: min(320px, calc(100vw - 32px));
+            }
+            .profile-pic {
+                width: 180px;
+            }
+            .profile-pic-wrap {
+                min-height: 220px;
             }
         }
 
@@ -1118,21 +1114,8 @@
                     </p>
                 </div>
 
-                <div class="about-card glass fade-up">
-                    <div class="stat-row">
-                        <div class="stat">
-                            <strong>PCB</strong>
-                            <span>schematy i layout</span>
-                        </div>
-                        <div class="stat">
-                            <strong>FW</strong>
-                            <span>firmware i logika</span>
-                        </div>
-                        <div class="stat">
-                            <strong>TEST</strong>
-                            <span>pomiary i walidacja</span>
-                        </div>
-                    </div>
+                <div class="about-card glass fade-up profile-pic-wrap">
+                    <img src="assets/wlasciciel.jpg" alt="Zdjęcie właściciela" class="profile-pic" />
                 </div>
             </div>
         </section>
