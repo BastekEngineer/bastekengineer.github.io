@@ -413,7 +413,7 @@
             contain: layout paint;
         }
 
-        .slider img {
+        .slider video {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -426,7 +426,7 @@
             filter: saturate(1.02) contrast(1.02);
         }
 
-        .slider img.active {
+        .slider video.active {
             opacity: 1;
             transform: scale(1);
         }
@@ -893,33 +893,32 @@
             .cursor-glow { display: none; }
         }
 
-            .feature-list {
-                list-style: none;
-                padding: 0;
-                margin: 14px 0 0;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-                .feature-list li {
-                position: relative;
-                padding-left: 22px;
-                color: var(--muted);
-                line-height: 1.6;
+        .feature-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
-            /* Twoja "kropka" w stylu UI */
-                .feature-list li::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 9px;
-                width: 6px;
-                height: 6px;
-                border-radius: 50%;
-                background: var(--accent-4);
-                box-shadow: 0 0 0 6px rgba(147, 240, 220, 0.08);
+        .feature-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-4);
+            box-shadow: 0 0 0 6px rgba(147, 240, 220, 0.08);
         }
     </style>
 </head>
@@ -999,29 +998,42 @@
             <aside class="hero-card glass fade-up" aria-label="Podgląd projektów">
                 <div class="hero-card-inner">
                     <div class="slider">
-                        <img
+                        <video
                             id="slide-0"
                             class="active"
-                            src="assets/hero-1.jpg"
-                            alt="Sterownik BLDC"
-                            loading="eager"
-                            decoding="async"
-                        />
-                        <img id="slide-1" src="assets/hero-2.jpg" alt="Logger danych" loading="lazy" decoding="async" />
-                        <img id="slide-2" src="assets/hero-3.jpg" alt="Robot mobilny" loading="lazy" decoding="async" />
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                        >
+                            <source src="assets/1_Film_DEMO.mp4" type="video/mp4" />
+                            Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                        </video>
+
+                        <video
+                            id="slide-1"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                        >
+                            <source src="assets/2_Film_DEMO2.mp4" type="video/mp4" />
+                            Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                        </video>
 
                         <div class="slider-overlay">
                             <div style="width:100%">
                                 <div class="slider-caption">
                                     <div>
-                                        <h3 id="slider-title">Sterownik BLDC</h3>
-                                        <p id="slider-desc">STM32 • PCB • Embedded C</p>
+                                        <h3 id="slider-title">Film demo 1</h3>
+                                        <p id="slider-desc">Prezentacja projektu • wideo 1</p>
                                     </div>
 
                                     <div class="slider-controls" aria-label="Wybór slajdu">
                                         <button class="slide-btn active" data-slide="0" type="button">1</button>
                                         <button class="slide-btn" data-slide="1" type="button">2</button>
-                                        <button class="slide-btn" data-slide="2" type="button">3</button>
                                     </div>
                                 </div>
 
@@ -1252,15 +1264,19 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const slides = [
-                { img: "assets/hero-1.jpg", title: "Sterownik BLDC", desc: "STM32 • PCB • Embedded C" },
-                { img: "assets/hero-2.jpg", title: "Logger danych", desc: "SD • pomiary • firmware" },
-                { img: "assets/hero-3.jpg", title: "Robot mobilny", desc: "ROS • LIDAR • Control" }
+                {
+                    title: "Film demo 1",
+                    desc: "Prezentacja projektu • wideo 1"
+                },
+                {
+                    title: "Film demo 2",
+                    desc: "Prezentacja projektu • wideo 2"
+                }
             ];
 
-            const slideImages = [
+            const slideVideos = [
                 document.getElementById("slide-0"),
-                document.getElementById("slide-1"),
-                document.getElementById("slide-2")
+                document.getElementById("slide-1")
             ];
             const titleEl = document.getElementById("slider-title");
             const descEl = document.getElementById("slider-desc");
@@ -1271,15 +1287,37 @@
             let slideTimer = null;
             let progressTimer = null;
 
+            function playActiveVideo(video) {
+                if (!video) return;
+                video.currentTime = 0;
+                const playPromise = video.play();
+                if (playPromise && typeof playPromise.catch === "function") {
+                    playPromise.catch(() => {});
+                }
+            }
+
             function setActiveSlide(index, userAction = false) {
                 current = index;
-                slideImages.forEach((img, i) => img.classList.toggle("active", i === index));
+
+                slideVideos.forEach((video, i) => {
+                    const isActive = i === index;
+                    video.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        playActiveVideo(video);
+                    } else {
+                        video.pause();
+                    }
+                });
+
                 buttons.forEach((btn, i) => {
                     btn.classList.toggle("active", i === index);
                     btn.setAttribute("aria-pressed", i === index ? "true" : "false");
                 });
+
                 titleEl.textContent = slides[index].title;
                 descEl.textContent = slides[index].desc;
+
                 if (userAction) restartTimer();
             }
 
@@ -1310,6 +1348,7 @@
                 btn.addEventListener("click", () => setActiveSlide(Number(btn.dataset.slide), true));
             });
 
+            setActiveSlide(0);
             restartTimer();
 
             const hamburger = document.getElementById("hambtn");
