@@ -702,9 +702,9 @@
         }
 
         .about-text p {
-                margin: 0;
-                text-align: justify;
-                hyphens: auto;
+            margin: 0;
+            text-align: justify;
+            hyphens: auto;
         }
 
         .about-text p:first-child {
@@ -715,6 +715,12 @@
 
         .about-text p:last-child {
             color: var(--muted);
+        }
+
+        .about-collapsible {
+            max-height: 140px;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
         }
 
         .profile-pic-wrap {
@@ -1072,7 +1078,7 @@
                 <article class="feature fade-up">
                     <div class="icon">02</div>
                     <h3>Szkolenia techniczne</h3>
-                    <p>Zajmuję się prowadzeniem szkoeń w zakresie mechatroniki odnawialnych źródeł energii oraz wykorzystanie sztucznej intelignejci w praktyce.</p>
+                    <p>Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki odnawialnych źródeł energii oraz wykorzystanie sztucznej intelignejci w praktyce.</p>
                 </article>
 
                 <article class="feature fade-up">
@@ -1171,28 +1177,34 @@
             </div>
 
             <div class="about-grid">
-                <div class="about-card glass fade-up about-text">
-                    <p>
-                        Magister Inżynier mechatronik o specjalności robotyka i informatyka.
-                    </p>
+                <div class="about-card glass fade-up">
+                    <div class="about-text about-collapsible" id="aboutContent">
+                        <p>
+                            Magister Inżynier mechatronik o specjalności robotyka i informatyka.
+                        </p>
 
-                    <p>
-                        Specjalizuję się w projektowaniu CAD, przygotowywaniu kompleksowej dokumentacji technicznej,
-                        produktowej oraz elektrycznej, a także w przygotowywaniu specyfikacji zamówień. Posiadam
-                        doświadczenie w zakresie koordynacji produkcji oraz współpracy międzynarodowej, szczególnie w
-                        kontekście produktów OZE. Odgrywałem znaczącą rolę w tworzeniu i zarządzaniu łańcuchem dostaw,
-                        nawiązując ścisłą współpracę z partnerami z Chin oraz krajów europejskich. Moje umiejętności
-                        organizacyjne zostały dodatkowo wzmocnione poprzez liczne spotkania biznesowe oraz reprezentację
-                        na targach, konferencjach branżowych czy podczas przeprowadzanych przeze mnie szkoleń.
-                    </p>
+                        <p>
+                            Specjalizuję się w projektowaniu CAD, przygotowywaniu kompleksowej dokumentacji technicznej,
+                            produktowej oraz elektrycznej, a także w przygotowywaniu specyfikacji zamówień. Posiadam
+                            doświadczenie w zakresie koordynacji produkcji oraz współpracy międzynarodowej, szczególnie w
+                            kontekście produktów OZE. Odgrywałem znaczącą rolę w tworzeniu i zarządzaniu łańcuchem dostaw,
+                            nawiązując ścisłą współpracę z partnerami z Chin oraz krajów europejskich. Moje umiejętności
+                            organizacyjne zostały dodatkowo wzmocnione poprzez liczne spotkania biznesowe oraz reprezentację
+                            na targach, konferencjach branżowych czy podczas przeprowadzanych przeze mnie szkoleń.
+                        </p>
 
-                    <p>
-                        Dodatkowo specjalizuję się w zagadnieniach awioniki oraz systemów pokładowych. Zajmuję się również
-                        serwisowaniem oraz konfigurowaniem sprzętu IT (laptopy, stacje robocze). Interesuję się elektroniką,
-                        zwłaszcza mikrokontrolerami klasy ATmega oraz systemami audio. Pasjonują mnie robotyka, informatyka,
-                        podstawy kryptologii (GPG, Kleopatra) oraz sprzęt wojskowy, w szczególności z obszaru lotnictwa i
-                        kosmonautyki.
-                    </p>
+                        <p>
+                            Dodatkowo specjalizuję się w zagadnieniach awioniki oraz systemów pokładowych. Zajmuję się również
+                            serwisowaniem oraz konfigurowaniem sprzętu IT (laptopy, stacje robocze). Interesuję się elektroniką,
+                            zwłaszcza mikrokontrolerami klasy ATmega oraz systemami audio. Pasjonują mnie robotyka, informatyka,
+                            podstawy kryptologii (GPG, Kleopatra) oraz sprzęt wojskowy, w szczególności z obszaru lotnictwa i
+                            kosmonautyki.
+                        </p>
+                    </div>
+
+                    <div style="margin-top:18px;">
+                        <button class="btn btn-ghost" id="toggleAbout" type="button">Czytaj więcej</button>
+                    </div>
                 </div>
 
                 <div class="about-card glass fade-up profile-pic-wrap">
@@ -1542,6 +1554,27 @@
             }
 
             renderArticles();
+
+            const aboutContent = document.getElementById("aboutContent");
+            const toggleAbout = document.getElementById("toggleAbout");
+
+            if (aboutContent && toggleAbout) {
+                aboutContent.style.maxHeight = "140px";
+
+                toggleAbout.addEventListener("click", () => {
+                    const expanded = aboutContent.classList.contains("expanded");
+
+                    if (expanded) {
+                        aboutContent.style.maxHeight = "140px";
+                        toggleAbout.textContent = "Czytaj więcej";
+                        aboutContent.classList.remove("expanded");
+                    } else {
+                        aboutContent.style.maxHeight = aboutContent.scrollHeight + "px";
+                        toggleAbout.textContent = "Czytaj mniej";
+                        aboutContent.classList.add("expanded");
+                    }
+                });
+            }
 
             const glow = document.getElementById("cursorGlow");
             const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
