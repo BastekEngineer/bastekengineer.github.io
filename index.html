@@ -1263,6 +1263,8 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const SLIDE_DURATION = 15000; // tutaj zmieniasz czas, np. 10000, 15000, 20000
+
             const slides = [
                 {
                     title: "Film demo 1",
@@ -1329,19 +1331,21 @@
                 clearInterval(slideTimer);
                 clearInterval(progressTimer);
 
-                let progress = 0;
+                const startTime = Date.now();
                 progressEl.style.width = "0%";
 
                 progressTimer = setInterval(() => {
-                    progress += 2;
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
                     progressEl.style.width = progress + "%";
+
                     if (progress >= 100) clearInterval(progressTimer);
-                }, 100);
+                }, 50);
 
                 slideTimer = setInterval(() => {
                     nextSlide();
                     restartTimer();
-                }, 5000);
+                }, SLIDE_DURATION);
             }
 
             buttons.forEach((btn) => {
