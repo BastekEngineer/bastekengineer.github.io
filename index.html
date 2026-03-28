@@ -687,9 +687,32 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
+            grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
             gap: 18px;
             align-items: start;
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
+        .about-text p {
+            margin: 0;
+        }
+
+        .about-text p:first-child {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .about-text p:last-child {
+            color: var(--muted);
         }
 
         .profile-pic-wrap {
@@ -1103,14 +1126,27 @@
             </div>
 
             <div class="about-grid">
-                <div class="about-card glass fade-up">
-                    <p class="muted" style="margin:0 0 14px;">
-                        Jestem inżynierem pracującym z mikrokontrolerami, projektami PCB i systemami pomiarowymi.
-                        Buduję rozwiązania od schematu po firmware i testy w rzeczywistych warunkach.
+                <div class="about-card glass fade-up about-text">
+                    <p>
+                        Magister Inżynier mechatronik o specjalności robotyka i informatyka.
                     </p>
-                    <p class="muted" style="margin:0;">
-                        Jeśli pracujesz nad projektem elektronicznym, automatyki lub embedded, ta strona może służyć
-                        jako hub do prezentacji wyników, dokumentacji i artykułów technicznych.
+
+                    <p>
+                        Specjalizuję się w projektowaniu CAD, przygotowywaniu kompleksowej dokumentacji technicznej,
+                        produktowej oraz elektrycznej, a także w przygotowywaniu specyfikacji zamówień. Posiadam
+                        doświadczenie w zakresie koordynacji produkcji oraz współpracy międzynarodowej, szczególnie w
+                        kontekście produktów OZE. Odgrywałem znaczącą rolę w tworzeniu i zarządzaniu łańcuchem dostaw,
+                        nawiązując ścisłą współpracę z partnerami z Chin oraz krajów europejskich. Moje umiejętności
+                        organizacyjne zostały dodatkowo wzmocnione poprzez liczne spotkania biznesowe oraz reprezentację
+                        na targach, konferencjach branżowych czy podczas przeprowadzanych przeze mnie szkoleń.
+                    </p>
+
+                    <p>
+                        Dodatkowo specjalizuję się w zagadnieniach awioniki oraz systemów pokładowych. Zajmuję się również
+                        serwisowaniem oraz konfigurowaniem sprzętu IT (laptopy, stacje robocze). Interesuję się elektroniką,
+                        zwłaszcza mikrokontrolerami klasy ATmega oraz systemami audio. Pasjonują mnie robotyka, informatyka,
+                        podstawy kryptologii (GPG, Kleopatra) oraz sprzęt wojskowy, w szczególności z obszaru lotnictwa i
+                        kosmonautyki.
                     </p>
                 </div>
 
