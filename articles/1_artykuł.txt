@@ -1,5 +1,3 @@
-Eksperymentalny mikrofon laserowy oparty na detekcji drgań szyby
-
 Celem eksperymentu było wykonanie prostego mikrofonu laserowego umożliwiającego rejestrację drgań akustycznych za pomocą toru optyczno-elektronicznego. Układ zbudowano z czerwonego wskaźnika laserowego o długości fali 650 nm, fotodioda BPW34 była przylutowana do wzmacniacza AGC Max4466, a całość zamocowano na statywach fotograficznych. Jako powierzchnię odbijającą wykorzystano szybę przeszklonych drzwi szafy w mieszkaniu. Sygnał wyjściowy wzmacniacza został zarejestrowany przy użyciu zewnętrznej karty dźwiękowej oraz programu Audacity. Uzyskane wyniki potwierdziły możliwość detekcji zmian położenia odbitej wiązki laserowej wywołanych drganiami szyby.
 
 Opis układu
