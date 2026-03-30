@@ -803,8 +803,9 @@
                     if (txtRes.ok) fullText = await txtRes.text();
                 }
 
-                const images = takeMax(article.images, 3);
-                const videos = takeMax(article.videos, 2);
+                // ZMIANA: 8 grafik i 4 filmiki
+                const images = takeMax(article.images, 8);
+                const videos = takeMax(article.videos, 4);
 
                 const imageHtml = images.map((img) => mediaFigureHtml(img, "image")).join("");
                 const videoHtml = videos.map((vid) => mediaFigureHtml(vid, "video")).join("");
