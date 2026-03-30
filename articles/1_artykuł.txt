@@ -1,13 +1,27 @@
+Eksperymentalny mikrofon laserowy oparty na detekcji drgań szyby
 
-What is Lorem Ipsum?
+Celem eksperymentu było wykonanie prostego mikrofonu laserowego umożliwiającego rejestrację drgań akustycznych za pomocą toru optyczno-elektronicznego. Układ zbudowano z czerwonego wskaźnika laserowego o długości fali 650 nm, fotodioda BPW34 była przylutowana do wzmacniacza AGC Max4466, a całość zamocowano na statywach fotograficznych. Jako powierzchnię odbijającą wykorzystano szybę przeszklonych drzwi szafy w mieszkaniu. Sygnał wyjściowy wzmacniacza został zarejestrowany przy użyciu zewnętrznej karty dźwiękowej oraz programu Audacity. Uzyskane wyniki potwierdziły możliwość detekcji zmian położenia odbitej wiązki laserowej wywołanych drganiami szyby.
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Why do we use it?
+Opis układu
 
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+Zbudowany układ składał się z trzech podstawowych elementów: źródła światła, detektora optycznego oraz toru wzmacniającego. Jako źródło promieniowania zastosowano czerwony laser 650 nm. Promień lasera skierowano na szybę, która pełniła rolę elementu poddawanego drganiom. Odbita wiązka była kierowana na fotodiodę BPW34, która została sprzężona z modułem wzmacniacza AGC Max4466.
 
-Where does it come from?
+Zarówno wskaźnik laserowy, jak i fotodetektor umieszczono na statywach fotograficznych w celu zapewnienia odpowiedniej stabilności mechanicznej oraz precyzyjnego ustawienia geometrii układu. Zasilanie wzmacniacza realizowano z baterii, co pozwoliło ograniczyć poziom szumów wynikających z zasilania sieciowego i poprawić jakość sygnału.
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+Zasada działania
 
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+Zasada działania mikrofonu laserowego opiera się na modulacji promienia odbitego od powierzchni szyby. Drgania akustyczne powodują niewielkie zmiany położenia oraz kąta odbicia promienia laserowego. Zmiany te są rejestrowane przez fotodiodę BPW34, która przetwarza sygnał optyczny na elektryczny. Następnie sygnał jest wzmacniany przez układ Max4466 i kierowany do zewnętrznej karty dźwiękowej.
+
+W praktyce nawet bardzo małe drgania tafli szklanej mogą generować mierzalne zmiany sygnału, co umożliwia odtworzenie dźwięku w programie do analizy audio.
+
+Rejestracja sygnału
+
+Do akwizycji danych wykorzystano zewnętrzną kartę dźwiękową oraz program Audacity. Takie rozwiązanie pozwoliło na bezpośredni zapis sygnału analogowego i jego dalszą analizę w dziedzinie czasu. W trakcie testów obserwowano przebieg sygnału odpowiadający drganiom szyby, co potwierdziło poprawność działania układu.
+
+Wyniki
+
+Eksperyment wykazał, że wykonany mikrofon laserowy umożliwia detekcję drgań powierzchni szklanej i ich przekształcenie w sygnał akustyczny. Najlepsze rezultaty uzyskano przy stabilnym ustawieniu lasera i fotodetektora oraz przy możliwie sztywnym mocowaniu całego toru pomiarowego. Zastosowanie zasilania bateryjnego poprawiło stosunek sygnału do szumu.
+
+Wnioski
+
+Zbudowany układ potwierdził, że prosta konstrukcja oparta na dostępnych elementach elektronicznych może posłużyć do demonstracji zasady działania mikrofonu laserowego. Kluczowe znaczenie miały: stabilność mechaniczna, prawidłowe ustawienie geometrii odbicia oraz ograniczenie szumów w torze wzmacniającym. Eksperyment stanowi praktyczny przykład zastosowania metod optycznych do rejestracji drgań mechanicznych.
