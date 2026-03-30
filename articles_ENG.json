@@ -1,18 +1,18 @@
 [
   {
-    "title": "Balancing robot — design and commissioning",
-    "date": "2026-01-15",
-    "category": "Technology / Embedded",
+    "title": "Jak działa sterownik BLDC",
+    "date": "2026-03-26",
+    "category": "Embedded / Power Electronics",
+    "text": "articles/1_artykuł.txt",
     "image": "articles/1_grafika.jpg",
-    "text": "assets/articles/1_artykuł.txt"
     "link": "#"
   },
   {
-    "title": "Solar tracker — project assumptions",
-    "date": "2026-02-02",
-    "category": "Renewable Energy / Automation",
-    "image": "assets/articles/2_grafika.jpg",
-    "text": "assets/articles/2_artykuł.txt"
+    "title": "Budowa systemu pomiarowego",
+    "date": "2026-03-26",
+    "category": "Instrumentation",
+    "text": "articles/2_artykuł.txt",
+    "image": "articles/2_grafika.jpg",
     "link": "#"
   }
 ]
