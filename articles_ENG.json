@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Balancing robot — design and commissioning",
+    "date": "2026-01-15",
+    "category": "Technology / Embedded",
+    "image": "assets/articles/robot-balansujacy_ENG.jpg",
+    "text": "assets/articles/robot-balansujacy_ENG.txt"
+  },
+  {
+    "title": "Solar tracker — project assumptions",
+    "date": "2026-02-02",
+    "category": "Renewable Energy / Automation",
+    "image": "assets/articles/tracker-solarny_ENG.jpg",
+    "text": "assets/articles/tracker-solarny_ENG.txt"
+  },
+  {
+    "title": "Electronics repair in practice",
+    "date": "2026-03-10",
+    "category": "Hardware / Service",
+    "image": "assets/articles/naprawa-elektroniki_ENG.jpg",
+    "text": "assets/articles/naprawa-elektroniki_ENG.txt"
+  }
+]
