@@ -663,13 +663,15 @@
 
         .articles-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
         }
 
         .article-card {
             overflow: hidden;
             padding: 0;
+            display: flex;
+            flex-direction: column;
             transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
 
@@ -678,18 +680,12 @@
             box-shadow: 0 16px 38px rgba(0, 0, 0, 0.16);
         }
 
-        /* KARTA ARTYKUŁU — bardziej kompaktowa */
-        .article-top {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 0;
-            min-height: 190px;
-        }
-
         .article-image {
             position: relative;
             background: #0b1522;
-            min-height: 190px;
+            aspect-ratio: 16 / 10;
+            min-height: 0;
+            overflow: hidden;
         }
 
         .article-image img {
@@ -699,11 +695,11 @@
         }
 
         .article-body {
-            padding: 18px 18px 16px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             gap: 12px;
+            flex: 1;
         }
 
         .article-kicker {
@@ -729,16 +725,15 @@
             letter-spacing: -0.035em;
         }
 
-        /* 5 linii tekstu */
         .article-content {
             color: var(--muted);
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
             white-space: normal;
             line-height: 1.55;
-            max-height: calc(1.55em * 5);
+            max-height: calc(1.55em * 4);
         }
 
         .article-content p {
@@ -751,7 +746,7 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            margin-top: 4px;
+            margin-top: auto;
         }
 
         .article-actions .btn {
@@ -878,13 +873,20 @@
 
         @media (max-width: 1040px) {
             .hero-grid,
-            .about-grid,
-            .article-top { grid-template-columns: 1fr; }
-            .grid-3 { grid-template-columns: repeat(2, 1fr); }
-            .slider { min-height: 420px; }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
 
-            .article-image {
-                min-height: 170px;
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .articles-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .slider {
+                min-height: 420px;
             }
         }
 
@@ -929,6 +931,9 @@
                 grid-template-columns: 1fr;
                 gap: 14px;
             }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
             .slider {
                 min-height: 300px;
                 aspect-ratio: 1 / 1;
@@ -943,22 +948,16 @@
                 align-items: flex-start;
             }
             .slider-controls { justify-content: flex-start; }
-            .article-top { min-height: unset; }
             .article-body,
             .feature,
             .about-card,
             .contact-card,
             .project .meta { padding: 16px; }
-
-            .article-image {
-                min-height: 155px;
-            }
-
             .article-title { font-size: 1.16rem; }
             .article-content {
                 font-size: 0.96rem;
                 line-height: 1.5;
-                max-height: calc(1.5em * 5);
+                max-height: calc(1.5em * 4);
             }
             section { padding: 54px 0; }
             .footer-card {
@@ -1538,7 +1537,7 @@
                     .replace(/'/g, "&#39;");
             }
 
-            function makeExcerpt(text, maxLen = 320) {
+            function makeExcerpt(text, maxLen = 260) {
                 if (!text) return "";
                 const flat = String(text).replace(/\s+/g, " ").trim();
                 return flat.length > maxLen ? flat.slice(0, maxLen).trim() + "…" : flat;
@@ -1583,7 +1582,7 @@
                         article.className = "article-card glass fade-up";
 
                         const excerptSource = item.excerpt || articleText || "";
-                        const excerpt = makeExcerpt(excerptSource, 360);
+                        const excerpt = makeExcerpt(excerptSource, 260);
 
                         const imageHtml = item.cover
                             ? `
@@ -1594,26 +1593,24 @@
                             : "";
 
                         article.innerHTML = `
-                            <div class="article-top">
-                                ${imageHtml}
-                                <div class="article-body">
-                                    <div>
-                                        <div class="article-kicker">
-                                            <span class="dot"></span>
-                                            <span>${escapeHtml(item.date || "Artykuł")}</span>
-                                        </div>
-                                        <h3 class="article-title">${escapeHtml(item.title || "Bez tytułu")}</h3>
-                                        <div class="article-content">
-                                            <p>${escapeHtml(excerpt)}</p>
-                                        </div>
+                            ${imageHtml}
+                            <div class="article-body">
+                                <div>
+                                    <div class="article-kicker">
+                                        <span class="dot"></span>
+                                        <span>${escapeHtml(item.date || "Artykuł")}</span>
                                     </div>
+                                    <h3 class="article-title">${escapeHtml(item.title || "Bez tytułu")}</h3>
+                                    <div class="article-content">
+                                        <p>${escapeHtml(excerpt)}</p>
+                                    </div>
+                                </div>
 
-                                    <div class="article-actions">
-                                        <div class="muted">${escapeHtml(item.category || "Technologia / Embedded")}</div>
-                                        <a class="btn btn-ghost" href="article.html?id=${encodeURIComponent(item.id || index + 1)}">
-                                            Czytaj więcej
-                                        </a>
-                                    </div>
+                                <div class="article-actions">
+                                    <div class="muted">${escapeHtml(item.category || "Technologia / Embedded")}</div>
+                                    <a class="btn btn-ghost" href="article.html?id=${encodeURIComponent(item.id || index + 1)}">
+                                        Czytaj więcej
+                                    </a>
                                 </div>
                             </div>
                         `;
