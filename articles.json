@@ -46,22 +46,22 @@
       {
         "src": "articles/2_grafika_2.jpg",
         "title": "Drugi plan i detale"
-      }
-       {
+      },
+      {
         "src": "articles/2_grafika_4.jpg",
         "title": "Drugi plan i detale"
       }
     ],
     "videos": [
-       {
+      {
         "src": "articles/2_film1.mp4",
         "title": "Prezentacja działana systemu nadążnego"
       },
-         {
+      {
         "src": "articles/2_film2.mp4",
         "title": "Prezentacja działania systemu anty-wiatr"
       },
-         {
+      {
         "src": "articles/2_film3.mp4",
         "title": "Prezentacja działąnia systemu anty-śnieg"
       }
