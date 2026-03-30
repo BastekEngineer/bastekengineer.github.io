@@ -1,13 +1,13 @@
 [
   {
     "id": "1",
-    "title": "Robot Balansujący",
-    "date": "2026-03-30",
-    "category": "Praca magisterska",
+    "title": "Projekt badawczy",
+    "date": "2025-12-01",
+    "category": "Eksperyment",
     "cover": "articles/1_grafika_1.jpg",
     "text": "articles/1_artykuł.txt",
-    "lead": "Balansujący robot dwukołowy zbudowany jako projekt dyplomowy.",
-    "excerpt": "Projekt robota balansującego obejmował dobór elektroniki, sterowanie PID, integrację czujników oraz uruchomienie prototypu w warunkach testowych.",
+    "lead": "Projekt mikrofonu laserowego.",
+    "excerpt": "Prototyp mikrofonu laserowego do pomiaru drgań szyb",
     "images": [
       {
         "src": "articles/1_grafika_1.jpg",
@@ -15,17 +15,17 @@
       },
       {
         "src": "articles/1_grafika_2.jpg",
-        "title": "Szczegóły konstrukcji"
+        "title": "Stanowisko badawcze"
       }
     ],
     "videos": [
       {
         "src": "articles/1_film1.mp4",
-        "title": "Test stabilizacji"
+        "title": "Test działania prototypu"
       },
       {
         "src": "articles/1_film2.mp4",
-        "title": "Jazda próbna"
+        "title": "Otrzymane nagranie z drgania szyby"
       }
     ]
   },
