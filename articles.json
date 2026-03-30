@@ -32,12 +32,12 @@
   {
     "id": "2",
     "title": "Tracker Solarny",
-    "date": "2026-03-30",
+    "date": "2023-08-01",
     "category": "Praca inżynierska",
     "cover": "articles/2_grafika_1.jpg",
     "text": "articles/2_artykuł.txt",
-    "lead": "Projekt układu śledzącego pozycję słońca z naciskiem na niezawodność i prostą obsługę.",
-    "excerpt": "Artykuł opisuje konstrukcję trackera solarnego, dobór podzespołów, logikę sterowania oraz efekty testów terenowych.",
+    "lead": "Projekt układu śledzącego pozycję słońca",
+    "excerpt": "Artykuł opisuje konstrukcję trackera solarnego sterowanego za pomocą mikrokontrolera arduino wykonanego w ramach pracy inżynierskiej",
     "images": [
       {
         "src": "articles/2_grafika_1.jpg",
@@ -47,7 +47,24 @@
         "src": "articles/2_grafika_2.jpg",
         "title": "Drugi plan i detale"
       }
+       {
+        "src": "articles/2_grafika_4.jpg",
+        "title": "Drugi plan i detale"
+      }
     ],
-    "videos": []
+    "videos": [
+       {
+        "src": "articles/2_film1.mp4",
+        "title": "Prezentacja działana systemu nadążnego"
+      },
+         {
+        "src": "articles/2_film2.mp4",
+        "title": "Prezentacja działania systemu anty-wiatr"
+      },
+         {
+        "src": "articles/2_film3.mp4",
+        "title": "Prezentacja działąnia systemu anty-śnieg"
+      }
+    ]
   }
 ]
