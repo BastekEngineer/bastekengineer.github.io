@@ -9,12 +9,20 @@
         name="description"
         content="CyberProjects — Portfolio inżynierskie: embedded, mechatronika, projekty CAD."
     />
+
+    <!-- Miniaturka strony / favicon -->
+    <link rel="icon" href="assets/logo_strony.jpg" type="image/jpeg" />
+    <link rel="shortcut icon" href="assets/logo_strony.jpg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="assets/logo_strony.jpg" />
+
     <meta property="og:title" content="CyberProjects — Dziewit" />
     <meta
         property="og:description"
         content="Portfolio inżynierskie: embedded, mechatronika, projekty CAD."
     />
-    <meta property="og:image" content="assets/og-image.jpg" />
+    <meta property="og:image" content="assets/logo_strony.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#111c2b" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -173,12 +181,17 @@
             border-radius: 16px;
             display: grid;
             place-items: center;
+            overflow: hidden;
             background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
-            color: #fff;
-            font-weight: 900;
-            letter-spacing: 0.4px;
             box-shadow: 0 10px 24px rgba(110, 168, 242, 0.24);
             flex: 0 0 auto;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .site-title {
@@ -511,7 +524,6 @@
             contain-intrinsic-size: 800px;
         }
 
-        /* subtelne oddzielenie sekcji */
         section + section::before {
             content: "";
             position: absolute;
@@ -981,7 +993,9 @@
         <div class="wrap">
             <nav class="glass" aria-label="Główne menu">
                 <div class="brand">
-                    <div class="logo">CP</div>
+                    <div class="logo" aria-label="CyberProjects logo">
+                        <img src="assets/logo_strony.jpg" alt="Logo CyberProjects" />
+                    </div>
                     <div class="site-title">
                         CyberProjects
                         <small> • Sebastian Dziewit • </small>
@@ -1286,7 +1300,9 @@
         <div class="wrap">
             <div class="footer-card glass">
                 <div style="display:flex;align-items:center;gap:12px;min-width:0">
-                    <div class="logo" style="width:48px;height:48px;border-radius:16px;">CP</div>
+                    <div class="logo" style="width:48px;height:48px;border-radius:16px;" aria-label="CyberProjects logo">
+                        <img src="assets/logo_strony.jpg" alt="Logo CyberProjects" />
+                    </div>
                     <div style="min-width:0">
                         <div style="font-weight:900;color:#fff">CyberProjects</div>
                         <div
@@ -1319,7 +1335,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const SLIDE_DURATION = 15000; // tutaj zmieniasz czas, np. 10000, 15000, 20000
+            const SLIDE_DURATION = 15000;
 
             const slides = [
                 {
