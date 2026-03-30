@@ -205,17 +205,19 @@
             gap: 8px;
         }
 
-        .navlinks a {
+        .navlinks a,
+        .lang-switch {
             text-decoration: none;
             color: var(--muted);
             font-size: 14px;
             font-weight: 650;
             padding: 10px 14px;
             border-radius: 999px;
-            transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+            transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
         }
 
-        .navlinks a:hover {
+        .navlinks a:hover,
+        .lang-switch:hover {
             color: #fff;
             background: rgba(255, 255, 255, 0.08);
             transform: translateY(-1px);
@@ -225,6 +227,28 @@
             background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
             color: #fff !important;
             box-shadow: 0 10px 20px rgba(110, 168, 242, 0.18);
+        }
+
+        .lang-switch {
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            min-width: 68px;
+            text-align: center;
+            color: #fff;
+            appearance: none;
+        }
+
+        .lang-switch.active {
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .lang-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
 
         .hamburger {
@@ -276,19 +300,39 @@
             pointer-events: auto;
         }
 
-        .mobile-menu a {
+        .mobile-menu a,
+        .mobile-menu button {
             display: block;
+            width: 100%;
+            text-align: left;
             text-decoration: none;
             padding: 13px 14px;
             border-radius: 14px;
             color: var(--muted);
             font-weight: 650;
             transition: background 0.18s ease, color 0.18s ease;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            font: inherit;
         }
 
-        .mobile-menu a:hover {
+        .mobile-menu a:hover,
+        .mobile-menu button:hover {
             color: #fff;
             background: rgba(255, 255, 255, 0.07);
+        }
+
+        .mobile-lang {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+            padding: 0 4px 4px;
+        }
+
+        .mobile-lang .lang-switch {
+            flex: 1;
+            text-align: center;
         }
 
         header.hero {
@@ -887,6 +931,9 @@
             .profile-pic-wrap {
                 min-height: 220px;
             }
+            .lang-group {
+                display: none;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -937,21 +984,26 @@
 
     <div class="topbar" id="topbar">
         <div class="wrap">
-            <nav class="glass" aria-label="Główne menu">
+            <nav class="glass" aria-label="Główne menu" id="mainNav">
                 <div class="brand">
                     <div class="logo">CP</div>
                     <div class="site-title">
                         CyberProjects
-                        <small> • Sebastian Dziewit • </small>
+                        <small id="brandSubtitle">• Sebastian Dziewit •</small>
                     </div>
                 </div>
 
                 <div class="navlinks" aria-label="Nawigacja">
-                    <a href="#features">Co potrafię</a>
-                    <a href="#projekty">Projekty</a>
-                    <a href="#articles">Artykuły</a>
-                    <a href="#about">O mnie</a>
-                    <a class="cta-nav" href="#contact">Skontaktuj się</a>
+                    <a href="#features" data-i18n="navSkills">Co potrafię</a>
+                    <a href="#projekty" data-i18n="navProjects">Projekty</a>
+                    <a href="#articles" data-i18n="navArticles">Artykuły</a>
+                    <a href="#about" data-i18n="navAbout">O mnie</a>
+                    <a class="cta-nav" href="#contact" data-i18n="navContact">Skontaktuj się</a>
+
+                    <div class="lang-group" aria-label="Language switch">
+                        <button class="lang-switch active" id="langPLDesktop" type="button" data-lang="pl">PL</button>
+                        <button class="lang-switch" id="langENGDesktop" type="button" data-lang="en">ENG</button>
+                    </div>
                 </div>
 
                 <button
@@ -979,27 +1031,32 @@
         </div>
 
         <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-            <a href="#features">Co potrafię</a>
-            <a href="#projekty">Projekty</a>
-            <a href="#articles">Artykuły</a>
-            <a href="#about">O mnie</a>
-            <a href="#contact">Skontaktuj się</a>
+            <a href="#features" data-i18n="navSkills">Co potrafię</a>
+            <a href="#projekty" data-i18n="navProjects">Projekty</a>
+            <a href="#articles" data-i18n="navArticles">Artykuły</a>
+            <a href="#about" data-i18n="navAbout">O mnie</a>
+            <a href="#contact" data-i18n="navContact">Skontaktuj się</a>
+
+            <div class="mobile-lang">
+                <button class="lang-switch active" id="langPLMobile" type="button" data-lang="pl">PL</button>
+                <button class="lang-switch" id="langENGMobile" type="button" data-lang="en">ENG</button>
+            </div>
         </div>
     </div>
 
     <header class="hero">
         <div class="wrap hero-grid">
             <div>
-                <span class="eyebrow fade-up">Inżynieria • Consulting • AI</span>
-                <h1 class="fade-up">Projektuję systemy, od pomysłu po prototyp.</h1>
-                <p class="lead fade-up">
+                <span class="eyebrow fade-up" data-i18n="eyebrow">Inżynieria • Consulting • AI</span>
+                <h1 class="fade-up" data-i18n="heroTitle">Projektuję systemy, od pomysłu po prototyp.</h1>
+                <p class="lead fade-up" data-i18n="heroLead">
                     Łączę elektronikę, firmware, mechanikę i testy w spójne rozwiązania, które da się wdrożyć,
                     uruchomić i rozwijać.
                 </p>
 
                 <div class="hero-actions fade-up">
-                    <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
-                    <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+                    <a class="btn btn-primary" href="#projekty" data-i18n="heroBtnProjects">Zobacz projekty</a>
+                    <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com" data-i18n="heroBtnEmail">Napisz do mnie</a>
                 </div>
             </div>
 
@@ -1014,6 +1071,7 @@
                             loop
                             playsinline
                             preload="metadata"
+                            data-asset-base="assets/1_Film_DEMO.mp4"
                         >
                             <source src="assets/1_Film_DEMO.mp4" type="video/mp4" />
                             Twoja przeglądarka nie obsługuje odtwarzania wideo.
@@ -1026,6 +1084,7 @@
                             loop
                             playsinline
                             preload="metadata"
+                            data-asset-base="assets/2_Film_DEMO2.mp4"
                         >
                             <source src="assets/2_Film_DEMO2.mp4" type="video/mp4" />
                             Twoja przeglądarka nie obsługuje odtwarzania wideo.
@@ -1059,57 +1118,60 @@
     <main class="wrap">
         <section id="features">
             <div class="section-head">
-                <h2 class="fade-up">Co robię najlepiej</h2>
+                <h2 class="fade-up" data-i18n="featuresTitle">Co robię najlepiej</h2>
                 <ul class="feature-list">
-                    <li class="fade-up">Projektuję systemy od pomysłu po gotowy, działający prototyp.</li>
-                    <li class="fade-up">Prowadzę szkolenia z obszaru mechatroniki, AI oraz odnawialnych źródeł energii.</li>
-                    <li class="fade-up">Opracowuję dokumentację techniczną od instrukcji po schematy elektryczne i projekt grafiki.</li>
-                    <li class="fade-up">Świadczę usługi consultingowe z zakresu informatyki (hardware) oraz automatyki.</li>
+                    <li class="fade-up" data-i18n="featuresList1">Projektuję systemy od pomysłu po gotowy, działający prototyp.</li>
+                    <li class="fade-up" data-i18n="featuresList2">Prowadzę szkolenia z obszaru mechatroniki, AI oraz odnawialnych źródeł energii.</li>
+                    <li class="fade-up" data-i18n="featuresList3">Opracowuję dokumentację techniczną, od instrukcji po schematy elektryczne i projekt grafiki.</li>
+                    <li class="fade-up" data-i18n="featuresList4">Świadczę usługi consultingowe z zakresu informatyki (hardware) oraz automatyki.</li>
                 </ul>
             </div>
 
             <div class="grid-3">
                 <article class="feature fade-up">
                     <div class="icon">01</div>
-                    <h3>Pełny cykl projektu</h3>
-                    <p>Od koncepcji, przez project CAD 3D oraz firmware, aż po testy oraz poprawki na prototypie.</p>
+                    <h3 data-i18n="feature1Title">Pełny cykl projektu</h3>
+                    <p data-i18n="feature1Text">Od koncepcji, przez projekt CAD 3D oraz firmware, aż po testy oraz poprawki na prototypie.</p>
                 </article>
 
                 <article class="feature fade-up">
                     <div class="icon">02</div>
-                    <h3>Szkolenia techniczne</h3>
-                    <p>Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki odnawialnych źródeł energii oraz wykorzystanie sztucznej intelignejci w praktyce.</p>
+                    <h3 data-i18n="feature2Title">Szkolenia techniczne</h3>
+                    <p data-i18n="feature2Text">Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki, odnawialnych źródeł energii oraz wykorzystania sztucznej inteligencji w praktyce.</p>
                 </article>
 
                 <article class="feature fade-up">
                     <div class="icon">03</div>
-                    <h3>Dokumentacja techniczna</h3>
-                    <p>Opisuję projekty tak, aby dało się je zrozumieć, odtworzyć, rozwijać oraz zaoferować końcowy produkt klientowi końcowemu.</p>
+                    <h3 data-i18n="feature3Title">Dokumentacja techniczna</h3>
+                    <p data-i18n="feature3Text">Opisuję projekty tak, aby dało się je zrozumieć, odtworzyć, rozwijać oraz zaoferować końcowy produkt klientowi końcowemu.</p>
                 </article>
             </div>
         </section>
 
         <section id="projekty">
             <div class="section-head">
-                <h2 class="fade-up">Wybrane projekty</h2>
-                <p class="fade-up">Kilka przykładów prac, które pokazują zakres mojego działania.</p>
+                <h2 class="fade-up" data-i18n="projectsTitle">Wybrane projekty</h2>
+                <p class="fade-up" data-i18n="projectsLead">Kilka przykładów prac, które pokazują zakres mojego działania.</p>
             </div>
 
             <div class="grid-3">
                 <article class="project fade-up">
                     <img
                         src="assets/project-01.jpg"
+                        data-asset-base="assets/project-01.jpg"
+                        data-alt-pl="Robot Balansujący"
+                        data-alt-en="Balancing Robot"
                         alt="Robot Balansujący"
                         loading="lazy"
                         decoding="async"
                         onerror="this.remove()"
                     />
                     <div class="meta">
-                        <h3>Robot Balansujący</h3>
-                        <p>Prototyp balansującego dwukołowego robota mobilnego wykonanego na potrzeby pracy magisterskiej.</p>
+                        <h3 data-i18n="project1Title">Robot Balansujący</h3>
+                        <p data-i18n="project1Text">Prototyp balansującego dwukołowego robota mobilnego wykonanego na potrzeby pracy magisterskiej.</p>
                         <div class="tags">
                             <span class="tag">Arduino</span>
-                            <span class="tag">Giroskop</span>
+                            <span class="tag" data-i18n="tagGyro">Giroskop</span>
                             <span class="tag">PID</span>
                         </div>
                     </div>
@@ -1118,16 +1180,19 @@
                 <article class="project fade-up">
                     <img
                         src="assets/project-02.jpg"
-                        alt="Logger danych"
+                        data-asset-base="assets/project-02.jpg"
+                        data-alt-pl="Szkolenie UDT"
+                        data-alt-en="UDT training"
+                        alt="Szkolenie UDT"
                         loading="lazy"
                         decoding="async"
                         onerror="this.remove()"
                     />
                     <div class="meta">
-                        <h3>Szkolenie UDT</h3>
-                        <p>Fotografia za szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
+                        <h3 data-i18n="project2Title">Szkolenie UDT</h3>
+                        <p data-i18n="project2Text">Fotografia ze szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
                         <div class="tags">
-                            <span class="tag">Szkolenia</span>
+                            <span class="tag" data-i18n="tagTrainings">Szkolenia</span>
                             <span class="tag">OZE</span>
                             <span class="tag">Engineering</span>
                         </div>
@@ -1137,17 +1202,20 @@
                 <article class="project fade-up">
                     <img
                         src="assets/project-03.jpg"
+                        data-asset-base="assets/project-03.jpg"
+                        data-alt-pl="Naprawa elektroniki"
+                        data-alt-en="Electronics repair"
                         alt="Naprawa elektroniki"
                         loading="lazy"
                         decoding="async"
                         onerror="this.remove()"
                     />
                     <div class="meta">
-                        <h3>Naprawa elektroniki</h3>
-                        <p>Zajmuję się naprawą i serwisowaniem laptopów, stacji roboczych oraz elektroniki.</p>
+                        <h3 data-i18n="project3Title">Naprawa elektroniki</h3>
+                        <p data-i18n="project3Text">Zajmuję się naprawą i serwisowaniem laptopów, stacji roboczych oraz elektroniki.</p>
                         <div class="tags">
                             <span class="tag">IT</span>
-                            <span class="tag">Hardware</span>
+                            <span class="tag" data-i18n="tagHardware">Hardware</span>
                             <span class="tag">Electronics</span>
                         </div>
                     </div>
@@ -1157,8 +1225,8 @@
 
         <section id="articles">
             <div class="section-head">
-                <h2 class="fade-up">Artykuły</h2>
-                <p class="fade-up">
+                <h2 class="fade-up" data-i18n="articlesTitle">Artykuły</h2>
+                <p class="fade-up" data-i18n="articlesLead">
                     <strong>Poniżej możesz przeczytać kilka artykułów mojego autorstwa</strong>.
                 </p>
             </div>
@@ -1172,18 +1240,18 @@
 
         <section id="about">
             <div class="section-head">
-                <h2 class="fade-up">O mnie</h2>
-                <p class="fade-up">Stawiam na czytelność, funkcjonalność i inżynierską konsekwencję.</p>
+                <h2 class="fade-up" data-i18n="aboutTitle">O mnie</h2>
+                <p class="fade-up" data-i18n="aboutLead">Stawiam na czytelność, funkcjonalność i inżynierską konsekwencję.</p>
             </div>
 
             <div class="about-grid">
                 <div class="about-card glass fade-up">
                     <div class="about-text about-collapsible" id="aboutContent">
-                        <p>
+                        <p data-i18n="aboutP1">
                             Magister Inżynier mechatronik o specjalności robotyka i informatyka.
                         </p>
 
-                        <p>
+                        <p data-i18n="aboutP2">
                             Specjalizuję się w projektowaniu CAD, przygotowywaniu kompleksowej dokumentacji technicznej,
                             produktowej oraz elektrycznej, a także w przygotowywaniu specyfikacji zamówień. Posiadam
                             doświadczenie w zakresie koordynacji produkcji oraz współpracy międzynarodowej, szczególnie w
@@ -1193,7 +1261,7 @@
                             na targach, konferencjach branżowych czy podczas przeprowadzanych przeze mnie szkoleń.
                         </p>
 
-                        <p>
+                        <p data-i18n="aboutP3">
                             Dodatkowo specjalizuję się w zagadnieniach awioniki oraz systemów pokładowych. Zajmuję się również
                             serwisowaniem oraz konfigurowaniem sprzętu IT (laptopy, stacje robocze). Interesuję się elektroniką,
                             zwłaszcza mikrokontrolerami klasy ATmega oraz systemami audio. Pasjonują mnie robotyka, informatyka,
@@ -1203,35 +1271,43 @@
                     </div>
 
                     <div style="margin-top:18px;">
-                        <button class="btn btn-ghost" id="toggleAbout" type="button">Czytaj więcej</button>
+                        <button class="btn btn-ghost" id="toggleAbout" type="button" data-i18n="readMore">Czytaj więcej</button>
                     </div>
                 </div>
 
                 <div class="about-card glass fade-up profile-pic-wrap">
-                    <img src="assets/wlasciciel.jpg" alt="Zdjęcie właściciela" class="profile-pic" />
+                    <img
+                        src="assets/wlasciciel.jpg"
+                        data-asset-base="assets/wlasciciel.jpg"
+                        data-alt-pl="Zdjęcie właściciela"
+                        data-alt-en="Owner's photo"
+                        alt="Zdjęcie właściciela"
+                        class="profile-pic"
+                    />
                 </div>
             </div>
         </section>
 
         <section id="contact">
             <div class="section-head">
-                <h2 class="fade-up">Skontaktuj się</h2>
-                <p class="fade-up">Mail albo LinkedIn — najprostsza droga do kontaktu.</p>
+                <h2 class="fade-up" data-i18n="contactTitle">Skontaktuj się</h2>
+                <p class="fade-up" data-i18n="contactLead">Mail albo LinkedIn — najprostsza droga do kontaktu.</p>
             </div>
 
             <div class="contact-card glass fade-up">
-                <p style="margin-top:0;color:var(--muted);max-width:70ch">
+                <p style="margin-top:0;color:var(--muted);max-width:70ch" data-i18n="contactText">
                     Masz pytanie, chcesz omówić projekt albo potrzebujesz pomocy przy rozwiązaniu technicznym?
                     Napisz maila lub przejdź do mojego profilu LinkedIn.
                 </p>
 
                 <div class="contact-actions">
-                    <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
+                    <a class="btn btn-primary" href="mailto:gall.anonim305@gmail.com" data-i18n="contactEmailBtn">Napisz do mnie</a>
                     <a
                         class="btn btn-ghost"
                         href="https://www.linkedin.com/in/sebastiandziewit/"
                         target="_blank"
                         rel="noopener"
+                        data-i18n="contactLinkedInBtn"
                     >
                         LinkedIn
                     </a>
@@ -1248,6 +1324,7 @@
                     <div style="min-width:0">
                         <div style="font-weight:900;color:#fff">CyberProjects</div>
                         <div
+                            id="footerSubtitle"
                             style="font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"
                         >
                              • Sebastian Dziewit •
@@ -1271,24 +1348,176 @@
                 </a>
             </div>
 
-            <div class="footer-note">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
+            <div class="footer-note" data-i18n="footerNote">© 2026 CyberProjects — Wszystkie prawa zastrzeżone</div>
         </div>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const SLIDE_DURATION = 15000; // tutaj zmieniasz czas, np. 10000, 15000, 20000
-
-            const slides = [
-                {
-                    title: "Robot Balansujący",
-                    desc: "• Praca magisterska"
+            const translations = {
+                pl: {
+                    pageTitle: "CyberProjects — Dziewit",
+                    description: "CyberProjects — Portfolio inżynierskie: embedded, mechatronika, projekty CAD.",
+                    ogDescription: "Portfolio inżynierskie: embedded, mechatronika, projekty CAD.",
+                    navSkills: "Co potrafię",
+                    navProjects: "Projekty",
+                    navArticles: "Artykuły",
+                    navAbout: "O mnie",
+                    navContact: "Skontaktuj się",
+                    eyebrow: "Inżynieria • Consulting • AI",
+                    heroTitle: "Projektuję systemy, od pomysłu po prototyp.",
+                    heroLead: "Łączę elektronikę, firmware, mechanikę i testy w spójne rozwiązania, które da się wdrożyć, uruchomić i rozwijać.",
+                    heroBtnProjects: "Zobacz projekty",
+                    heroBtnEmail: "Napisz do mnie",
+                    featuresTitle: "Co robię najlepiej",
+                    featuresList1: "Projektuję systemy od pomysłu po gotowy, działający prototyp.",
+                    featuresList2: "Prowadzę szkolenia z obszaru mechatroniki, AI oraz odnawialnych źródeł energii.",
+                    featuresList3: "Opracowuję dokumentację techniczną, od instrukcji po schematy elektryczne i projekt grafiki.",
+                    featuresList4: "Świadczę usługi consultingowe z zakresu informatyki (hardware) oraz automatyki.",
+                    feature1Title: "Pełny cykl projektu",
+                    feature1Text: "Od koncepcji, przez projekt CAD 3D oraz firmware, aż po testy oraz poprawki na prototypie.",
+                    feature2Title: "Szkolenia techniczne",
+                    feature2Text: "Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki, odnawialnych źródeł energii oraz wykorzystania sztucznej inteligencji w praktyce.",
+                    feature3Title: "Dokumentacja techniczna",
+                    feature3Text: "Opisuję projekty tak, aby dało się je zrozumieć, odtworzyć, rozwijać oraz zaoferować końcowy produkt klientowi końcowemu.",
+                    projectsTitle: "Wybrane projekty",
+                    projectsLead: "Kilka przykładów prac, które pokazują zakres mojego działania.",
+                    project1Title: "Robot Balansujący",
+                    project1Text: "Prototyp balansującego dwukołowego robota mobilnego wykonanego na potrzeby pracy magisterskiej.",
+                    project2Title: "Szkolenie UDT",
+                    project2Text: "Fotografia ze szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.",
+                    project3Title: "Naprawa elektroniki",
+                    project3Text: "Zajmuję się naprawą i serwisowaniem laptopów, stacji roboczych oraz elektroniki.",
+                    tagGyro: "Giroskop",
+                    tagTrainings: "Szkolenia",
+                    tagHardware: "Hardware",
+                    articlesTitle: "Artykuły",
+                    articlesLead: "<strong>Poniżej możesz przeczytać kilka artykułów mojego autorstwa</strong>.",
+                    aboutTitle: "O mnie",
+                    aboutLead: "Stawiam na czytelność, funkcjonalność i inżynierską konsekwencję.",
+                    aboutP1: "Magister Inżynier mechatronik o specjalności robotyka i informatyka.",
+                    aboutP2: "Specjalizuję się w projektowaniu CAD, przygotowywaniu kompleksowej dokumentacji technicznej, produktowej oraz elektrycznej, a także w przygotowywaniu specyfikacji zamówień. Posiadam doświadczenie w zakresie koordynacji produkcji oraz współpracy międzynarodowej, szczególnie w kontekście produktów OZE. Odgrywałem znaczącą rolę w tworzeniu i zarządzaniu łańcuchem dostaw, nawiązując ścisłą współpracę z partnerami z Chin oraz krajów europejskich. Moje umiejętności organizacyjne zostały dodatkowo wzmocnione poprzez liczne spotkania biznesowe oraz reprezentację na targach, konferencjach branżowych czy podczas przeprowadzanych przeze mnie szkoleń.",
+                    aboutP3: "Dodatkowo specjalizuję się w zagadnieniach awioniki oraz systemów pokładowych. Zajmuję się również serwisowaniem oraz konfigurowaniem sprzętu IT (laptopy, stacje robocze). Interesuję się elektroniką, zwłaszcza mikrokontrolerami klasy ATmega oraz systemami audio. Pasjonują mnie robotyka, informatyka, podstawy kryptologii (GPG, Kleopatra) oraz sprzęt wojskowy, w szczególności z obszaru lotnictwa i kosmonautyki.",
+                    readMore: "Czytaj więcej",
+                    readLess: "Czytaj mniej",
+                    contactTitle: "Skontaktuj się",
+                    contactLead: "Mail albo LinkedIn — najprostsza droga do kontaktu.",
+                    contactText: "Masz pytanie, chcesz omówić projekt albo potrzebujesz pomocy przy rozwiązaniu technicznym? Napisz maila lub przejdź do mojego profilu LinkedIn.",
+                    contactEmailBtn: "Napisz do mnie",
+                    contactLinkedInBtn: "LinkedIn",
+                    footerNote: "© 2026 CyberProjects — Wszystkie prawa zastrzeżone",
+                    loadingArticles: "Ładowanie artykułów...",
+                    noArticles: "Brak artykułów do wyświetlenia.",
+                    articlesErrorTitle: "Nie udało się załadować artykułów.",
+                    articlesErrorText: "Sprawdź plik articles.json oraz ścieżki do plików .txt i .jpg.",
+                    articleReadMore: "Czytaj więcej",
+                    articleReadLess: "Czytaj mniej",
+                    articleNoContent: "Brak treści artykułu.",
+                    articleFallbackCategory: "Technologia / Embedded",
+                    heroSlide1Title: "Robot Balansujący",
+                    heroSlide1Desc: "• Praca magisterska",
+                    heroSlide2Title: "Tracker Solarny",
+                    heroSlide2Desc: "• Praca inżynierska",
+                    menuOpen: "Otwórz menu",
+                    mainMenu: "Główne menu",
+                    navigation: "Nawigacja",
+                    slideSelection: "Wybór slajdu",
+                    linkedinProfile: "Profil LinkedIn",
+                    project1Alt: "Robot Balansujący",
+                    project2Alt: "Szkolenie UDT",
+                    project3Alt: "Naprawa elektroniki",
+                    ownerAlt: "Zdjęcie właściciela"
                 },
-                {
-                    title: "Tracker Solarny",
-                    desc: "• Praca inżynierska"
+                en: {
+                    pageTitle: "CyberProjects — Dziewit",
+                    description: "CyberProjects — Engineering portfolio: embedded systems, mechatronics, CAD projects.",
+                    ogDescription: "Engineering portfolio: embedded systems, mechatronics, CAD projects.",
+                    navSkills: "What I do",
+                    navProjects: "Projects",
+                    navArticles: "Articles",
+                    navAbout: "About me",
+                    navContact: "Get in touch",
+                    eyebrow: "Engineering • Consulting • AI",
+                    heroTitle: "I design systems, from concept to prototype.",
+                    heroLead: "I combine electronics, firmware, mechanics and testing into coherent solutions that can be deployed, launched and developed further.",
+                    heroBtnProjects: "See projects",
+                    heroBtnEmail: "Email me",
+                    featuresTitle: "What I do best",
+                    featuresList1: "I design systems from idea to a ready, working prototype.",
+                    featuresList2: "I conduct training in mechatronics, AI and renewable energy.",
+                    featuresList3: "I prepare technical documentation, from manuals to electrical schematics and graphic design.",
+                    featuresList4: "I provide consulting services in IT hardware and automation.",
+                    feature1Title: "Full project cycle",
+                    feature1Text: "From concept, through 3D CAD design and firmware, all the way to testing and prototype improvements.",
+                    feature2Title: "Technical training",
+                    feature2Text: "I deliver training in mechatronics, renewable energy and the practical use of artificial intelligence.",
+                    feature3Title: "Technical documentation",
+                    feature3Text: "I describe projects in a way that makes them understandable, reproducible, scalable and ready for the end customer.",
+                    projectsTitle: "Selected projects",
+                    projectsLead: "A few examples of work that show the range of what I do.",
+                    project1Title: "Balancing Robot",
+                    project1Text: "A prototype of a balancing two-wheel mobile robot created for a master's thesis.",
+                    project2Title: "UDT training",
+                    project2Text: "A photo from a training course on renewable energy for UDT installers.",
+                    project3Title: "Electronics repair",
+                    project3Text: "I repair and service laptops, workstations and electronics.",
+                    tagGyro: "Gyroscope",
+                    tagTrainings: "Training",
+                    tagHardware: "Hardware",
+                    articlesTitle: "Articles",
+                    articlesLead: "<strong>Below you can read several articles authored by me</strong>.",
+                    aboutTitle: "About me",
+                    aboutLead: "I value clarity, functionality and engineering discipline.",
+                    aboutP1: "Master of Engineering in Mechatronics, specialized in robotics and computer science.",
+                    aboutP2: "I specialize in CAD design, preparing comprehensive technical, product and electrical documentation, as well as preparing order specifications. I have experience in production coordination and international cooperation, especially in the context of renewable energy products. I played a significant role in building and managing the supply chain, working closely with partners from China and European countries. My organizational skills were further strengthened by numerous business meetings and representation at trade fairs, industry conferences and during trainings I conducted.",
+                    aboutP3: "In addition, I specialize in avionics and onboard systems. I also service and configure IT hardware (laptops, workstations). I am interested in electronics, especially ATmega-class microcontrollers and audio systems. My passions include robotics, computer science, the basics of cryptology (GPG, Kleopatra) and military hardware, especially in the area of aviation and space technology.",
+                    readMore: "Read more",
+                    readLess: "Read less",
+                    contactTitle: "Get in touch",
+                    contactLead: "Email or LinkedIn — the easiest way to contact me.",
+                    contactText: "Have a question, want to discuss a project, or need help with a technical solution? Send me an email or visit my LinkedIn profile.",
+                    contactEmailBtn: "Email me",
+                    contactLinkedInBtn: "LinkedIn",
+                    footerNote: "© 2026 CyberProjects — All rights reserved",
+                    loadingArticles: "Loading articles...",
+                    noArticles: "No articles to display.",
+                    articlesErrorTitle: "Failed to load articles.",
+                    articlesErrorText: "Check the articles_ENG.json file and the paths to the .txt and .jpg files.",
+                    articleReadMore: "Read more",
+                    articleReadLess: "Read less",
+                    articleNoContent: "No article content.",
+                    articleFallbackCategory: "Technology / Embedded",
+                    heroSlide1Title: "Balancing Robot",
+                    heroSlide1Desc: "• Master's thesis",
+                    heroSlide2Title: "Solar Tracker",
+                    heroSlide2Desc: "• Engineering thesis",
+                    menuOpen: "Open menu",
+                    mainMenu: "Main menu",
+                    navigation: "Navigation",
+                    slideSelection: "Slide selection",
+                    linkedinProfile: "LinkedIn profile",
+                    project1Alt: "Balancing Robot",
+                    project2Alt: "UDT training",
+                    project3Alt: "Electronics repair",
+                    ownerAlt: "Owner's photo"
                 }
-            ];
+            };
+
+            const localStorageKey = "siteLang";
+            const state = {
+                lang: localStorage.getItem(localStorageKey) || "pl"
+            };
+
+            const slideData = {
+                pl: [
+                    { title: "Robot Balansujący", desc: "• Praca magisterska" },
+                    { title: "Tracker Solarny", desc: "• Praca inżynierska" }
+                ],
+                en: [
+                    { title: "Balancing Robot", desc: "• Master's thesis" },
+                    { title: "Solar Tracker", desc: "• Engineering thesis" }
+                ]
+            };
 
             const slideVideos = [
                 document.getElementById("slide-0"),
@@ -1298,32 +1527,85 @@
             const descEl = document.getElementById("slider-desc");
             const progressEl = document.getElementById("slider-progress");
             const buttons = Array.from(document.querySelectorAll(".slide-btn"));
+            const htmlEl = document.documentElement;
+            const topbar = document.getElementById("topbar");
+            const scrollProgressBar = document.getElementById("scroll-progress");
+            const glow = document.getElementById("cursorGlow");
+            const hamburger = document.getElementById("hambtn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const aboutContent = document.getElementById("aboutContent");
+            const toggleAbout = document.getElementById("toggleAbout");
+            const titleMeta = document.querySelector("title");
+            const descriptionMeta = document.querySelector('meta[name="description"]');
+            const ogDescriptionMeta = document.querySelector('meta[property="og:description"]');
+            const brandSubtitle = document.getElementById("brandSubtitle");
+            const footerSubtitle = document.getElementById("footerSubtitle");
+            const mainNav = document.getElementById("mainNav");
+            const articleContainer = document.getElementById("articles-container");
+
+            const langButtons = Array.from(document.querySelectorAll("[data-lang]"));
+            const textNodes = Array.from(document.querySelectorAll("[data-i18n]"));
+            const localizedMedia = Array.from(document.querySelectorAll("[data-asset-base]"));
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) entry.target.classList.add("in");
+                        else entry.target.classList.remove("in");
+                    });
+                },
+                { threshold: 0.12, rootMargin: "60px 0px" }
+            );
+
+            document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
 
             let current = 0;
             let slideTimer = null;
             let progressTimer = null;
 
+            function escapeHtml(str) {
+                return String(str)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            function localizedPath(path, lang) {
+                if (!path || lang !== "en") return path;
+                if (/_ENG(\.[^./?#]+)?([?#].*)?$/.test(path)) return path;
+
+                const qIndex = path.indexOf("?");
+                const hashIndex = path.indexOf("#");
+                const splitIndex = qIndex >= 0 ? qIndex : hashIndex >= 0 ? hashIndex : path.length;
+                const base = path.slice(0, splitIndex);
+                const suffix = path.slice(splitIndex);
+
+                const lastSlash = base.lastIndexOf("/");
+                const lastDot = base.lastIndexOf(".");
+
+                if (lastDot <= lastSlash) return base + "_ENG" + suffix;
+                return base.slice(0, lastDot) + "_ENG" + base.slice(lastDot) + suffix;
+            }
+
             function playActiveVideo(video) {
                 if (!video) return;
                 video.currentTime = 0;
                 const playPromise = video.play();
-                if (playPromise && typeof playPromise.catch === "function") {
-                    playPromise.catch(() => {});
-                }
+                if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
             }
 
             function setActiveSlide(index, userAction = false) {
                 current = index;
+                const slides = slideData[state.lang];
 
                 slideVideos.forEach((video, i) => {
                     const isActive = i === index;
                     video.classList.toggle("active", isActive);
 
-                    if (isActive) {
-                        playActiveVideo(video);
-                    } else {
-                        video.pause();
-                    }
+                    if (isActive) playActiveVideo(video);
+                    else video.pause();
                 });
 
                 buttons.forEach((btn, i) => {
@@ -1338,7 +1620,7 @@
             }
 
             function nextSlide() {
-                setActiveSlide((current + 1) % slides.length);
+                setActiveSlide((current + 1) % slideData[state.lang].length);
             }
 
             function restartTimer() {
@@ -1350,7 +1632,7 @@
 
                 progressTimer = setInterval(() => {
                     const elapsed = Date.now() - startTime;
-                    const progress = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
+                    const progress = Math.min((elapsed / 15000) * 100, 100);
                     progressEl.style.width = progress + "%";
 
                     if (progress >= 100) clearInterval(progressTimer);
@@ -1359,18 +1641,8 @@
                 slideTimer = setInterval(() => {
                     nextSlide();
                     restartTimer();
-                }, SLIDE_DURATION);
+                }, 15000);
             }
-
-            buttons.forEach((btn) => {
-                btn.addEventListener("click", () => setActiveSlide(Number(btn.dataset.slide), true));
-            });
-
-            setActiveSlide(0);
-            restartTimer();
-
-            const hamburger = document.getElementById("hambtn");
-            const mobileMenu = document.getElementById("mobile-menu");
 
             function openMenu() {
                 hamburger.setAttribute("aria-expanded", "true");
@@ -1386,6 +1658,236 @@
                 document.body.classList.remove("menu-open");
             }
 
+            function updateLangButtons(lang) {
+                langButtons.forEach((btn) => {
+                    const isActive = btn.dataset.lang === lang;
+                    btn.classList.toggle("active", isActive);
+                    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+                });
+            }
+
+            function updateLocalizedMedia(lang) {
+                localizedMedia.forEach((el) => {
+                    const base = el.dataset.assetBase;
+                    const localized = localizedPath(base, lang);
+
+                    if (el.tagName === "IMG") {
+                        el.src = localized;
+                        if (el.dataset.altPl && el.dataset.altEn) {
+                            el.alt = lang === "pl" ? el.dataset.altPl : el.dataset.altEn;
+                        }
+                    }
+
+                    if (el.tagName === "VIDEO") {
+                        const source = el.querySelector("source");
+                        if (source) {
+                            source.src = localized;
+                            el.load();
+                        }
+                    }
+                });
+
+                document.querySelectorAll(".project img").forEach((img) => {
+                    if (img.dataset.altPl && img.dataset.altEn) {
+                        img.alt = lang === "pl" ? img.dataset.altPl : img.dataset.altEn;
+                    }
+                });
+            }
+
+            function setAttributeTexts(lang) {
+                const t = translations[lang];
+
+                textNodes.forEach((el) => {
+                    const key = el.getAttribute("data-i18n");
+                    const value = t[key];
+                    if (!value) return;
+                    el.innerHTML = value;
+                });
+
+                titleMeta.textContent = t.pageTitle;
+                descriptionMeta.setAttribute("content", t.description);
+                ogDescriptionMeta.setAttribute("content", t.ogDescription);
+                htmlEl.setAttribute("lang", lang);
+
+                hamburger.setAttribute("aria-label", t.menuOpen);
+                mainNav.setAttribute("aria-label", t.mainMenu);
+                document.querySelector('.navlinks')?.setAttribute("aria-label", t.navigation);
+                document.querySelector('.slider-controls')?.setAttribute("aria-label", t.slideSelection);
+                document.querySelector('.social-link')?.setAttribute("aria-label", t.linkedinProfile);
+
+                if (aboutContent.classList.contains("expanded")) {
+                    toggleAbout.textContent = t.readLess;
+                } else {
+                    toggleAbout.textContent = t.readMore;
+                }
+
+                brandSubtitle.textContent = "• Sebastian Dziewit •";
+                footerSubtitle.textContent = "• Sebastian Dziewit •";
+
+                updateLangButtons(lang);
+                updateLocalizedMedia(lang);
+            }
+
+            function formatTextToHtml(text) {
+                const t = translations[state.lang];
+                if (!text) return `<p class="muted">${escapeHtml(t.articleNoContent)}</p>`;
+                const clean = text.replace(/\r/g, "").trim();
+                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
+                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
+            }
+
+            async function renderArticles() {
+                const t = translations[state.lang];
+                const manifestFile = state.lang === "en" ? "assets/articles_ENG.json" : "assets/articles.json";
+
+                articleContainer.innerHTML = `
+                    <div class="article-card glass fade-up" style="padding:22px;">
+                        ${t.loadingArticles}
+                    </div>
+                `;
+                observer.observe(articleContainer.firstElementChild);
+
+                try {
+                    const manifestResponse = await fetch(manifestFile, { cache: "no-store" });
+                    if (!manifestResponse.ok) throw new Error("Brak manifestu artykułów");
+
+                    const manifest = await manifestResponse.json();
+
+                    if (!Array.isArray(manifest) || manifest.length === 0) {
+                        articleContainer.innerHTML = `
+                            <div class="article-card glass fade-up" style="padding:22px;">
+                                ${t.noArticles}
+                            </div>
+                        `;
+                        observer.observe(articleContainer.firstElementChild);
+                        return;
+                    }
+
+                    articleContainer.innerHTML = "";
+
+                    const texts = await Promise.all(
+                        manifest.map(async (item) => {
+                            const textPath = localizedPath(item.text, state.lang);
+                            try {
+                                const txtResp = await fetch(textPath, { cache: "no-store" });
+                                if (txtResp.ok) return await txtResp.text();
+                            } catch {}
+                            return "";
+                        })
+                    );
+
+                    manifest.forEach((item, index) => {
+                        const articleText = texts[index] || "";
+                        const article = document.createElement("article");
+                        article.className = "article-card glass fade-up";
+
+                        const imageSrc = item.image ? localizedPath(item.image, state.lang) : "";
+                        const imageAlt = item.title || (state.lang === "pl" ? "Artykuł" : "Article");
+
+                        const imageHtml = item.image
+                            ? `
+                                <div class="article-image">
+                                    <img src="${imageSrc}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async">
+                                </div>
+                            `
+                            : "";
+
+                        article.innerHTML = `
+                            <div class="article-top">
+                                ${imageHtml}
+                                <div class="article-body">
+                                    <div>
+                                        <div class="article-kicker">
+                                            <span class="dot"></span>
+                                            <span>${escapeHtml(item.date || (state.lang === "pl" ? "Artykuł" : "Article"))}</span>
+                                        </div>
+                                        <h3 class="article-title">${escapeHtml(item.title || (state.lang === "pl" ? "Bez tytułu" : "Untitled"))}</h3>
+                                        <div class="article-content"></div>
+                                    </div>
+
+                                    <div class="article-actions">
+                                        <div class="muted">${escapeHtml(item.category || t.articleFallbackCategory)}</div>
+                                        <button class="btn btn-ghost toggle-article" type="button">${t.articleReadMore}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        const content = article.querySelector(".article-content");
+                        content.innerHTML = formatTextToHtml(articleText);
+                        content.style.maxHeight = "120px";
+                        content.style.overflow = "hidden";
+
+                        const btn = article.querySelector(".toggle-article");
+                        btn.addEventListener("click", () => {
+                            const expanded = content.classList.contains("expanded");
+                            const rt = translations[state.lang];
+
+                            if (expanded) {
+                                content.style.maxHeight = "120px";
+                                btn.textContent = rt.articleReadMore;
+                                content.classList.remove("expanded");
+                            } else {
+                                content.style.maxHeight = content.scrollHeight + "px";
+                                btn.textContent = rt.articleReadLess;
+                                content.classList.add("expanded");
+                            }
+                        });
+
+                        articleContainer.appendChild(article);
+                        observer.observe(article);
+                    });
+                } catch (err) {
+                    console.error(err);
+                    articleContainer.innerHTML = `
+                        <div class="article-card glass fade-up" style="padding:22px;">
+                            <strong>${t.articlesErrorTitle}</strong>
+                            <p class="muted" style="margin:10px 0 0;">
+                                ${t.articlesErrorText}
+                            </p>
+                        </div>
+                    `;
+                    observer.observe(articleContainer.firstElementChild);
+                }
+            }
+
+            function applyLanguage(lang) {
+                state.lang = lang;
+                localStorage.setItem(localStorageKey, lang);
+
+                setAttributeTexts(lang);
+                slideVideos.forEach((video) => {
+                    const source = video.querySelector("source");
+                    if (source && video.dataset.assetBase) {
+                        source.src = localizedPath(video.dataset.assetBase, lang);
+                        video.load();
+                    }
+                });
+
+                setActiveSlide(current);
+                renderArticles();
+            }
+
+            function toggleLanguage(lang) {
+                if (!lang || lang === state.lang) return;
+                applyLanguage(lang);
+            }
+
+            buttons.forEach((btn) => {
+                btn.addEventListener("click", () => setActiveSlide(Number(btn.dataset.slide), true));
+            });
+
+            document.getElementById("langPLDesktop").addEventListener("click", () => toggleLanguage("pl"));
+            document.getElementById("langENGDesktop").addEventListener("click", () => toggleLanguage("en"));
+            document.getElementById("langPLMobile").addEventListener("click", () => {
+                toggleLanguage("pl");
+                closeMenu();
+            });
+            document.getElementById("langENGMobile").addEventListener("click", () => {
+                toggleLanguage("en");
+                closeMenu();
+            });
+
             hamburger.addEventListener("click", (e) => {
                 e.stopPropagation();
                 const expanded = hamburger.getAttribute("aria-expanded") === "true";
@@ -1399,8 +1901,6 @@
             });
 
             let scrollRaf = 0;
-            const topbar = document.getElementById("topbar");
-            const scrollProgressBar = document.getElementById("scroll-progress");
 
             const handleScroll = () => {
                 scrollRaf = 0;
@@ -1420,163 +1920,25 @@
             window.addEventListener("resize", onScroll, { passive: true });
             handleScroll();
 
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("in");
-                        } else {
-                            entry.target.classList.remove("in");
-                        }
-                    });
-                },
-                { threshold: 0.12, rootMargin: "60px 0px" }
-            );
-
-            document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
-
-            function formatTextToHtml(text) {
-                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
-                const clean = text.replace(/\r/g, "").trim();
-                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
-                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
-            }
-
-            function escapeHtml(str) {
-                return str
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#39;");
-            }
-
-            async function renderArticles() {
-                const container = document.getElementById("articles-container");
-
-                try {
-                    const manifestResponse = await fetch("articles.json", { cache: "no-store" });
-                    if (!manifestResponse.ok) throw new Error("Brak articles.json");
-
-                    const manifest = await manifestResponse.json();
-                    if (!Array.isArray(manifest) || manifest.length === 0) {
-                        container.innerHTML = `
-                            <div class="article-card glass fade-up" style="padding:22px;">
-                                Brak artykułów do wyświetlenia.
-                            </div>
-                        `;
-                        observer.observe(container.firstElementChild);
-                        return;
-                    }
-
-                    container.innerHTML = "";
-
-                    const texts = await Promise.all(
-                        manifest.map(async (item) => {
-                            try {
-                                const txtResp = await fetch(item.text, { cache: "no-store" });
-                                return txtResp.ok ? await txtResp.text() : "";
-                            } catch {
-                                return "";
-                            }
-                        })
-                    );
-
-                    manifest.forEach((item, index) => {
-                        const articleText = texts[index] || "";
-                        const article = document.createElement("article");
-                        article.className = "article-card glass fade-up";
-
-                        const imageHtml = item.image
-                            ? `
-                                <div class="article-image">
-                                    <img src="${item.image}" alt="${item.title || "Artykuł"}" loading="lazy" decoding="async">
-                                </div>
-                            `
-                            : "";
-
-                        article.innerHTML = `
-                            <div class="article-top">
-                                ${imageHtml}
-                                <div class="article-body">
-                                    <div>
-                                        <div class="article-kicker">
-                                            <span class="dot"></span>
-                                            <span>${item.date || "Artykuł"}</span>
-                                        </div>
-                                        <h3 class="article-title">${item.title || "Bez tytułu"}</h3>
-                                        <div class="article-content"></div>
-                                    </div>
-
-                                    <div class="article-actions">
-                                        <div class="muted">${item.category || "Technologia / Embedded"}</div>
-                                        <button class="btn btn-ghost toggle-article" type="button">Czytaj więcej</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-
-                        const content = article.querySelector(".article-content");
-                        content.innerHTML = formatTextToHtml(articleText);
-                        content.style.maxHeight = "120px";
-                        content.style.overflow = "hidden";
-
-                        const btn = article.querySelector(".toggle-article");
-                        btn.addEventListener("click", () => {
-                            const expanded = content.classList.contains("expanded");
-
-                            if (expanded) {
-                                content.style.maxHeight = "120px";
-                                btn.textContent = "Czytaj więcej";
-                                content.classList.remove("expanded");
-                            } else {
-                                content.style.maxHeight = content.scrollHeight + "px";
-                                btn.textContent = "Czytaj mniej";
-                                content.classList.add("expanded");
-                            }
-                        });
-
-                        container.appendChild(article);
-                        observer.observe(article);
-                    });
-                } catch (err) {
-                    console.error(err);
-                    container.innerHTML = `
-                        <div class="article-card glass fade-up" style="padding:22px;">
-                            <strong>Nie udało się załadować artykułów.</strong>
-                            <p class="muted" style="margin:10px 0 0;">
-                                Sprawdź plik <code>articles.json</code> oraz ścieżki do plików .txt i .jpg.
-                            </p>
-                        </div>
-                    `;
-                    observer.observe(container.firstElementChild);
-                }
-            }
-
-            renderArticles();
-
-            const aboutContent = document.getElementById("aboutContent");
-            const toggleAbout = document.getElementById("toggleAbout");
-
             if (aboutContent && toggleAbout) {
                 aboutContent.style.maxHeight = "140px";
 
                 toggleAbout.addEventListener("click", () => {
                     const expanded = aboutContent.classList.contains("expanded");
+                    const t = translations[state.lang];
 
                     if (expanded) {
                         aboutContent.style.maxHeight = "140px";
-                        toggleAbout.textContent = "Czytaj więcej";
+                        toggleAbout.textContent = t.readMore;
                         aboutContent.classList.remove("expanded");
                     } else {
                         aboutContent.style.maxHeight = aboutContent.scrollHeight + "px";
-                        toggleAbout.textContent = "Czytaj mniej";
+                        toggleAbout.textContent = t.readLess;
                         aboutContent.classList.add("expanded");
                     }
                 });
             }
 
-            const glow = document.getElementById("cursorGlow");
             const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
             let glowX = window.innerWidth / 2;
             let glowY = window.innerHeight / 2;
@@ -1609,6 +1971,11 @@
                 if (window.innerWidth > 760) closeMenu();
                 onScroll();
             }, { passive: true });
+
+            applyLanguage(state.lang);
+            setActiveSlide(0);
+            restartTimer();
+            renderArticles();
         });
     </script>
 </body>
