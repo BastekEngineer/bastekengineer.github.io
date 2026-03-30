@@ -581,9 +581,22 @@
             box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
         }
 
-        .project img {
+        .project picture,
+        .article-image picture,
+        .profile-pic-wrap picture {
+            display: block;
+        }
+
+        .project picture,
+        .article-image picture {
             width: 100%;
-            aspect-ratio: 16 / 10;
+            height: 100%;
+        }
+
+        .project picture img,
+        .article-image picture img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
@@ -1097,13 +1110,15 @@
 
             <div class="grid-3">
                 <article class="project fade-up">
-                    <img
-                        src="assets/project-01.jpg"
-                        alt="Robot Balansujący"
-                        loading="lazy"
-                        decoding="async"
-                        onerror="this.remove()"
-                    />
+                    <picture>
+                        <source srcset="assets/project-01.webp" type="image/webp" />
+                        <img
+                            src="assets/project-01.jpg"
+                            alt="Robot Balansujący"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </picture>
                     <div class="meta">
                         <h3>Robot Balansujący</h3>
                         <p>Prototyp balansującego dwukołowego robota mobilnego wykonanego na potrzeby pracy magisterskiej.</p>
@@ -1116,13 +1131,15 @@
                 </article>
 
                 <article class="project fade-up">
-                    <img
-                        src="assets/project-02.jpg"
-                        alt="Logger danych"
-                        loading="lazy"
-                        decoding="async"
-                        onerror="this.remove()"
-                    />
+                    <picture>
+                        <source srcset="assets/project-02.webp" type="image/webp" />
+                        <img
+                            src="assets/project-02.jpg"
+                            alt="Szkolenie UDT"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </picture>
                     <div class="meta">
                         <h3>Szkolenie UDT</h3>
                         <p>Fotografia za szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
@@ -1135,13 +1152,15 @@
                 </article>
 
                 <article class="project fade-up">
-                    <img
-                        src="assets/project-03.jpg"
-                        alt="Naprawa elektroniki"
-                        loading="lazy"
-                        decoding="async"
-                        onerror="this.remove()"
-                    />
+                    <picture>
+                        <source srcset="assets/project-03.webp" type="image/webp" />
+                        <img
+                            src="assets/project-03.jpg"
+                            alt="Naprawa elektroniki"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </picture>
                     <div class="meta">
                         <h3>Naprawa elektroniki</h3>
                         <p>Zajmuję się naprawą i serwisowaniem laptopów, stacji roboczych oraz elektroniki.</p>
@@ -1208,7 +1227,10 @@
                 </div>
 
                 <div class="about-card glass fade-up profile-pic-wrap">
-                    <img src="assets/wlasciciel.jpg" alt="Zdjęcie właściciela" class="profile-pic" />
+                    <picture>
+                        <source srcset="assets/wlasciciel.webp" type="image/webp" />
+                        <img src="assets/wlasciciel.jpg" alt="Zdjęcie właściciela" class="profile-pic" />
+                    </picture>
                 </div>
             </div>
         </section>
@@ -1298,6 +1320,45 @@
             const descEl = document.getElementById("slider-desc");
             const progressEl = document.getElementById("slider-progress");
             const buttons = Array.from(document.querySelectorAll(".slide-btn"));
+
+            function escapeHtml(str) {
+                return String(str)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            function getImageVariants(src) {
+                const clean = String(src || "").trim();
+                if (!clean) return { webp: "", fallback: "" };
+
+                const dotIndex = clean.lastIndexOf(".");
+                if (dotIndex === -1) {
+                    return { webp: `${clean}.webp`, fallback: clean };
+                }
+
+                const base = clean.slice(0, dotIndex);
+                const ext = clean.slice(dotIndex).toLowerCase();
+
+                if (ext === ".webp") {
+                    return { webp: clean, fallback: `${base}.jpg` };
+                }
+
+                return { webp: `${base}.webp`, fallback: clean };
+            }
+
+            function renderResponsiveImage(src, alt, className = "", loading = "lazy") {
+                const { webp, fallback } = getImageVariants(src);
+
+                return `
+                    <picture>
+                        <source srcset="${escapeHtml(webp)}" type="image/webp" />
+                        <img src="${escapeHtml(fallback)}" alt="${escapeHtml(alt || "")}"${className ? ` class="${escapeHtml(className)}"` : ""} loading="${loading}" decoding="async" />
+                    </picture>
+                `;
+            }
 
             let current = 0;
             let slideTimer = null;
@@ -1442,15 +1503,6 @@
                 return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
             }
 
-            function escapeHtml(str) {
-                return str
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#39;");
-            }
-
             async function renderArticles() {
                 const container = document.getElementById("articles-container");
 
@@ -1490,7 +1542,7 @@
                         const imageHtml = item.image
                             ? `
                                 <div class="article-image">
-                                    <img src="${item.image}" alt="${item.title || "Artykuł"}" loading="lazy" decoding="async">
+                                    ${renderResponsiveImage(item.image, item.title || "Artykuł")}
                                 </div>
                             `
                             : "";
@@ -1545,7 +1597,7 @@
                         <div class="article-card glass fade-up" style="padding:22px;">
                             <strong>Nie udało się załadować artykułów.</strong>
                             <p class="muted" style="margin:10px 0 0;">
-                                Sprawdź plik <code>articles.json</code> oraz ścieżki do plików .txt i .jpg.
+                                Sprawdź plik <code>articles.json</code> oraz ścieżki do plików .txt i obrazów .jpg / .webp.
                             </p>
                         </div>
                     `;
