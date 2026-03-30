@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CyberProjects — Dziewit</title>
 
+    <!-- Meta SEO / social -->
     <meta
         name="description"
         content="CyberProjects — Portfolio inżynierskie: embedded, mechatronika, projekty CAD."
@@ -17,6 +18,7 @@
     <meta property="og:image" content="assets/og-image.jpg" />
     <meta name="theme-color" content="#111c2b" />
 
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,6 +27,9 @@
     />
 
     <style>
+        /* =========================
+           1. Zmienne globalne
+        ========================== */
         :root {
             --bg-1: #0f1724;
             --bg-2: #172336;
@@ -49,6 +54,9 @@
             --nav-h: 74px;
         }
 
+        /* =========================
+           2. Reset i baza
+        ========================== */
         * { box-sizing: border-box; }
 
         html {
@@ -66,7 +74,6 @@
                 radial-gradient(720px 500px at 86% 6%, rgba(147, 240, 220, 0.10), transparent 50%),
                 radial-gradient(700px 520px at 82% 78%, rgba(166, 181, 255, 0.08), transparent 54%),
                 linear-gradient(145deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3) 74%, var(--bg-4));
-            background-attachment: scroll;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: clip;
@@ -77,6 +84,12 @@
             overflow: hidden;
         }
 
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* =========================
+           3. Tło dekoracyjne
+        ========================== */
         body::before {
             content: "";
             position: fixed;
@@ -103,36 +116,6 @@
             filter: blur(18px);
             opacity: 0.75;
             z-index: 0;
-        }
-
-        a { color: inherit; }
-        img { max-width: 100%; display: block; }
-
-        .wrap {
-            max-width: var(--maxw);
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .glass {
-            background: linear-gradient(180deg, rgba(17, 26, 40, 0.62), rgba(13, 21, 32, 0.52));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        #scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            width: 0;
-            background: linear-gradient(90deg, var(--accent-3), var(--accent-4));
-            z-index: 3000;
-            will-change: width;
         }
 
         .bg-orb {
@@ -183,6 +166,45 @@
             will-change: transform;
         }
 
+        /* =========================
+           4. Layout wspólny
+        ========================== */
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass {
+            background: linear-gradient(180deg, rgba(17, 26, 40, 0.62), rgba(13, 21, 32, 0.52));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hidden { display: none !important; }
+        .muted { color: var(--muted); }
+
+        /* =========================
+           5. Pasek postępu scrolla
+        ========================== */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent-3), var(--accent-4));
+            z-index: 3000;
+            will-change: width;
+        }
+
+        /* =========================
+           6. Górny pasek nawigacji
+        ========================== */
         .topbar {
             position: fixed;
             top: 14px;
@@ -208,9 +230,9 @@
             padding: 0 18px;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            background:
-                linear-gradient(180deg, rgba(13, 19, 30, 0.82), rgba(12, 18, 28, 0.70));
+            background: linear-gradient(180deg, rgba(13, 19, 30, 0.82), rgba(12, 18, 28, 0.70));
             border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
         }
 
         nav::before {
@@ -381,6 +403,9 @@
             transform: translateX(2px);
         }
 
+        /* =========================
+           7. Sekcja hero
+        ========================== */
         header.hero {
             min-height: 100svh;
             padding: 122px 0 70px;
@@ -518,8 +543,11 @@
             border-color: rgba(255, 255, 255, 0.10);
         }
 
-        .btn-ghost:hover { background: rgba(255, 255, 255, 0.08); }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
 
+        /* Karta z podglądem wideo */
         .hero-card {
             border-radius: 32px;
             overflow: hidden;
@@ -682,6 +710,9 @@
             background: linear-gradient(90deg, var(--accent-3), var(--accent-4));
         }
 
+        /* =========================
+           8. Sekcje główne
+        ========================== */
         section {
             padding: 82px 0;
             position: relative;
@@ -705,6 +736,7 @@
         }
 
         .section-head { margin-bottom: 24px; }
+
         .section-head h2 {
             margin: 0;
             font-size: clamp(1.75rem, 3vw, 2.6rem);
@@ -718,6 +750,9 @@
             color: var(--muted);
         }
 
+        /* =========================
+           9. Siatki i karty
+        ========================== */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -730,8 +765,7 @@
         .about-card,
         .contact-card {
             border-radius: var(--radius);
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.032));
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.032));
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 12px 34px rgba(0, 0, 0, 0.14);
             contain: content;
@@ -852,6 +886,9 @@
             -webkit-backdrop-filter: blur(10px);
         }
 
+        /* =========================
+           10. Artykuły
+        ========================== */
         .articles-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -953,6 +990,9 @@
             margin-top: 6px;
         }
 
+        /* =========================
+           11. O mnie
+        ========================== */
         .about-card,
         .contact-card { padding: 24px; }
 
@@ -999,6 +1039,17 @@
             align-items: center;
             justify-content: center;
             min-height: 260px;
+            position: relative;
+        }
+
+        .profile-pic-wrap::before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(140, 200, 255, 0.16), rgba(147, 240, 220, 0.08), transparent 68%);
+            filter: blur(8px);
         }
 
         .profile-pic {
@@ -1013,20 +1064,9 @@
             z-index: 1;
         }
 
-        .profile-pic-wrap {
-            position: relative;
-        }
-
-        .profile-pic-wrap::before {
-            content: "";
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(140, 200, 255, 0.16), rgba(147, 240, 220, 0.08), transparent 68%);
-            filter: blur(8px);
-        }
-
+        /* =========================
+           12. Kontakt i stopka
+        ========================== */
         .contact-actions {
             display: flex;
             gap: 12px;
@@ -1071,6 +1111,9 @@
             font-size: 0.92rem;
         }
 
+        /* =========================
+           13. Animacje wejścia
+        ========================== */
         .fade-up {
             opacity: 0;
             transform: translateY(12px);
@@ -1082,9 +1125,6 @@
             opacity: 1;
             transform: none;
         }
-
-        .muted { color: var(--muted); }
-        .hidden { display: none !important; }
 
         .feature-list {
             list-style: none;
@@ -1114,6 +1154,9 @@
             box-shadow: 0 0 0 6px rgba(147, 240, 220, 0.08);
         }
 
+        /* =========================
+           14. Responsywność
+        ========================== */
         @media (max-width: 1040px) {
             .hero-grid,
             .about-grid,
@@ -1199,6 +1242,7 @@
             }
 
             .hero-card-inner { border-radius: 22px; }
+
             .slider-caption {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1207,6 +1251,7 @@
             .slider-controls { justify-content: flex-start; }
 
             .article-top { min-height: unset; }
+
             .article-body,
             .feature,
             .about-card,
@@ -1249,6 +1294,9 @@
             }
         }
 
+        /* =========================
+           15. Preferencje użytkownika
+        ========================== */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
 
@@ -1269,23 +1317,31 @@
 </head>
 
 <body>
+    <!-- Dekoracyjne tła -->
     <div class="bg-orb orb-1" aria-hidden="true"></div>
     <div class="bg-orb orb-2" aria-hidden="true"></div>
     <div class="bg-orb orb-3" aria-hidden="true"></div>
+
+    <!-- Światło kursora -->
     <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <!-- Pasek postępu przewijania -->
     <div id="scroll-progress"></div>
 
+    <!-- Górny pasek nawigacji -->
     <div class="topbar" id="topbar">
         <div class="wrap">
             <nav class="glass" aria-label="Główne menu">
+                <!-- Logo i nazwa -->
                 <div class="brand">
                     <div class="logo">CP</div>
                     <div class="site-title">
                         CyberProjects
-                        <small> • Sebastian Dziewit • </small>
+                        <small>• Sebastian Dziewit •</small>
                     </div>
                 </div>
 
+                <!-- Nawigacja desktopowa -->
                 <div class="navlinks" aria-label="Nawigacja">
                     <a href="#features">Co potrafię</a>
                     <a href="#projekty">Projekty</a>
@@ -1294,6 +1350,7 @@
                     <a class="cta-nav" href="#contact">Skontaktuj się</a>
                 </div>
 
+                <!-- Przycisk menu mobilnego -->
                 <button
                     class="hamburger"
                     id="hambtn"
@@ -1318,6 +1375,7 @@
             </nav>
         </div>
 
+        <!-- Menu mobilne -->
         <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
             <a href="#features">Co potrafię</a>
             <a href="#projekty">Projekty</a>
@@ -1327,8 +1385,10 @@
         </div>
     </div>
 
+    <!-- Sekcja hero -->
     <header class="hero">
         <div class="wrap hero-grid">
+            <!-- Tekst wprowadzający -->
             <div>
                 <span class="eyebrow fade-up">Inżynieria • Consulting • AI</span>
                 <h1 class="fade-up">Projektuję systemy, od pomysłu po prototyp.</h1>
@@ -1337,15 +1397,18 @@
                     uruchomić i rozwijać.
                 </p>
 
+                <!-- CTA -->
                 <div class="hero-actions fade-up">
                     <a class="btn btn-primary" href="#projekty">Zobacz projekty</a>
                     <a class="btn btn-ghost" href="mailto:gall.anonim305@gmail.com">Napisz do mnie</a>
                 </div>
             </div>
 
+            <!-- Podgląd projektów wideo -->
             <aside class="hero-card glass fade-up" aria-label="Podgląd projektów">
                 <div class="hero-card-inner">
                     <div class="slider">
+                        <!-- Slajd wideo 1 -->
                         <video
                             id="slide-0"
                             class="active"
@@ -1359,6 +1422,7 @@
                             Twoja przeglądarka nie obsługuje odtwarzania wideo.
                         </video>
 
+                        <!-- Slajd wideo 2 -->
                         <video
                             id="slide-1"
                             autoplay
@@ -1371,6 +1435,7 @@
                             Twoja przeglądarka nie obsługuje odtwarzania wideo.
                         </video>
 
+                        <!-- Nakładka z podpisem i sterowaniem -->
                         <div class="slider-overlay">
                             <div style="width:100%">
                                 <div class="slider-caption">
@@ -1385,6 +1450,7 @@
                                     </div>
                                 </div>
 
+                                <!-- Pasek postępu automatycznego slajdu -->
                                 <div class="slider-bar" aria-hidden="true">
                                     <span id="slider-progress"></span>
                                 </div>
@@ -1397,6 +1463,7 @@
     </header>
 
     <main class="wrap">
+        <!-- Sekcja: kompetencje -->
         <section id="features">
             <div class="section-head">
                 <h2 class="fade-up">Co robię najlepiej</h2>
@@ -1418,7 +1485,7 @@
                 <article class="feature fade-up">
                     <div class="icon">02</div>
                     <h3>Szkolenia techniczne</h3>
-                    <p>Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki odnawialnych źródeł energii oraz wykorzystanie sztucznej intelignejci w praktyce.</p>
+                    <p>Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki, odnawialnych źródeł energii oraz wykorzystania sztucznej inteligencji w praktyce.</p>
                 </article>
 
                 <article class="feature fade-up">
@@ -1429,6 +1496,7 @@
             </div>
         </section>
 
+        <!-- Sekcja: projekty -->
         <section id="projekty">
             <div class="section-head">
                 <h2 class="fade-up">Wybrane projekty</h2>
@@ -1442,7 +1510,6 @@
                         alt="Robot Balansujący"
                         loading="lazy"
                         decoding="async"
-                        onerror="this.remove()"
                     />
                     <div class="meta">
                         <h3>Robot Balansujący</h3>
@@ -1458,14 +1525,13 @@
                 <article class="project fade-up">
                     <img
                         src="assets/project-02.jpg"
-                        alt="Logger danych"
+                        alt="Szkolenie UDT"
                         loading="lazy"
                         decoding="async"
-                        onerror="this.remove()"
                     />
                     <div class="meta">
                         <h3>Szkolenie UDT</h3>
-                        <p>Fotografia za szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
+                        <p>Fotografia ze szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
                         <div class="tags">
                             <span class="tag">Szkolenia</span>
                             <span class="tag">OZE</span>
@@ -1480,7 +1546,6 @@
                         alt="Naprawa elektroniki"
                         loading="lazy"
                         decoding="async"
-                        onerror="this.remove()"
                     />
                     <div class="meta">
                         <h3>Naprawa elektroniki</h3>
@@ -1495,6 +1560,7 @@
             </div>
         </section>
 
+        <!-- Sekcja: artykuły -->
         <section id="articles">
             <div class="section-head">
                 <h2 class="fade-up">Artykuły</h2>
@@ -1504,12 +1570,14 @@
             </div>
 
             <div id="articles-container" class="articles-grid">
+                <!-- Stan ładowania artykułów -->
                 <div class="article-card glass fade-up" style="padding:22px;">
                     Ładowanie artykułów...
                 </div>
             </div>
         </section>
 
+        <!-- Sekcja: o mnie -->
         <section id="about">
             <div class="section-head">
                 <h2 class="fade-up">O mnie</h2>
@@ -1517,10 +1585,11 @@
             </div>
 
             <div class="about-grid">
+                <!-- Tekst biograficzny -->
                 <div class="about-card glass fade-up">
                     <div class="about-text about-collapsible" id="aboutContent">
                         <p>
-                            Magister Inżynier mechatronik o specjalności robotyka i informatyka.
+                            Magister inżynier mechatronik o specjalności robotyka i informatyka.
                         </p>
 
                         <p>
@@ -1542,17 +1611,20 @@
                         </p>
                     </div>
 
+                    <!-- Przyciski rozwijania tekstu -->
                     <div style="margin-top:18px;">
                         <button class="btn btn-ghost" id="toggleAbout" type="button">Czytaj więcej</button>
                     </div>
                 </div>
 
+                <!-- Zdjęcie profilowe -->
                 <div class="about-card glass fade-up profile-pic-wrap">
                     <img src="assets/wlasciciel.jpg" alt="Zdjęcie właściciela" class="profile-pic" />
                 </div>
             </div>
         </section>
 
+        <!-- Sekcja: kontakt -->
         <section id="contact">
             <div class="section-head">
                 <h2 class="fade-up">Skontaktuj się</h2>
@@ -1580,21 +1652,22 @@
         </section>
     </main>
 
+    <!-- Stopka -->
     <footer>
         <div class="wrap">
             <div class="footer-card glass">
+                <!-- Lewa część stopki -->
                 <div style="display:flex;align-items:center;gap:12px;min-width:0">
                     <div class="logo" style="width:48px;height:48px;border-radius:16px;">CP</div>
                     <div style="min-width:0">
                         <div style="font-weight:900;color:#fff">CyberProjects</div>
-                        <div
-                            style="font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"
-                        >
-                             • Sebastian Dziewit •
+                        <div style="font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                            • Sebastian Dziewit •
                         </div>
                     </div>
                 </div>
 
+                <!-- Link społecznościowy -->
                 <a
                     class="social-link"
                     href="https://www.linkedin.com/in/sebastiandziewit/"
@@ -1617,174 +1690,46 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            /* =========================
+               1. Ustawienia i skróty
+            ========================== */
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
             const SLIDE_DURATION = 15000;
 
             const slides = [
-                {
-                    title: "Robot Balansujący",
-                    desc: "• Praca magisterska"
-                },
-                {
-                    title: "Tracker Solarny",
-                    desc: "• Praca inżynierska"
-                }
+                { title: "Robot Balansujący", desc: "• Praca magisterska" },
+                { title: "Tracker Solarny", desc: "• Praca inżynierska" }
             ];
 
-            const slideVideos = [
-                document.getElementById("slide-0"),
-                document.getElementById("slide-1")
-            ];
-            const titleEl = document.getElementById("slider-title");
-            const descEl = document.getElementById("slider-desc");
-            const progressEl = document.getElementById("slider-progress");
-            const buttons = Array.from(document.querySelectorAll(".slide-btn"));
-            const heroCard = document.querySelector(".hero-card");
+            const el = {
+                slideVideos: [document.getElementById("slide-0"), document.getElementById("slide-1")],
+                title: document.getElementById("slider-title"),
+                desc: document.getElementById("slider-desc"),
+                progress: document.getElementById("slider-progress"),
+                buttons: Array.from(document.querySelectorAll(".slide-btn")),
+                heroCard: document.querySelector(".hero-card"),
+                hamburger: document.getElementById("hambtn"),
+                mobileMenu: document.getElementById("mobile-menu"),
+                topbar: document.getElementById("topbar"),
+                scrollProgress: document.getElementById("scroll-progress"),
+                glow: document.getElementById("cursorGlow"),
+                aboutContent: document.getElementById("aboutContent"),
+                toggleAbout: document.getElementById("toggleAbout"),
+                articlesContainer: document.getElementById("articles-container")
+            };
 
-            let current = 0;
-            let slideTimer = null;
-            let progressTimer = null;
-
-            function playActiveVideo(video) {
-                if (!video) return;
-                video.currentTime = 0;
-                const playPromise = video.play();
-                if (playPromise && typeof playPromise.catch === "function") {
-                    playPromise.catch(() => {});
-                }
-            }
-
-            function setActiveSlide(index, userAction = false) {
-                current = index;
-
-                slideVideos.forEach((video, i) => {
-                    const isActive = i === index;
-                    video.classList.toggle("active", isActive);
-
-                    if (isActive) {
-                        playActiveVideo(video);
-                    } else {
-                        video.pause();
-                    }
-                });
-
-                buttons.forEach((btn, i) => {
-                    btn.classList.toggle("active", i === index);
-                    btn.setAttribute("aria-pressed", i === index ? "true" : "false");
-                });
-
-                titleEl.textContent = slides[index].title;
-                descEl.textContent = slides[index].desc;
-
-                if (userAction) restartTimer();
-            }
-
-            function nextSlide() {
-                setActiveSlide((current + 1) % slides.length);
-            }
-
-            function restartTimer() {
-                clearInterval(slideTimer);
-                clearInterval(progressTimer);
-
-                const startTime = Date.now();
-                progressEl.style.width = "0%";
-
-                progressTimer = setInterval(() => {
-                    const elapsed = Date.now() - startTime;
-                    const progress = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
-                    progressEl.style.width = progress + "%";
-
-                    if (progress >= 100) clearInterval(progressTimer);
-                }, 50);
-
-                slideTimer = setInterval(() => {
-                    nextSlide();
-                    restartTimer();
-                }, SLIDE_DURATION);
-            }
-
-            buttons.forEach((btn) => {
-                btn.addEventListener("click", () => setActiveSlide(Number(btn.dataset.slide), true));
-            });
-
-            setActiveSlide(0);
-            restartTimer();
-
-            const hamburger = document.getElementById("hambtn");
-            const mobileMenu = document.getElementById("mobile-menu");
-
-            function openMenu() {
-                hamburger.setAttribute("aria-expanded", "true");
-                mobileMenu.classList.add("open");
-                mobileMenu.setAttribute("aria-hidden", "false");
-                document.body.classList.add("menu-open");
-            }
-
-            function closeMenu() {
-                hamburger.setAttribute("aria-expanded", "false");
-                mobileMenu.classList.remove("open");
-                mobileMenu.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("menu-open");
-            }
-
-            hamburger.addEventListener("click", (e) => {
-                e.stopPropagation();
-                const expanded = hamburger.getAttribute("aria-expanded") === "true";
-                expanded ? closeMenu() : openMenu();
-            });
-
-            mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-
-            document.addEventListener("click", (e) => {
-                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
-            });
-
+            let currentSlide = 0;
+            let slideTimeout = 0;
+            let progressRaf = 0;
+            let progressStart = 0;
             let scrollRaf = 0;
-            const topbar = document.getElementById("topbar");
-            const scrollProgressBar = document.getElementById("scroll-progress");
 
-            const handleScroll = () => {
-                scrollRaf = 0;
-                const y = window.scrollY || window.pageYOffset;
-                topbar.classList.toggle("scrolled", y > 18);
-
-                const height = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = height > 0 ? (y / height) * 100 : 0;
-                scrollProgressBar.style.width = progress + "%";
-            };
-
-            const onScroll = () => {
-                if (!scrollRaf) scrollRaf = requestAnimationFrame(handleScroll);
-            };
-
-            window.addEventListener("scroll", onScroll, { passive: true });
-            window.addEventListener("resize", onScroll, { passive: true });
-            handleScroll();
-
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("in");
-                        } else {
-                            entry.target.classList.remove("in");
-                        }
-                    });
-                },
-                { threshold: 0.12, rootMargin: "60px 0px" }
-            );
-
-            document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
-
-            function formatTextToHtml(text) {
-                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
-                const clean = text.replace(/\r/g, "").trim();
-                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
-                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
-            }
-
+            /* =========================
+               2. Funkcje pomocnicze
+            ========================== */
             function escapeHtml(str) {
-                return str
+                return String(str)
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
                     .replace(/>/g, "&gt;")
@@ -1792,25 +1737,199 @@
                     .replace(/'/g, "&#39;");
             }
 
-            async function renderArticles() {
-                const container = document.getElementById("articles-container");
+            function formatTextToHtml(text) {
+                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
 
+                const clean = text.replace(/\r/g, "").trim();
+                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
+
+                return paragraphs
+                    .map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`)
+                    .join("");
+            }
+
+            function playActiveVideo(video) {
+                if (!video) return;
+
+                video.currentTime = 0;
+                const playPromise = video.play();
+
+                if (playPromise && typeof playPromise.catch === "function") {
+                    playPromise.catch(() => {});
+                }
+            }
+
+            /* =========================
+               3. Slajder w hero
+            ========================== */
+            function stopProgressAnimation() {
+                cancelAnimationFrame(progressRaf);
+                progressRaf = 0;
+            }
+
+            function startProgressAnimation() {
+                stopProgressAnimation();
+                progressStart = performance.now();
+
+                const tick = (now) => {
+                    const progress = Math.min((now - progressStart) / SLIDE_DURATION, 1);
+                    el.progress.style.width = (progress * 100).toFixed(2) + "%";
+
+                    if (progress < 1) {
+                        progressRaf = requestAnimationFrame(tick);
+                    }
+                };
+
+                progressRaf = requestAnimationFrame(tick);
+            }
+
+            function scheduleNextSlide() {
+                clearTimeout(slideTimeout);
+                if (prefersReducedMotion) return;
+
+                slideTimeout = window.setTimeout(() => {
+                    setActiveSlide((currentSlide + 1) % slides.length);
+                }, SLIDE_DURATION);
+            }
+
+            function setActiveSlide(index) {
+                currentSlide = index;
+
+                el.slideVideos.forEach((video, i) => {
+                    const active = i === index;
+                    video.classList.toggle("active", active);
+
+                    if (active) {
+                        playActiveVideo(video);
+                    } else {
+                        video.pause();
+                    }
+                });
+
+                el.buttons.forEach((btn, i) => {
+                    const active = i === index;
+                    btn.classList.toggle("active", active);
+                    btn.setAttribute("aria-pressed", active ? "true" : "false");
+                });
+
+                el.title.textContent = slides[index].title;
+                el.desc.textContent = slides[index].desc;
+
+                el.progress.style.width = "0%";
+                startProgressAnimation();
+                scheduleNextSlide();
+            }
+
+            el.buttons.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    setActiveSlide(Number(btn.dataset.slide));
+                });
+            });
+
+            setActiveSlide(0);
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    clearTimeout(slideTimeout);
+                    stopProgressAnimation();
+                } else {
+                    setActiveSlide(currentSlide);
+                }
+            });
+
+            /* =========================
+               4. Menu mobilne
+            ========================== */
+            function openMenu() {
+                el.hamburger.setAttribute("aria-expanded", "true");
+                el.mobileMenu.classList.add("open");
+                el.mobileMenu.setAttribute("aria-hidden", "false");
+                document.body.classList.add("menu-open");
+            }
+
+            function closeMenu() {
+                el.hamburger.setAttribute("aria-expanded", "false");
+                el.mobileMenu.classList.remove("open");
+                el.mobileMenu.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("menu-open");
+            }
+
+            el.hamburger.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const expanded = el.hamburger.getAttribute("aria-expanded") === "true";
+                expanded ? closeMenu() : openMenu();
+            });
+
+            el.mobileMenu.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", closeMenu);
+            });
+
+            document.addEventListener("pointerdown", (e) => {
+                if (el.mobileMenu.classList.contains("open") && !el.mobileMenu.contains(e.target) && !el.hamburger.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            /* =========================
+               5. Scroll progress i topbar
+            ========================== */
+            function handleScroll() {
+                scrollRaf = 0;
+                const y = window.scrollY || window.pageYOffset || 0;
+
+                el.topbar.classList.toggle("scrolled", y > 18);
+
+                const height = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+                el.scrollProgress.style.width = ((y / height) * 100).toFixed(2) + "%";
+            }
+
+            function onScroll() {
+                if (!scrollRaf) scrollRaf = requestAnimationFrame(handleScroll);
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            window.addEventListener("resize", onScroll, { passive: true });
+            handleScroll();
+
+            /* =========================
+               6. Animacje wejścia
+               - Dodajemy klasę tylko raz,
+                 żeby nie „machać” elementami
+                 przy każdym scrollu.
+            ========================== */
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("in");
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "60px 0px" }
+            );
+
+            document.querySelectorAll(".fade-up").forEach((elFade) => observer.observe(elFade));
+
+            /* =========================
+               7. Ładowanie artykułów
+            ========================== */
+            async function renderArticles() {
                 try {
                     const manifestResponse = await fetch("articles.json", { cache: "no-store" });
                     if (!manifestResponse.ok) throw new Error("Brak articles.json");
 
                     const manifest = await manifestResponse.json();
+
                     if (!Array.isArray(manifest) || manifest.length === 0) {
-                        container.innerHTML = `
+                        el.articlesContainer.innerHTML = `
                             <div class="article-card glass fade-up" style="padding:22px;">
                                 Brak artykułów do wyświetlenia.
                             </div>
                         `;
-                        observer.observe(container.firstElementChild);
+                        observer.observe(el.articlesContainer.firstElementChild);
                         return;
                     }
-
-                    container.innerHTML = "";
 
                     const texts = await Promise.all(
                         manifest.map(async (item) => {
@@ -1823,15 +1942,16 @@
                         })
                     );
 
+                    const fragment = document.createDocumentFragment();
+
                     manifest.forEach((item, index) => {
-                        const articleText = texts[index] || "";
                         const article = document.createElement("article");
                         article.className = "article-card glass fade-up";
 
                         const imageHtml = item.image
                             ? `
                                 <div class="article-image">
-                                    <img src="${item.image}" alt="${item.title || "Artykuł"}" loading="lazy" decoding="async">
+                                    <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title || "Artykuł")}" loading="lazy" decoding="async">
                                 </div>
                             `
                             : "";
@@ -1843,14 +1963,14 @@
                                     <div>
                                         <div class="article-kicker">
                                             <span class="dot"></span>
-                                            <span>${item.date || "Artykuł"}</span>
+                                            <span>${escapeHtml(item.date || "Artykuł")}</span>
                                         </div>
-                                        <h3 class="article-title">${item.title || "Bez tytułu"}</h3>
+                                        <h3 class="article-title">${escapeHtml(item.title || "Bez tytułu")}</h3>
                                         <div class="article-content"></div>
                                     </div>
 
                                     <div class="article-actions">
-                                        <div class="muted">${item.category || "Technologia / Embedded"}</div>
+                                        <div class="muted">${escapeHtml(item.category || "Technologia / Embedded")}</div>
                                         <button class="btn btn-ghost toggle-article" type="button">Czytaj więcej</button>
                                     </div>
                                 </div>
@@ -1858,11 +1978,12 @@
                         `;
 
                         const content = article.querySelector(".article-content");
-                        content.innerHTML = formatTextToHtml(articleText);
+                        const btn = article.querySelector(".toggle-article");
+
+                        content.innerHTML = formatTextToHtml(texts[index] || "");
                         content.style.maxHeight = "120px";
                         content.style.overflow = "hidden";
 
-                        const btn = article.querySelector(".toggle-article");
                         btn.addEventListener("click", () => {
                             const expanded = content.classList.contains("expanded");
 
@@ -1877,12 +1998,15 @@
                             }
                         });
 
-                        container.appendChild(article);
+                        fragment.appendChild(article);
                         observer.observe(article);
                     });
+
+                    el.articlesContainer.innerHTML = "";
+                    el.articlesContainer.appendChild(fragment);
                 } catch (err) {
                     console.error(err);
-                    container.innerHTML = `
+                    el.articlesContainer.innerHTML = `
                         <div class="article-card glass fade-up" style="padding:22px;">
                             <strong>Nie udało się załadować artykułów.</strong>
                             <p class="muted" style="margin:10px 0 0;">
@@ -1890,85 +2014,113 @@
                             </p>
                         </div>
                     `;
-                    observer.observe(container.firstElementChild);
+                    observer.observe(el.articlesContainer.firstElementChild);
                 }
             }
 
             renderArticles();
 
-            const aboutContent = document.getElementById("aboutContent");
-            const toggleAbout = document.getElementById("toggleAbout");
+            /* =========================
+               8. Sekcja „O mnie”
+            ========================== */
+            if (el.aboutContent && el.toggleAbout) {
+                el.aboutContent.style.maxHeight = "140px";
 
-            if (aboutContent && toggleAbout) {
-                aboutContent.style.maxHeight = "140px";
-
-                toggleAbout.addEventListener("click", () => {
-                    const expanded = aboutContent.classList.contains("expanded");
+                el.toggleAbout.addEventListener("click", () => {
+                    const expanded = el.aboutContent.classList.contains("expanded");
 
                     if (expanded) {
-                        aboutContent.style.maxHeight = "140px";
-                        toggleAbout.textContent = "Czytaj więcej";
-                        aboutContent.classList.remove("expanded");
+                        el.aboutContent.style.maxHeight = "140px";
+                        el.toggleAbout.textContent = "Czytaj więcej";
+                        el.aboutContent.classList.remove("expanded");
                     } else {
-                        aboutContent.style.maxHeight = aboutContent.scrollHeight + "px";
-                        toggleAbout.textContent = "Czytaj mniej";
-                        aboutContent.classList.add("expanded");
+                        el.aboutContent.style.maxHeight = el.aboutContent.scrollHeight + "px";
+                        el.toggleAbout.textContent = "Czytaj mniej";
+                        el.aboutContent.classList.add("expanded");
                     }
                 });
             }
 
-            const glow = document.getElementById("cursorGlow");
-            const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-            let glowX = window.innerWidth / 2;
-            let glowY = window.innerHeight / 2;
-            let glowTargetX = glowX;
-            let glowTargetY = glowY;
-            let glowRaf = 0;
+            /* =========================
+               9. Efekt kursora i tilt karty
+            ========================== */
+            if (!touchDevice && !prefersReducedMotion && el.glow) {
+                let glowX = window.innerWidth / 2;
+                let glowY = window.innerHeight / 2;
+                let glowTargetX = glowX;
+                let glowTargetY = glowY;
+                let glowRaf = 0;
 
-            if (!touchDevice) {
                 const animateGlow = () => {
                     glowRaf = 0;
                     glowX += (glowTargetX - glowX) * 0.22;
                     glowY += (glowTargetY - glowY) * 0.22;
-                    glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+
+                    el.glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
 
                     if (Math.abs(glowTargetX - glowX) > 0.2 || Math.abs(glowTargetY - glowY) > 0.2) {
                         glowRaf = requestAnimationFrame(animateGlow);
                     }
                 };
 
-                window.addEventListener("pointermove", (e) => {
-                    glowTargetX = e.clientX;
-                    glowTargetY = e.clientY;
-                    if (!glowRaf) glowRaf = requestAnimationFrame(animateGlow);
-                }, { passive: true });
+                window.addEventListener(
+                    "pointermove",
+                    (e) => {
+                        glowTargetX = e.clientX;
+                        glowTargetY = e.clientY;
 
-                if (heroCard) {
-                    heroCard.addEventListener("pointermove", (e) => {
-                        const rect = heroCard.getBoundingClientRect();
+                        if (!glowRaf) glowRaf = requestAnimationFrame(animateGlow);
+                    },
+                    { passive: true }
+                );
+
+                if (el.heroCard) {
+                    let rect = null;
+
+                    const updateRect = () => {
+                        rect = el.heroCard.getBoundingClientRect();
+                    };
+
+                    el.heroCard.addEventListener("pointerenter", updateRect);
+
+                    el.heroCard.addEventListener("pointermove", (e) => {
+                        if (!rect) rect = el.heroCard.getBoundingClientRect();
+
                         const x = (e.clientX - rect.left) / rect.width;
                         const y = (e.clientY - rect.top) / rect.height;
 
                         const tiltY = (x - 0.5) * 7;
                         const tiltX = (0.5 - y) * 7;
 
-                        heroCard.style.setProperty("--tilt-x", tiltX.toFixed(2) + "deg");
-                        heroCard.style.setProperty("--tilt-y", tiltY.toFixed(2) + "deg");
+                        el.heroCard.style.setProperty("--tilt-x", tiltX.toFixed(2) + "deg");
+                        el.heroCard.style.setProperty("--tilt-y", tiltY.toFixed(2) + "deg");
                     });
 
-                    heroCard.addEventListener("pointerleave", () => {
-                        heroCard.style.setProperty("--tilt-x", "0deg");
-                        heroCard.style.setProperty("--tilt-y", "0deg");
+                    el.heroCard.addEventListener("pointerleave", () => {
+                        rect = null;
+                        el.heroCard.style.setProperty("--tilt-x", "0deg");
+                        el.heroCard.style.setProperty("--tilt-y", "0deg");
                     });
                 }
-            } else {
-                glow.style.display = "none";
+            } else if (el.glow) {
+                el.glow.style.display = "none";
             }
 
-            window.addEventListener("resize", () => {
-                if (window.innerWidth > 760) closeMenu();
-                onScroll();
-            }, { passive: true });
+            /* =========================
+               10. Dodatki: obrazki i resize
+            ========================== */
+            document.querySelectorAll(".project img").forEach((img) => {
+                img.addEventListener("error", () => img.remove());
+            });
+
+            window.addEventListener(
+                "resize",
+                () => {
+                    if (window.innerWidth > 760) closeMenu();
+                    onScroll();
+                },
+                { passive: true }
+            );
         });
     </script>
 </body>
