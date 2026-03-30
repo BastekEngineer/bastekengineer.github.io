@@ -1,0 +1,53 @@
+[
+  {
+    "id": "1",
+    "title": "Robot Balansujący",
+    "date": "2026-03-30",
+    "category": "Praca magisterska",
+    "cover": "articles/1_grafika_1.jpg",
+    "text": "articles/1_artykuł.txt",
+    "lead": "Balansujący robot dwukołowy zbudowany jako projekt dyplomowy.",
+    "excerpt": "Projekt robota balansującego obejmował dobór elektroniki, sterowanie PID, integrację czujników oraz uruchomienie prototypu w warunkach testowych.",
+    "images": [
+      {
+        "src": "articles/1_grafika_1.jpg",
+        "title": "Widok główny prototypu"
+      },
+      {
+        "src": "articles/1_grafika_2.jpg",
+        "title": "Szczegóły konstrukcji"
+      }
+    ],
+    "videos": [
+      {
+        "src": "articles/1_film1.mp4",
+        "title": "Test stabilizacji"
+      },
+      {
+        "src": "articles/1_film2.mp4",
+        "title": "Jazda próbna"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Tracker Solarny",
+    "date": "2026-03-30",
+    "category": "Praca inżynierska",
+    "cover": "articles/2_grafika_1.jpg",
+    "text": "articles/2_artykuł.txt",
+    "lead": "Projekt układu śledzącego pozycję słońca z naciskiem na niezawodność i prostą obsługę.",
+    "excerpt": "Artykuł opisuje konstrukcję trackera solarnego, dobór podzespołów, logikę sterowania oraz efekty testów terenowych.",
+    "images": [
+      {
+        "src": "articles/2_grafika_1.jpg",
+        "title": "Widok główny konstrukcji"
+      },
+      {
+        "src": "articles/2_grafika_2.jpg",
+        "title": "Drugi plan i detale"
+      }
+    ],
+    "videos": []
+  }
+]
