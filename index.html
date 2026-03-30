@@ -664,7 +664,7 @@
         .articles-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 18px;
+            gap: 14px;
         }
 
         .article-card {
@@ -678,22 +678,32 @@
             box-shadow: 0 16px 38px rgba(0, 0, 0, 0.16);
         }
 
+        /* KARTA ARTYKUŁU — bardziej kompaktowa */
         .article-top {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 220px 1fr;
             gap: 0;
-            min-height: 240px;
+            min-height: 190px;
         }
 
-        .article-image { position: relative; background: #0b1522; }
-        .article-image img { width: 100%; height: 100%; object-fit: cover; }
+        .article-image {
+            position: relative;
+            background: #0b1522;
+            min-height: 190px;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .article-body {
-            padding: 22px;
+            padding: 18px 18px 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 18px;
+            gap: 12px;
         }
 
         .article-kicker {
@@ -713,19 +723,27 @@
         }
 
         .article-title {
-            margin: 10px 0 10px;
-            font-size: 1.55rem;
-            line-height: 1.1;
+            margin: 8px 0 8px;
+            font-size: 1.32rem;
+            line-height: 1.12;
             letter-spacing: -0.035em;
         }
 
+        /* 5 linii tekstu */
         .article-content {
             color: var(--muted);
-            white-space: pre-wrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
             overflow: hidden;
+            white-space: normal;
+            line-height: 1.55;
+            max-height: calc(1.55em * 5);
         }
 
-        .article-content p { margin: 0 0 14px; }
+        .article-content p {
+            margin: 0;
+        }
 
         .article-actions {
             display: flex;
@@ -733,7 +751,12 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            margin-top: 6px;
+            margin-top: 4px;
+        }
+
+        .article-actions .btn {
+            min-height: 44px;
+            padding: 0 16px;
         }
 
         .about-card,
@@ -859,6 +882,10 @@
             .article-top { grid-template-columns: 1fr; }
             .grid-3 { grid-template-columns: repeat(2, 1fr); }
             .slider { min-height: 420px; }
+
+            .article-image {
+                min-height: 170px;
+            }
         }
 
         @media (max-width: 760px) {
@@ -921,9 +948,18 @@
             .feature,
             .about-card,
             .contact-card,
-            .project .meta { padding: 18px; }
-            .article-title { font-size: 1.24rem; }
-            .article-content { font-size: 0.96rem; }
+            .project .meta { padding: 16px; }
+
+            .article-image {
+                min-height: 155px;
+            }
+
+            .article-title { font-size: 1.16rem; }
+            .article-content {
+                font-size: 0.96rem;
+                line-height: 1.5;
+                max-height: calc(1.5em * 5);
+            }
             section { padding: 54px 0; }
             .footer-card {
                 padding: 18px;
@@ -1502,14 +1538,7 @@
                     .replace(/'/g, "&#39;");
             }
 
-            function formatTextToHtml(text) {
-                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
-                const clean = String(text).replace(/\r/g, "").trim();
-                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
-                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
-            }
-
-            function makeExcerpt(text, maxLen = 260) {
+            function makeExcerpt(text, maxLen = 320) {
                 if (!text) return "";
                 const flat = String(text).replace(/\s+/g, " ").trim();
                 return flat.length > maxLen ? flat.slice(0, maxLen).trim() + "…" : flat;
@@ -1554,7 +1583,7 @@
                         article.className = "article-card glass fade-up";
 
                         const excerptSource = item.excerpt || articleText || "";
-                        const excerpt = makeExcerpt(excerptSource, 320);
+                        const excerpt = makeExcerpt(excerptSource, 360);
 
                         const imageHtml = item.cover
                             ? `
@@ -1575,7 +1604,7 @@
                                         </div>
                                         <h3 class="article-title">${escapeHtml(item.title || "Bez tytułu")}</h3>
                                         <div class="article-content">
-                                            ${formatTextToHtml(excerpt)}
+                                            <p>${escapeHtml(excerpt)}</p>
                                         </div>
                                     </div>
 
