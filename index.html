@@ -10,7 +10,6 @@
         content="CyberProjects — Portfolio inżynierskie: embedded, mechatronika, projekty CAD."
     />
 
-    <!-- Miniaturka strony / favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo_strony.png" />
     <link rel="shortcut icon" type="image/png" href="/assets/logo_strony.png" />
     <link rel="apple-touch-icon" href="/assets/logo_strony.png" />
@@ -723,7 +722,7 @@
         .article-content {
             color: var(--muted);
             white-space: pre-wrap;
-            transition: max-height 0.35s ease;
+            overflow: hidden;
         }
 
         .article-content p { margin: 0 0 14px; }
@@ -1135,7 +1134,7 @@
                 <article class="feature fade-up">
                     <div class="icon">02</div>
                     <h3>Szkolenia techniczne</h3>
-                    <p>Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki odnawialnych źródeł energii oraz wykorzystanie sztucznej intelignejci w praktyce.</p>
+                    <p>Zajmuję się prowadzeniem szkoleń w zakresie mechatroniki, odnawialnych źródeł energii oraz wykorzystania sztucznej inteligencji w praktyce.</p>
                 </article>
 
                 <article class="feature fade-up">
@@ -1175,14 +1174,14 @@
                 <article class="project fade-up">
                     <img
                         src="assets/project-02.jpg"
-                        alt="Logger danych"
+                        alt="Szkolenie UDT"
                         loading="lazy"
                         decoding="async"
                         onerror="this.remove()"
                     />
                     <div class="meta">
                         <h3>Szkolenie UDT</h3>
-                        <p>Fotografia za szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
+                        <p>Fotografia ze szkolenia z zakresu odnawialnych źródeł energii dla instalatorów UDT.</p>
                         <div class="tags">
                             <span class="tag">Szkolenia</span>
                             <span class="tag">OZE</span>
@@ -1494,20 +1493,26 @@
 
             document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
 
-            function formatTextToHtml(text) {
-                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
-                const clean = text.replace(/\r/g, "").trim();
-                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
-                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
-            }
-
             function escapeHtml(str) {
-                return str
+                return String(str)
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
                     .replace(/>/g, "&gt;")
                     .replace(/"/g, "&quot;")
                     .replace(/'/g, "&#39;");
+            }
+
+            function formatTextToHtml(text) {
+                if (!text) return `<p class="muted">Brak treści artykułu.</p>`;
+                const clean = String(text).replace(/\r/g, "").trim();
+                const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
+                return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
+            }
+
+            function makeExcerpt(text, maxLen = 260) {
+                if (!text) return "";
+                const flat = String(text).replace(/\s+/g, " ").trim();
+                return flat.length > maxLen ? flat.slice(0, maxLen).trim() + "…" : flat;
             }
 
             async function renderArticles() {
@@ -1518,6 +1523,7 @@
                     if (!manifestResponse.ok) throw new Error("Brak articles.json");
 
                     const manifest = await manifestResponse.json();
+
                     if (!Array.isArray(manifest) || manifest.length === 0) {
                         container.innerHTML = `
                             <div class="article-card glass fade-up" style="padding:22px;">
@@ -1533,23 +1539,27 @@
                     const texts = await Promise.all(
                         manifest.map(async (item) => {
                             try {
+                                if (!item.text) return item.content || "";
                                 const txtResp = await fetch(item.text, { cache: "no-store" });
-                                return txtResp.ok ? await txtResp.text() : "";
+                                return txtResp.ok ? await txtResp.text() : (item.content || "");
                             } catch {
-                                return "";
+                                return item.content || "";
                             }
                         })
                     );
 
                     manifest.forEach((item, index) => {
-                        const articleText = texts[index] || "";
+                        const articleText = texts[index] || item.content || "";
                         const article = document.createElement("article");
                         article.className = "article-card glass fade-up";
 
-                        const imageHtml = item.image
+                        const excerptSource = item.excerpt || articleText || "";
+                        const excerpt = makeExcerpt(excerptSource, 320);
+
+                        const imageHtml = item.cover
                             ? `
                                 <div class="article-image">
-                                    <img src="${item.image}" alt="${item.title || "Artykuł"}" loading="lazy" decoding="async">
+                                    <img src="${escapeHtml(item.cover)}" alt="${escapeHtml(item.title || "Artykuł")}" loading="lazy" decoding="async">
                                 </div>
                             `
                             : "";
@@ -1561,39 +1571,23 @@
                                     <div>
                                         <div class="article-kicker">
                                             <span class="dot"></span>
-                                            <span>${item.date || "Artykuł"}</span>
+                                            <span>${escapeHtml(item.date || "Artykuł")}</span>
                                         </div>
-                                        <h3 class="article-title">${item.title || "Bez tytułu"}</h3>
-                                        <div class="article-content"></div>
+                                        <h3 class="article-title">${escapeHtml(item.title || "Bez tytułu")}</h3>
+                                        <div class="article-content">
+                                            ${formatTextToHtml(excerpt)}
+                                        </div>
                                     </div>
 
                                     <div class="article-actions">
-                                        <div class="muted">${item.category || "Technologia / Embedded"}</div>
-                                        <button class="btn btn-ghost toggle-article" type="button">Czytaj więcej</button>
+                                        <div class="muted">${escapeHtml(item.category || "Technologia / Embedded")}</div>
+                                        <a class="btn btn-ghost" href="article.html?id=${encodeURIComponent(item.id || index + 1)}">
+                                            Czytaj więcej
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         `;
-
-                        const content = article.querySelector(".article-content");
-                        content.innerHTML = formatTextToHtml(articleText);
-                        content.style.maxHeight = "120px";
-                        content.style.overflow = "hidden";
-
-                        const btn = article.querySelector(".toggle-article");
-                        btn.addEventListener("click", () => {
-                            const expanded = content.classList.contains("expanded");
-
-                            if (expanded) {
-                                content.style.maxHeight = "120px";
-                                btn.textContent = "Czytaj więcej";
-                                content.classList.remove("expanded");
-                            } else {
-                                content.style.maxHeight = content.scrollHeight + "px";
-                                btn.textContent = "Czytaj mniej";
-                                content.classList.add("expanded");
-                            }
-                        });
 
                         container.appendChild(article);
                         observer.observe(article);
@@ -1604,7 +1598,7 @@
                         <div class="article-card glass fade-up" style="padding:22px;">
                             <strong>Nie udało się załadować artykułów.</strong>
                             <p class="muted" style="margin:10px 0 0;">
-                                Sprawdź plik <code>articles.json</code> oraz ścieżki do plików .txt i .jpg.
+                                Sprawdź plik <code>articles.json</code>.
                             </p>
                         </div>
                     `;
