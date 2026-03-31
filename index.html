@@ -871,6 +871,13 @@
         .muted { color: var(--muted); }
         .hidden { display: none !important; }
 
+        /* Poprawa łamania tekstu na desktopie i mobile */
+        p, li, h1, h2, h3, h4, h5, h6, .lead, .article-content, .feature p, .project p, .about-text p {
+            text-wrap: pretty;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
         @media (max-width: 1040px) {
             .hero-grid,
             .about-grid {
@@ -1543,6 +1550,47 @@
                 return flat.length > maxLen ? flat.slice(0, maxLen).trim() + "…" : flat;
             }
 
+            // Automatyczne łączenie krótkich słów z następnym wyrazem,
+            // żeby nie zostawały same na końcu wiersza na desktopie i mobile.
+            function fixWidows(root = document.body) {
+                const skipTags = new Set([
+                    "SCRIPT",
+                    "STYLE",
+                    "NOSCRIPT",
+                    "TEXTAREA",
+                    "INPUT",
+                    "CODE",
+                    "PRE",
+                    "SVG",
+                    "MATH"
+                ]);
+
+                const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                    acceptNode(node) {
+                        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+
+                        const parent = node.parentElement;
+                        if (!parent) return NodeFilter.FILTER_REJECT;
+
+                        if (skipTags.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                        if (parent.closest("script,style,noscript,textarea,input,code,pre,svg,math")) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                });
+
+                const nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+
+                const re = /\b([aAiIoOuUwWzZ])\s+(?=\S)/g;
+
+                nodes.forEach((node) => {
+                    node.nodeValue = node.nodeValue.replace(re, "$1\u00A0");
+                });
+            }
+
             async function renderArticles() {
                 const container = document.getElementById("articles-container");
 
@@ -1559,6 +1607,7 @@
                             </div>
                         `;
                         observer.observe(container.firstElementChild);
+                        fixWidows(container);
                         return;
                     }
 
@@ -1617,7 +1666,10 @@
 
                         container.appendChild(article);
                         observer.observe(article);
+                        fixWidows(article);
                     });
+
+                    fixWidows(container);
                 } catch (err) {
                     console.error(err);
                     container.innerHTML = `
@@ -1629,10 +1681,12 @@
                         </div>
                     `;
                     observer.observe(container.firstElementChild);
+                    fixWidows(container);
                 }
             }
 
             renderArticles();
+            fixWidows(document.body);
 
             const aboutContent = document.getElementById("aboutContent");
             const toggleAbout = document.getElementById("toggleAbout");
@@ -1652,6 +1706,8 @@
                         toggleAbout.textContent = "Czytaj mniej";
                         aboutContent.classList.add("expanded");
                     }
+
+                    fixWidows(aboutContent);
                 });
             }
 
@@ -1687,6 +1743,7 @@
             window.addEventListener("resize", () => {
                 if (window.innerWidth > 760) closeMenu();
                 onScroll();
+                fixWidows(document.body);
             }, { passive: true });
         });
     </script>
