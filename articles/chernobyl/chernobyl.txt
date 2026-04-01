@@ -1,20 +1,21 @@
-Jak wa¿ne jest zobrazowanie satelitarne na przyk³adzie katastrofy w Czarnobylu.
+Jak waÅ¼ne jest zobrazowanie satelitarne na przykÅ‚adzie katastrofy w Czarnobylu.
 
-Katastrofa w Czarnobylu to jeden z najbardziej dramatycznych momentów w historii energetyki j¹drowej oraz ca³ej Europy. 26 kwietnia 1986 roku 
-w elektrowni j¹drowej niedaleko miasta Prypeæ na terenie obecnej Ukrainy dosz³o do awarii reaktora nr 4, która doprowadzi³a do eksplozji, po¿aru grafitu oraz uwolnienia ogromnych iloœci promieniowania do atmosfery.
+Katastrofa w Czarnobylu to jeden z najbardziej dramatycznych momentÃ³w w historii energetyki jÄ…drowej oraz caÅ‚ej Europy. 26 kwietnia 1986 roku 
+w elektrowni jÄ…drowej niedaleko miasta PrypeÄ‡ na terenie obecnej Ukrainy doszÅ‚o do awarii reaktora nr 4, ktÃ³ra doprowadziÅ‚a do eksplozji, poÅ¼aru grafitu oraz uwolnienia ogromnych iloÅ›ci promieniowania do atmosfery.
 
-Z kolei Landsat 5 to amerykañski cywilny satelita obserwacji Ziemi, nale¿¹cy do programu prowadzonego przez NASA i USGS. Jego zadaniem by³o regularne fotografowanie powierzchni naszej planety w ró¿nych zakresach promieniowania, tak¿e termicznych. Dziêki temu mo¿na by³o nie tylko obserwowaæ zmiany krajobrazu, lecz tak¿e wykrywaæ anomalie niewidoczne dla ludzkiego oka.
+Z kolei Landsat 5 to amerykaÅ„ski cywilny satelita obserwacji Ziemi, naleÅ¼Ä…cy do programu prowadzonego przez NASA i USGS. Jego zadaniem byÅ‚o regularne fotografowanie powierzchni naszej planety w rÃ³Å¼nych zakresach promieniowania, takÅ¼e termicznych. DziÄ™ki temu moÅ¼na byÅ‚o nie tylko obserwowaÄ‡ zmiany krajobrazu, lecz takÅ¼e wykrywaÄ‡ anomalie niewidoczne dla ludzkiego oka.
 
-I w³aœnie tutaj Landsat 5 odegra³ wa¿n¹ rolê. W okresie, gdy w³adze radzieckie nie ujawnia³y od razu pe³nej skali katastrofy, satelitarne obrazy zaczê³y dostarczaæ niezale¿nych dowodów. 
+I wÅ‚aÅ›nie tutaj Landsat 5 odegraÅ‚ waÅ¼nÄ… rolÄ™. W okresie, gdy wÅ‚adze radzieckie nie ujawniaÅ‚y od razu peÅ‚nej skali katastrofy, satelitarne obrazy zaczÄ™Å‚y dostarczaÄ‡ niezaleÅ¼nych dowodÃ³w. 
 
-Zdjêcia wykonane 22 kwietnia 1986 roku pokazywa³y normalny uk³ad obiegu ciep³ej wody w zewnêtrznym stawie ch³odz¹cym niedaleko elektrowni. Natomiast obraz z 29 kwietnia, trzy dni po wybuchu, ujawni³ coœ niepokoj¹cego: woda mia³a jednolit¹ temperaturê, co wskazywa³o na zatrzymanie procesu ch³odzenia, a tym samy pracy reaktorów.
+ZdjÄ™cia wykonane 22 kwietnia 1986 roku pokazywaÅ‚y normalny ukÅ‚ad obiegu ciepÅ‚ej wody w zewnÄ™trznym stawie chÅ‚odzÄ…cym niedaleko elektrowni. Natomiast obraz z 29 kwietnia, trzy dni po wybuchu, ujawniÅ‚ coÅ› niepokojÄ…cego: woda miaÅ‚a jednolitÄ… temperaturÄ™, co wskazywaÅ‚o na zatrzymanie procesu chÅ‚odzenia, a tym samy pracy reaktorÃ³w.
 
-Dodatkowo satelita zarejestrowa³ wyj¹tkowo gor¹cy obszar w rejonie czwartego bloku oraz charakterystyczny ciemny œlad dymu ci¹gn¹cy siê w kierunku po³udniowo-zachodnim. To w³aœnie on póŸniej pomóg³ zrozumieæ kierunek rozprzestrzeniania siê ska¿enia i wp³yw warunków pogodowych na kszta³t strefy ska¿enia.
+Dodatkowo satelita zarejestrowaÅ‚ wyjÄ…tkowo gorÄ…cy obszar w rejonie czwartego bloku oraz charakterystyczny ciemny Å›lad dymu ciÄ…gnÄ…cy siÄ™ w kierunku poÅ‚udniowo-zachodnim. To wÅ‚aÅ›nie on pÃ³Åºniej pomÃ³gÅ‚ zrozumieÄ‡ kierunek rozprzestrzeniania siÄ™ skaÅ¼enia i wpÅ‚yw warunkÃ³w pogodowych na ksztaÅ‚t strefy skaÅ¼enia.
 
-Ta historia pokazuje coœ bardzo wa¿nego: technologia satelitarna ju¿ wówczas potrafi³a bardzo dok³adnie zobrazowaæ powierzchniê ziemi w ró¿nych zakresach promieniowania elektromagnetycznego. Czarnobyl nie zosta³ rozpoznany wy³¹cznie dziêki relacjom œwiadków czy pomiarom naziemnym. Pomog³y tak¿e satelity, które z orbity potrafi³y wskazaæ anomaliê i potwierdziæ, ¿e wydarzy³o siê coœ powa¿nego.
+Ta historia pokazuje coÅ› bardzo waÅ¼nego: technologia satelitarna juÅ¼ wÃ³wczas potrafiÅ‚a bardzo dokÅ‚adnie zobrazowaÄ‡ powierzchniÄ™ ziemi w rÃ³Å¼nych zakresach promieniowania elektromagnetycznego. Czarnobyl nie zostaÅ‚ rozpoznany wyÅ‚Ä…cznie dziÄ™ki relacjom Å›wiadkÃ³w czy pomiarom naziemnym. PomogÅ‚y takÅ¼e satelity, ktÃ³re z orbity potrafiÅ‚y wskazaÄ‡ anomaliÄ™ i potwierdziÄ‡, Å¼e wydarzyÅ‚o siÄ™ coÅ› powaÅ¼nego.
 
-• ród³a: 
+â€¢ Å¹rÃ³dÅ‚a: 
 [1] - https://www.usgs.gov/media/images/landsat-chernobyl
 [2] - https://science.nasa.gov/earth/earth-observatory/chernobyl-ukraine-39679/
 
 #Czarnobyl #Chernobyl #NASA #Landsat5 #satelita #satellite #zobrazowanie #historia #history #technologia #technology #nauka #science #energetyka #nuclearpower
+ 
