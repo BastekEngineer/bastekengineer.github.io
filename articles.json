@@ -64,7 +64,32 @@
       {
         "src": "articles/2_film3.mp4",
         "title": "Prezentacja działąnia systemu anty-śnieg"
+      },
+      {
+    "id": "3",
+    "title": "Zobrazowanie satelitarne",
+    "date": "2025-04-01",
+    "category": "Ciekawostki",
+    "cover": "articles/chernobyl/1_Pożar",
+    "text": "articles/chernobyl/chernobyl.txt",
+    "lead": "Czarnobyl",
+    "excerpt": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu.",
+    "images": [
+      {
+        "src": "articles/chernobyl/1_Pożar",
+        "title": "Widok pożarku szczątkoów reaktora"
+      },
+      {
+        "src": "articles/chernobyl/2_Widok_zbiornika_wodnego_#1.jpg",
+        "title": "Brak obiegu wody chodzącej reaktor, temperatura w zbiorniku znacznie niższa"
       }
+       {
+        "src": "articles/chernobyl/3_Widok_zbiornika_wodnego_#2",
+        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+      }
+    ],
+    "videos": [ ]
+  }
     ]
   }
 ]
