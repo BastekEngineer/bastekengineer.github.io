@@ -72,13 +72,13 @@
     "title": "Zobrazowanie satelitarne",
     "date": "2025-04-01",
     "category": "Ciekawostki",
-    "cover": "articles/chernobyl/1_Pożar",
+    "cover": "articles/chernobyl/1_Pożar.jpg",
     "text": "articles/chernobyl/chernobyl.txt",
     "lead": "Czarnobyl",
     "excerpt": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu.",
     "images": [
       {
-        "src": "articles/chernobyl/1_Pożar",
+        "src": "articles/chernobyl/1_Pożar.jpg",
         "title": "Widok pożarku szczątkoów reaktora"
       },
       {
@@ -86,7 +86,7 @@
         "title": "Brak obiegu wody chodzącej reaktor, temperatura w zbiorniku znacznie niższa"
       },
       {
-        "src": "articles/chernobyl/3_Widok_zbiornika_wodnego_#2",
+        "src": "articles/chernobyl/3_Widok_zbiornika_wodnego_#2.jpg",
         "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
       }
     ],
