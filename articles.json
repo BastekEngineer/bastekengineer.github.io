@@ -91,5 +91,79 @@
       }
     ],
     "videos": []
+  },
+    {
+    "id": "4",
+    "title": "Zobrazowanie satelitarne",
+    "date": "2025-04-02",
+    "category": "Militaria",
+    "cover": "articles/typhoon/4_grafika_1.jpg",
+    "text": "articles/chernobyl/Okręty_podwodne_projektu_941",
+    "lead": "Projekt 941",
+    "excerpt": "Okręty podwodne projektu 941 – największy okręty podwodne świata",
+    "images": [
+      {
+        "src": "articles/typhoon/4_grafika_1.jpg",
+        "title": "Widok okrętu typu Typhoon"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_2.jpg",
+        "title": "Porównianie wielkości sylwetek marynarzy obok kiosku okrętu Typhoon"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_3.jpg",
+        "title": "Śruby napędowe okrętu Typhoon"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_4.jpg",
+        "title": "Okręt Typhoon w budowie - 1"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_5.jpg",
+        "title": "Okręt Typhoon w budowie - 2"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_6.jpg",
+        "title": "Okręt Typhoon w budowie - 3"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_7.jpg",
+        "title": "Otwarte pokrywy luków rakietowych okrętu Typhoon"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_8.jpg",
+        "title": "Okręty klasy Typhoon w bazie Zapadnaja Lica w obwodzie murmańskim"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_9.jpg",
+        "title": "Sylwetka okrętu klasy Typhoon"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_10.jpg",
+        "title": "Okręt klasy Typhoon na powierzchni"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_11.jpg",
+        "title": "Strumień generowany przez śruby napędowe"
+      },
+            },
+      {
+        "src": "articles/typhoon/4_grafika_12.jpg",
+        "title": "Wnętrze okrętu - sala wypoczynkowa"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_13.jpg",
+        "title": "Wnętrze okrętu - 1"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_14.jpg",
+        "title": "Wnętrze okrętu - 2"
+      },
+      {
+        "src": "articles/typhoon/4_grafika_15.jpg",
+        "title": "Wnętrze okrętu - 3"
+      },
+    ],
+    "videos": []
   }
 ]
