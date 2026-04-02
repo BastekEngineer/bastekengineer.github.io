@@ -92,7 +92,7 @@
     ],
     "videos": []
   },
-    {
+  {
     "id": "4",
     "title": "Zobrazowanie satelitarne",
     "date": "2025-04-02",
@@ -146,7 +146,6 @@
         "src": "articles/typhoon/4_grafika_11.jpg",
         "title": "Strumień generowany przez śruby napędowe"
       },
-            },
       {
         "src": "articles/typhoon/4_grafika_12.jpg",
         "title": "Wnętrze okrętu - sala wypoczynkowa"
@@ -162,7 +161,7 @@
       {
         "src": "articles/typhoon/4_grafika_15.jpg",
         "title": "Wnętrze okrętu - 3"
-      },
+      }
     ],
     "videos": []
   }
