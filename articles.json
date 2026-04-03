@@ -74,8 +74,8 @@
     "category": "Ciekawostki",
     "cover": "articles/chernobyl/3_grafika_1.jpg",
     "text": "articles/chernobyl/chernobyl.txt",
-    "lead": "Czarnobyl",
-    "excerpt": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu.",
+    "lead": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu oraz satelit projektu Landsat.",
+    "excerpt": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu oraz satelit projektu Landsat.",
     "images": [
       {
         "src": "articles/chernobyl/3_grafika_1.jpg",
