@@ -165,5 +165,38 @@
       }
     ],
     "videos": []
-  }
+  },
+    {
+    "id": "5",
+    "title": "Czym był radar pozahoryzontalny Duga?",
+    "date": "2025-04-03",
+    "category": "Ciekawostki",
+    "cover": "articles/duga/5_grafika_1.jpg",
+    "docx": "articles/chernobyl/radar_pozahoryzontalny_duga.docx",
+    "lead": "Duga",
+    "excerpt": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych",
+    "images": [
+      {
+        "src": "articles/chernobyl/5_grafika_1.jpg",
+        "title": "Widok"
+      },
+      {
+        "src": "articles/chernobyl/5_grafika_2.jpg",
+        "title": "Brak obiegu wody chodzącej reaktor, temperatura w zbiorniku znacznie niższa"
+      },
+      {
+        "src": "articles/chernobyl/5_grafika_3.jpg",
+        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+      },
+      {
+        "src": "articles/chernobyl/5_grafika_4.jpg",
+        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+      },
+      {
+        "src": "articles/chernobyl/5_grafika_5.jpg",
+        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+      }
+    ],
+    "videos": []
+  },
 ]
