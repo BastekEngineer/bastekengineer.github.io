@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+    <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+
     <style>
         :root {
             --bg-1: #0d1523;
@@ -27,12 +29,10 @@
             --accent-2: #93f0dc;
             --accent-3: #b6ccff;
             --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
-            --shadow-2: 0 14px 40px rgba(110, 168, 242, 0.18);
             --radius: 28px;
             --maxw: 1120px;
             --nav-h: 72px;
             --glass: rgba(15, 22, 35, 0.62);
-            --glass-2: rgba(18, 28, 45, 0.72);
             --line: rgba(255, 255, 255, 0.085);
         }
 
@@ -43,7 +43,7 @@
             margin: 0;
             font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.75;
             background:
                 radial-gradient(900px 620px at 12% 8%, rgba(110, 168, 242, 0.24), transparent 55%),
                 radial-gradient(780px 500px at 88% 4%, rgba(147, 240, 220, 0.12), transparent 50%),
@@ -139,7 +139,6 @@
             width: 110%;
             height: 110%;
             object-fit: cover;
-            display: block;
         }
 
         .site-title {
@@ -155,7 +154,6 @@
             align-items: center;
             gap: 0.35em;
             white-space: nowrap;
-            flex-wrap: nowrap;
             font-size: clamp(10px, 2.6vw, 12px);
             line-height: 1;
             margin-top: 4px;
@@ -187,35 +185,6 @@
             color: #fff;
             border-color: rgba(255, 255, 255, 0.14);
             box-shadow: 0 10px 24px rgba(110, 168, 242, 0.24);
-            animation: backPulse 2.4s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-back::after {
-            content: "↩";
-            margin-left: 10px;
-            font-size: 1rem;
-            transition: transform 0.18s ease;
-        }
-
-        .btn-back:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 14px 30px rgba(110, 168, 242, 0.32);
-            filter: brightness(1.06);
-        }
-
-        .btn-back:hover::after { transform: translateX(-2px); }
-
-        @keyframes backPulse {
-            0%, 100% {
-                box-shadow: 0 10px 24px rgba(110, 168, 242, 0.22);
-                filter: brightness(1);
-            }
-            50% {
-                box-shadow: 0 12px 28px rgba(110, 168, 242, 0.34);
-                filter: brightness(1.06);
-            }
         }
 
         main {
@@ -330,22 +299,130 @@
             transform: scale(1.015);
         }
 
+        .hero-placeholder {
+            min-height: 100%;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            color: var(--muted-2);
+            text-align: center;
+            font-weight: 600;
+        }
+
         .content {
             padding: 0 34px 34px;
         }
 
-        .content p {
-            margin: 0 0 16px;
+        .article-content {
+            max-width: 78ch;
+            font-size: 1.05rem;
+        }
+
+        .article-content p {
+            margin: 0 0 18px;
             color: var(--muted);
             text-align: justify;
+            text-justify: inter-word;
             hyphens: auto;
             text-wrap: pretty;
         }
 
-        .section-title {
-            margin: 0 0 16px;
-            font-size: 1.18rem;
+        .article-content h2,
+        .article-content h3,
+        .article-content h4 {
+            margin: 28px 0 12px;
+            line-height: 1.18;
             letter-spacing: -0.03em;
+        }
+
+        .article-content h2 { font-size: 1.55rem; }
+        .article-content h3 { font-size: 1.25rem; }
+        .article-content h4 { font-size: 1.08rem; }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 0 0 18px 22px;
+            color: var(--muted);
+            padding: 0;
+        }
+
+        .article-content li {
+            margin: 7px 0;
+        }
+
+        .article-content blockquote {
+            margin: 18px 0;
+            padding: 14px 18px;
+            border-left: 4px solid var(--accent-2);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            color: var(--muted);
+        }
+
+        .article-content code {
+            padding: 0.16em 0.38em;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.95em;
+        }
+
+        .article-content pre {
+            margin: 18px 0;
+            padding: 16px 18px;
+            overflow: auto;
+            border-radius: 18px;
+            background: rgba(6, 10, 16, 0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text);
+        }
+
+        .article-content pre code {
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .article-content a {
+            color: #9cd2ff;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .article-content hr {
+            border: 0;
+            height: 1px;
+            margin: 24px 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
+        }
+
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            overflow: hidden;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .article-content th,
+        .article-content td {
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 10px 12px;
+            color: var(--muted);
+            vertical-align: top;
+        }
+
+        .article-content th {
+            color: var(--text);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 18px;
+            margin: 10px 0 18px;
         }
 
         .media-wrap {
@@ -363,6 +440,12 @@
         .empty-state {
             color: var(--muted-2);
             padding: 2px 0 0;
+        }
+
+        .section-title {
+            margin: 0 0 16px;
+            font-size: 1.18rem;
+            letter-spacing: -0.03em;
         }
 
         .media-grid {
@@ -417,7 +500,6 @@
             box-shadow: 0 8px 18px rgba(0,0,0,0.14);
         }
 
-        .media-media,
         .media-card img,
         .media-card video {
             width: 100%;
@@ -529,7 +611,6 @@
             height: 100%;
             max-height: calc(100vh - 130px);
             object-fit: contain;
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
         }
 
         .modal-caption {
@@ -537,19 +618,6 @@
             color: var(--muted);
             font-size: 0.94rem;
             text-align: center;
-        }
-
-        .empty-caption {
-            display: none;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.18s ease-out both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         body.modal-open {
@@ -681,11 +749,112 @@
                 .replace(/'/g, "&#39;");
         }
 
+        function replaceExt(path, ext) {
+            if (!path) return "";
+            return String(path).replace(/\.[^./\\]+$/, "." + ext);
+        }
+
+        function unique(arr) {
+            return [...new Set((arr || []).filter(Boolean))];
+        }
+
+        function arrayBufferToBase64(buffer) {
+            let binary = "";
+            const bytes = new Uint8Array(buffer);
+            const chunkSize = 0x8000;
+
+            for (let i = 0; i < bytes.length; i += chunkSize) {
+                const chunk = bytes.subarray(i, i + chunkSize);
+                binary += String.fromCharCode.apply(null, chunk);
+            }
+
+            return btoa(binary);
+        }
+
+        function inlineFormat(text) {
+            let out = escapeHtml(text);
+
+            out = out.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+            out = out.replace(/(^|[^*])\*(?!\s)(.+?)(?<!\s)\*(?!\*)/g, "$1<em>$2</em>");
+            out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
+            out = out.replace(/\[(.+?)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+            return out;
+        }
+
         function formatTextToHtml(text) {
-            if (!text) return `<p>Brak treści artykułu.</p>`;
-            const clean = String(text).replace(/\r/g, "").trim();
-            const paragraphs = clean.split(/\n\s*\n+/).map((p) => p.trim()).filter(Boolean);
-            return paragraphs.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`).join("");
+            const clean = String(text || "").replace(/\r/g, "").trim();
+            if (!clean) return "<p>Brak treści artykułu.</p>";
+
+            const lines = clean.split("\n");
+            const blocks = [];
+            let i = 0;
+
+            while (i < lines.length) {
+                const raw = lines[i];
+                const line = raw.trim();
+
+                if (!line) {
+                    i++;
+                    continue;
+                }
+
+                if (/^```/.test(line)) {
+                    const codeLines = [];
+                    i++;
+                    while (i < lines.length && !/^```/.test(lines[i].trim())) {
+                        codeLines.push(lines[i]);
+                        i++;
+                    }
+                    if (i < lines.length) i++;
+                    blocks.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+                    continue;
+                }
+
+                if (/^#{1,3}\s+/.test(line)) {
+                    const level = Math.min(line.match(/^#{1,3}/)[0].length + 1, 4);
+                    const title = line.replace(/^#{1,3}\s+/, "");
+                    blocks.push(`<h${level}>${inlineFormat(title)}</h${level}>`);
+                    i++;
+                    continue;
+                }
+
+                if (/^>\s?/.test(line)) {
+                    const quoteLines = [];
+                    while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+                        quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
+                        i++;
+                    }
+                    blocks.push(`<blockquote>${quoteLines.map(inlineFormat).join("<br>")}</blockquote>`);
+                    continue;
+                }
+
+                if (/^(\-|\*|\d+\.)\s+/.test(line)) {
+                    const isOrdered = /^\d+\.\s+/.test(line);
+                    const items = [];
+                    while (i < lines.length && /^(\-|\*|\d+\.)\s+/.test(lines[i].trim())) {
+                        items.push(lines[i].trim().replace(/^(\-|\*|\d+\.)\s+/, ""));
+                        i++;
+                    }
+                    const tag = isOrdered ? "ol" : "ul";
+                    blocks.push(`<${tag}>${items.map(item => `<li>${inlineFormat(item)}</li>`).join("")}</${tag}>`);
+                    continue;
+                }
+
+                const paraLines = [line];
+                i++;
+                while (i < lines.length) {
+                    const next = lines[i].trim();
+                    if (!next) break;
+                    if (/^#{1,3}\s+/.test(next) || /^>\s?/.test(next) || /^(\-|\*|\d+\.)\s+/.test(next) || /^```/.test(next)) break;
+                    paraLines.push(next);
+                    i++;
+                }
+
+                blocks.push(`<p>${inlineFormat(paraLines.join(" "))}</p>`);
+            }
+
+            return blocks.join("");
         }
 
         function mediaFigureHtml(media, kind) {
@@ -722,6 +891,117 @@
 
         function takeMax(items, maxCount) {
             return Array.isArray(items) ? items.slice(0, maxCount) : [];
+        }
+
+        function buildFileCandidates(article) {
+            const docx = [];
+            const txt = [];
+
+            const addDocx = (p) => { if (p) docx.push(p); };
+            const addTxt = (p) => { if (p) txt.push(p); };
+
+            addDocx(article.docx);
+            addTxt(article.txt);
+
+            if (article.text) {
+                const ext = (article.text.split(".").pop() || "").toLowerCase();
+                if (ext === "docx") addDocx(article.text);
+                else if (ext === "txt") addTxt(article.text);
+                else {
+                    addDocx(replaceExt(article.text, "docx"));
+                    addTxt(replaceExt(article.text, "txt"));
+                }
+            }
+
+            if (article.file) {
+                const ext = (article.file.split(".").pop() || "").toLowerCase();
+                if (ext === "docx") addDocx(article.file);
+                else if (ext === "txt") addTxt(article.file);
+                else {
+                    addDocx(replaceExt(article.file, "docx"));
+                    addTxt(replaceExt(article.file, "txt"));
+                }
+            }
+
+            if (article.path) {
+                const ext = (article.path.split(".").pop() || "").toLowerCase();
+                if (ext === "docx") addDocx(article.path);
+                else if (ext === "txt") addTxt(article.path);
+                else {
+                    addDocx(replaceExt(article.path, "docx"));
+                    addTxt(replaceExt(article.path, "txt"));
+                }
+            }
+
+            return {
+                docx: unique(docx),
+                txt: unique(txt)
+            };
+        }
+
+        async function fetchTextIfExists(url) {
+            try {
+                const res = await fetch(url, { cache: "no-store" });
+                if (!res.ok) return null;
+                return await res.text();
+            } catch {
+                return null;
+            }
+        }
+
+        async function fetchArrayBufferIfExists(url) {
+            try {
+                const res = await fetch(url, { cache: "no-store" });
+                if (!res.ok) return null;
+                return await res.arrayBuffer();
+            } catch {
+                return null;
+            }
+        }
+
+        function mammothOptions() {
+            return {
+                convertImage: mammoth.images.inline(async (element) => {
+                    const arrayBuffer = await element.read("arrayBuffer");
+                    return {
+                        src: `data:${element.contentType};base64,${arrayBufferToBase64(arrayBuffer)}`
+                    };
+                })
+            };
+        }
+
+        async function loadDocxAsHtml(path) {
+            const arrayBuffer = await fetchArrayBufferIfExists(path);
+            if (!arrayBuffer) return null;
+
+            try {
+                const result = await mammoth.convertToHtml({ arrayBuffer }, mammothOptions());
+                const html = (result.value || "").trim();
+                return html || null;
+            } catch (err) {
+                console.warn("Nie udało się przekonwertować DOCX:", path, err);
+                return null;
+            }
+        }
+
+        async function resolveArticleHtml(article) {
+            const { docx, txt } = buildFileCandidates(article);
+
+            for (const path of docx) {
+                const html = await loadDocxAsHtml(path);
+                if (html) return { html, source: path, kind: "docx" };
+            }
+
+            for (const path of txt) {
+                const text = await fetchTextIfExists(path);
+                if (text !== null) return { html: formatTextToHtml(text), source: path, kind: "txt" };
+            }
+
+            if (article.content) {
+                return { html: formatTextToHtml(article.content), source: "inline", kind: "inline" };
+            }
+
+            return { html: "<p>Brak treści artykułu.</p>", source: "", kind: "empty" };
         }
 
         const modal = document.getElementById("imageModal");
@@ -798,13 +1078,8 @@
 
                 document.title = `${article.title || "Artykuł"} — CyberProjects`;
 
-                let fullText = article.content || "";
-                if (!fullText && article.text) {
-                    const txtRes = await fetch(article.text, { cache: "no-store" });
-                    if (txtRes.ok) fullText = await txtRes.text();
-                }
+                const contentData = await resolveArticleHtml(article);
 
-                // ZMIANA: 16 grafik i 4 filmiki
                 const images = takeMax(article.images, 16);
                 const videos = takeMax(article.videos, 4);
 
@@ -838,6 +1113,8 @@
                                 <span>${escapeHtml(article.date || "Artykuł")}</span>
                                 <span>•</span>
                                 <span>${escapeHtml(article.category || "Technologia / Embedded")}</span>
+                                ${contentData.kind === "docx" ? `<span>•</span><span>DOCX</span>` : ""}
+                                ${contentData.kind === "txt" ? `<span>•</span><span>TXT</span>` : ""}
                             </div>
 
                             <h1>${escapeHtml(coverTitle)}</h1>
@@ -849,13 +1126,13 @@
                             ${
                                 cover
                                     ? `<img src="${escapeHtml(cover)}" alt="${escapeHtml(coverTitle)}" loading="eager" decoding="async">`
-                                    : ""
+                                    : `<div class="hero-placeholder">Brak grafiki wyróżniającej</div>`
                             }
                         </div>
                     </div>
 
                     <div class="content">
-                        ${formatTextToHtml(fullText)}
+                        <div class="article-content">${contentData.html}</div>
                     </div>
 
                     ${mediaBlock}
@@ -875,7 +1152,7 @@
                 root.innerHTML = `
                     <div class="error-box">
                         <strong>Nie udało się wczytać artykułu.</strong><br>
-                        Sprawdź plik <code>articles.json</code> oraz ścieżki do plików w folderze <code>articles/</code>.
+                        Sprawdź plik <code>articles.json</code> oraz ścieżki do plików <code>.docx</code> i <code>.txt</code>.
                     </div>
                 `;
             }
