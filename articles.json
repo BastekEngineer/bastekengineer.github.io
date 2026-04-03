@@ -100,7 +100,7 @@
     "cover": "articles/typhoon/4_grafika_1.jpg",
     "docx": "articles/typhoon/Okręty_podwodne_projektu_941.docx",
     "text": "articles/typhoon/Okręty_podwodne_projektu_941.txt",
-    "lead": "Projekt 941",
+    "lead": "Krótka historia o tym jak powstały okręty podwodne projektu 941 Klasy Akula/Typhoon",
     "excerpt": "Krótka historia o tym jak powstały okręty podwodne projektu 941 Klasy Akula/Typhoon",
     "images": [
       {
@@ -173,28 +173,28 @@
     "category": "Ciekawostki",
     "cover": "articles/duga/5_grafika_1.jpg",
     "docx": "articles/duga/radar_pozahoryzontalny_duga.docx",
-    "lead": "Duga",
+    "lead": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych",
     "excerpt": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych",
     "images": [
       {
         "src": "articles/duga/5_grafika_1.jpg",
-        "title": "Widok"
+        "title": "Widok anten odbiorczych - większa 140x500 m"
       },
       {
         "src": "articles/duga/5_grafika_2.jpg",
-        "title": "Brak obiegu wody chodzącej reaktor, temperatura w zbiorniku znacznie niższa"
+        "title": "Konstrukcja anten odbiorczych u podstawy"
       },
       {
         "src": "articles/duga/5_grafika_3.jpg",
-        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+        "title": "Widok dipoli o specyficznym kształcie zastosowanych w radarze"
       },
       {
         "src": "articles/duga/5_grafika_4.jpg",
-        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+        "title": "Pozostałości komputera 340A"
       },
       {
         "src": "articles/duga/5_grafika_5.jpg",
-        "title": "Standardowy obieg wody chłodzącej reaktor w zbiorniku wodnym"
+        "title": "Jeden z pulpitów komputera 340A"
       }
     ],
     "videos": []
