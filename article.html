@@ -310,7 +310,7 @@
         }
 
         .content {
-            padding: 0 34px 34px;
+            padding: 18px 34px 34px;
         }
 
         .article-content {
@@ -650,6 +650,7 @@
             }
             main { padding-top: 20px; }
             .hero-copy, .content, .media-wrap { padding-left: 18px; padding-right: 18px; }
+            .content { padding-top: 14px; }
             .media-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2.15rem; }
             .hero-image { min-height: 240px; }
@@ -771,6 +772,37 @@
             return btoa(binary);
         }
 
+        function normalizeTypographicWidows(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(`<div id="root">${html}</div>`, "text/html");
+            const root = doc.getElementById("root");
+
+            if (!root) return html;
+
+            const protectedTags = new Set(["SCRIPT", "STYLE", "PRE", "CODE", "TEXTAREA"]);
+            const widowsPattern = /\b(i|a|o|u|w|z|do|na|od|po|za|we|ze|oraz|ale|lub|czy|ani|lecz|jednak|więc|bo|aby|by|że|to)\s+(?=\S)/gi;
+
+            const walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    const parent = node.parentElement;
+                    if (!parent) return NodeFilter.FILTER_REJECT;
+                    if (protectedTags.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            });
+
+            const textNodes = [];
+            while (walker.nextNode()) {
+                textNodes.push(walker.currentNode);
+            }
+
+            for (const node of textNodes) {
+                node.nodeValue = node.nodeValue.replace(widowsPattern, "$1\u00A0");
+            }
+
+            return root.innerHTML;
+        }
+
         function inlineFormat(text) {
             let out = escapeHtml(text);
 
@@ -854,7 +886,7 @@
                 blocks.push(`<p>${inlineFormat(paraLines.join(" "))}</p>`);
             }
 
-            return blocks.join("");
+            return normalizeTypographicWidows(blocks.join(""));
         }
 
         function mediaFigureHtml(media, kind) {
@@ -977,7 +1009,7 @@
             try {
                 const result = await mammoth.convertToHtml({ arrayBuffer }, mammothOptions());
                 const html = (result.value || "").trim();
-                return html || null;
+                return html ? normalizeTypographicWidows(html) : null;
             } catch (err) {
                 console.warn("Nie udało się przekonwertować DOCX:", path, err);
                 return null;
