@@ -1,13 +1,15 @@
-Okręty podwodne projektu 941 – największy okręty podwodne świata
 Gdy w latach 80. na horyzoncie pojawił się radziecki projekt 941, świat zobaczył coś więcej niż kolejny okręt podwodny. Był to  największy kiedykolwiek zbudowany okręt podwodny: gigant o długości około 172 metrów, szerokości ponad 23 metrów i wyporności podwodnej sięgającej nawet 48 tysięcy ton. Dla porównania, był to rozmiar zbliżony do dużego okrętu nawodnego, ale zamknięty w formie zdolnej działać pod lodem Arktyki.
 NATO nadało mu nazwę Typhoon, a Związek Radziecki używał oznaczenia projekt 941, typ Akuła. To właśnie ten okręt stał się symbolem radzieckiej odpowiedzi na amerykańskie jednostki typu Ohio. Nie był po prostu „większy”. Był zaprojektowany tak, by przetrwać zimnowojenną grę odstraszania, wynurzać się przez grubą pokrywę lodową i odpalać międzykontynentalne pociski balistyczne z niemal arktycznej pustyni.
+
 Dwie „łodzie” w jednym kadłubie
 Najbardziej niezwykła była jego konstrukcja. Typhoon nie miał klasycznego pojedynczego kadłuba ciśnieniowego. Zamiast tego zastosowano układ katamaranowy: dwa równoległe kadłuby sztywne, połączone wspólną konstrukcją zewnętrzną. Taki układ dawał ogromną przestrzeń wewnętrzną i zwiększał wyporność, ale też sprawiał, że jednostka wyglądała niemal jak techniczne monstrum z filmu science fiction.
 Wewnątrz znalazło się miejsce nie tylko na systemy bojowe i napęd, lecz także na relatywnie komfortowe warunki życia załogi. Okręt miał siłownię, saunę, solarium, a w źródłach pojawiają się nawet wzmianki o ptaszarni. W popularnych opowieściach czasem przewija się też motyw basenu, ale w przytoczonym tekście źródłowym potwierdzone są przede wszystkim siłownia, sauna i strefy wypoczynku. Jak na okręt wojenny z czasów Zimnej Wojny, było to coś absolutnie wyjątkowego.
 Załoga liczyła około 150 osób, a w niektórych zestawieniach nawet około 175. Był to więc nie tylko potężny system bojowy, ale też pływające, autonomiczne środowisko życia zdolne funkcjonować tygodniami daleko od baz.
+
 Napęd, który miał moc i zapas
 Typhoon napędzały dwa reaktory jądrowe OK-650 oraz turbiny parowe. Dzięki temu okręt osiągał prędkość około 27 węzłów pod wodą. Zasięg operacyjny nie był ograniczony paliwem w klasycznym sensie, lecz raczej zapasami dla załogi i wytrzymałością systemów pokładowych.
-Duże znaczenie miała też odporność na arktyczne warunki. Typhoon był projektowany tak, by przebijać się przez lód, a jego duża rezerwa wyporności ułatwiała wynurzanie w rejonach skutej lodem północy. 25 sierpnia 1995 roku jeden z okrętów projektu 941 wynurzył się na biegunie północnym, przebijając przed wystrzeleniem pocisku R-39 około 2,5-metrową warstwę lodu
+Duże znaczenie miała też odporność na arktyczne warunki. Typhoon był projektowany tak, by przebijać się przez lód, a jego duża rezerwa wyporności ułatwiała wynurzanie w rejonach skutej lodem północy. 25 sierpnia 1995 roku jeden z okrętów projektu 941 wynurzył się na biegunie północnym, przebijając przed wystrzeleniem pocisku R-39 około 2,5-metrową warstwę lodu.
+
 Zęby Typhoona: pociski R-39
 Główną bronią projektu 941 były 20 pocisków SLBM R-39. SLBM to skrót od angielskiego Submarine-Launched Ballistic Missile, czyli pocisk balistyczny odpalany z okrętu podwodnego. To jedna z najważniejszych broni odstraszania nuklearnego, bo daje możliwość ukrycia nosiciela pod wodą i przeprowadzenia ataku z niemal dowolnego miejsca na oceanach. Każdy R-39 był pociskiem trzystopniowym na paliwo stałe. Najciekawsze jednak było to, że każdy z nich przenosił 10 głowic MIRV.
 MIRV to skrót od Multiple Independently targetable Reentry Vehicle. W praktyce oznacza to, że jeden pocisk po wejściu w odpowiedni etap lotu rozdziela się na kilka osobnych głowic, a każda z nich może lecieć do innego celu. To ogromnie zwiększa siłę jednego pocisku, bo zamiast jednej głowicy przeciwnik dostaje kilka niezależnych ładunków, często dodatkowo z wabikami i środkami utrudniającymi obronę przeciwrakietową.
@@ -18,9 +20,11 @@ To znaczy, że teoretycznie jedna pełna salwa z jednego Typhoona mogła zagrozi
 W czasie, gdy jednocześnie w służbie było 6 okrętów tego typu, ich łączny potencjał wynosił: 
 6 × 20 pocisków = 120 pocisków SLBM 120 pocisków × 10 głowic = 1200 głowic MIRV
 Czyli pełna salwa wszystkich sześciu jednostek mogła teoretycznie sięgnąć 1200 celów. To liczba, która pokazuje, dlaczego projekt 941 budził tak duży respekt.
+
 Cichy gigant Arktyki
 Typhoon był też owocem walki o niewykrywalność. Pokryto go powłoką anechoiczną, która tłumiła hałas i utrudniała wykrycie przez sonary aktywne. W praktyce oznaczało to, że ten ogromny okręt miał być trudny do namierzenia mimo swoich rozmiarów. To paradoks zimnej wojny: im większa jednostka, tym bardziej trzeba ją było „uciszyć”.
 Powłoka anechoiczna to specjalna warstwa gumowych lub kompozytowych płytek pokrywających kadłub okrętu podwodnego. Jej zadaniem jest tłumienie hałasu generowanego przez okręt oraz pochłanianie i rozpraszanie fal dźwiękowych sonarów przeciwnika, dzięki czemu jednostka staje się trudniejsza do wykrycia. Powłoka ta działa więc jak „akustyczny kamuflaż”, zmniejszając sygnaturę dźwiękową okrętu w wodzie.
+
 Dziedzictwo
 Z sześciu zbudowanych jednostek najdłużej służył TK-208 „Dmitrij Donskoj”, który później pełnił rolę platformy testowej. Cała seria projektu 941 zapisała się jednak w historii jako najbardziej spektakularny przykład morskiego odstraszania nuklearnego.
 Typhoon pozostaje do dziś symbolem epoki, w której inżynieria, geopolityka i broń atomowa spotkały się w jednej, niewiarygodnie dużej konstrukcji. To nie był zwykły okręt. To była podwodna deklaracja siły.
