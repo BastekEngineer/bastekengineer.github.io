@@ -4,28 +4,28 @@
     "title": "Projekt badawczy",
     "date": "2025-12-01",
     "category": "Eksperyment",
-    "cover": "articles/1_grafika_1.jpg",
-    "docx": "articles/1_artykuł.docx",
-    "text": "articles/1_artykuł.txt",
+    "cover": "articles/mikrofon_laserowy/1_grafika_1.jpg",
+    "docx": "articles/mikrofon_laserowy/1_artykuł.docx",
+    "text": "articles/mikrofon_laserowy/1_artykuł.txt",
     "lead": "Projekt mikrofonu laserowego.",
     "excerpt": "Prototyp mikrofonu laserowego do pomiaru drgań szyb",
     "images": [
       {
-        "src": "articles/1_grafika_1.jpg",
+        "src": "articles/mikrofon_laserowy/1_grafika_1.jpg",
         "title": "Widok główny prototypu"
       },
       {
-        "src": "articles/1_grafika_2.jpg",
+        "src": "articles/mikrofon_laserowy/1_grafika_2.jpg",
         "title": "Stanowisko badawcze"
       }
     ],
     "videos": [
       {
-        "src": "articles/1_film1.mp4",
+        "src": "articles/mikrofon_laserowy/1_film1.mp4",
         "title": "Test działania prototypu"
       },
       {
-        "src": "articles/1_film2.mp4",
+        "src": "articles/mikrofon_laserowy/1_film2.mp4",
         "title": "Otrzymane nagranie z drgania szyby"
       }
     ]
@@ -35,36 +35,36 @@
     "title": "Tracker Solarny",
     "date": "2023-08-01",
     "category": "Praca inżynierska",
-    "cover": "articles/2_grafika_1.jpg",
-    "docx": "articles/2_artykuł.docx",
-    "text": "articles/2_artykuł.txt",
+    "cover": "articles/tracker_solarny/2_grafika_1.jpg",
+    "docx": "articles/tracker_solarny/2_artykuł.docx",
+    "text": "articles/tracker_solarny/2_artykuł.txt",
     "lead": "Projekt układu śledzącego pozycję słońca",
     "excerpt": "Artykuł opisuje konstrukcję trackera solarnego sterowanego za pomocą mikrokontrolera arduino wykonanego w ramach pracy inżynierskiej",
     "images": [
       {
-        "src": "articles/2_grafika_1.jpg",
+        "src": "articles/tracker_solarny/2_grafika_1.jpg",
         "title": "Widok główny konstrukcji"
       },
       {
-        "src": "articles/2_grafika_2.jpg",
+        "src": "articles/tracker_solarny/2_grafika_2.jpg",
         "title": "Drugi plan i detale"
       },
       {
-        "src": "articles/2_grafika_3.jpg",
+        "src": "articles/tracker_solarny/2_grafika_3.jpg",
         "title": "Drugi plan i detale"
       }
     ],
     "videos": [
       {
-        "src": "articles/2_film1.mp4",
+        "src": "articles/tracker_solarny/2_film1.mp4",
         "title": "Prezentacja działana systemu nadążnego"
       },
       {
-        "src": "articles/2_film2.mp4",
+        "src": "articles/tracker_solarny/2_film2.mp4",
         "title": "Prezentacja działania systemu anty-wiatr"
       },
       {
-        "src": "articles/2_film3.mp4",
+        "src": "articles/tracker_solarny/2_film3.mp4",
         "title": "Prezentacja działąnia systemu anty-śnieg"
       }
     ]
