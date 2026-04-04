@@ -8,7 +8,7 @@
     "docx": "articles/mikrofon_laserowy/1_artykuł.docx",
     "text": "articles/mikrofon_laserowy/1_artykuł.txt",
     "lead": "Projekt mikrofonu laserowego.",
-    "excerpt": "Prototyp mikrofonu laserowego do pomiaru drgań szyb",
+    "excerpt": "Prototyp mikrofonu laserowego do pomiaru drgań szyb.",
     "images": [
       {
         "src": "articles/mikrofon_laserowy/1_grafika_1.jpg",
@@ -26,7 +26,7 @@
       },
       {
         "src": "articles/mikrofon_laserowy/1_film2.mp4",
-        "title": "Otrzymane nagranie z drgania szyby"
+        "title": "Otrzymane nagranie drgań szyby"
       }
     ]
   },
@@ -38,8 +38,8 @@
     "cover": "articles/tracker_solarny/2_grafika_1.jpg",
     "docx": "articles/tracker_solarny/2_artykuł.docx",
     "text": "articles/tracker_solarny/2_artykuł.txt",
-    "lead": "Projekt układu śledzącego pozycję słońca",
-    "excerpt": "Artykuł opisuje konstrukcję trackera solarnego sterowanego za pomocą mikrokontrolera arduino wykonanego w ramach pracy inżynierskiej",
+    "lead": "Projekt układu śledzącego pozycję słońca.",
+    "excerpt": "Artykuł opisuje konstrukcję trackera solarnego sterowanego za pomocą mikrokontrolera Arduino, wykonanego w ramach pracy inżynierskiej.",
     "images": [
       {
         "src": "articles/tracker_solarny/2_grafika_1.jpg",
@@ -57,15 +57,15 @@
     "videos": [
       {
         "src": "articles/tracker_solarny/2_film1.mp4",
-        "title": "Prezentacja działana systemu nadążnego"
+        "title": "Prezentacja działania systemu nadążnego"
       },
       {
         "src": "articles/tracker_solarny/2_film2.mp4",
-        "title": "Prezentacja działania systemu anty-wiatr"
+        "title": "Prezentacja działania systemu antywiatrowego"
       },
       {
         "src": "articles/tracker_solarny/2_film3.mp4",
-        "title": "Prezentacja działąnia systemu anty-śnieg"
+        "title": "Prezentacja działania systemu antyśniegowego"
       }
     ]
   },
@@ -77,16 +77,16 @@
     "cover": "articles/chernobyl/3_grafika_1.jpg",
     "docx": "articles/chernobyl/chernobyl.docx",
     "text": "articles/chernobyl/chernobyl.txt",
-    "lead": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu oraz satelit projektu Landsat.",
-    "excerpt": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu oraz satelit projektu Landsat.",
+    "lead": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu oraz satelitów projektu Landsat.",
+    "excerpt": "Jak ważne jest zobrazowanie satelitarne na przykładzie katastrofy w Czarnobylu oraz satelitów projektu Landsat.",
     "images": [
       {
         "src": "articles/chernobyl/3_grafika_1.jpg",
-        "title": "Widok pożaru szczątkoów reaktora"
+        "title": "Widok pożaru szczątków reaktora"
       },
       {
         "src": "articles/chernobyl/3_grafika_2.jpg",
-        "title": "Brak obiegu wody chodzącej reaktor, temperatura w zbiorniku znacznie niższa"
+        "title": "Brak obiegu wody chłodzącej reaktor, temperatura w zbiorniku znacznie niższa"
       },
       {
         "src": "articles/chernobyl/3_grafika_3.jpg",
@@ -103,8 +103,8 @@
     "cover": "articles/typhoon/4_grafika_1.jpg",
     "docx": "articles/typhoon/Okręty_podwodne_projektu_941.docx",
     "text": "articles/typhoon/Okręty_podwodne_projektu_941.txt",
-    "lead": "Krótka historia o tym jak powstały okręty podwodne projektu 941 Klasy Akula/Typhoon",
-    "excerpt": "Krótka historia o tym jak powstały okręty podwodne projektu 941 Klasy Akula/Typhoon",
+    "lead": "Krótka historia o tym, jak powstały okręty podwodne projektu 941 klasy Akula/Typhoon.",
+    "excerpt": "Krótka historia o tym, jak powstały okręty podwodne projektu 941 klasy Akula/Typhoon.",
     "images": [
       {
         "src": "articles/typhoon/4_grafika_1.jpg",
@@ -112,7 +112,7 @@
       },
       {
         "src": "articles/typhoon/4_grafika_2.png",
-        "title": "Porównianie wielkości sylwetek marynarzy obok kiosku okrętu Typhoon"
+        "title": "Porównanie wielkości sylwetek marynarzy obok kiosku okrętu Typhoon"
       },
       {
         "src": "articles/typhoon/4_grafika_3.jpg",
@@ -169,19 +169,20 @@
     ],
     "videos": []
   },
-    {
+  {
     "id": "5",
     "title": "Czym był radar pozahoryzontalny Duga?",
     "date": "2025-04-03",
     "category": "Ciekawostki",
     "cover": "articles/duga/5_grafika_1.jpg",
     "docx": "articles/duga/radar_pozahoryzontalny_duga.docx",
-    "lead": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych",
-    "excerpt": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych",
+    "text": "articles/duga/radar_pozahoryzontalny_duga.txt",
+    "lead": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych.",
+    "excerpt": "Czyli jak ZSRR wykrywał starty rakiet z terenu Stanów Zjednoczonych.",
     "images": [
       {
         "src": "articles/duga/5_grafika_1.jpg",
-        "title": "Widok anten odbiorczych - większa 140x500 m"
+        "title": "Widok anten odbiorczych - większa: 140 x 500 m"
       },
       {
         "src": "articles/duga/5_grafika_2.jpg",
