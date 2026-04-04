@@ -1,0 +1,26 @@
+
+Celem eksperymentu było wykonanie prostego mikrofonu laserowego umożliwiającego rejestrację drgań akustycznych za pomocą toru optyczno-elektronicznego. Układ zbudowano z czerwonego wskaźnika laserowego o długości fali 650 nm, fotodioda BPW34 była przylutowana do wzmacniacza AGC Max4466, a całość zamocowano na statywach fotograficznych. Jako powierzchnię odbijającą wykorzystano szybę przeszklonych drzwi szafy w mieszkaniu. Sygnał wyjściowy wzmacniacza został zarejestrowany przy użyciu zewnętrznej karty dźwiękowej oraz programu Audacity. Uzyskane wyniki potwierdziły możliwość detekcji zmian położenia odbitej wiązki laserowej wywołanych drganiami szyby.
+
+Opis układu
+
+Zbudowany układ składał się z trzech podstawowych elementów: źródła światła, detektora optycznego oraz toru wzmacniającego. Jako źródło promieniowania zastosowano czerwony laser 650 nm. Promień lasera skierowano na szybę, która pełniła rolę elementu poddawanego drganiom. Odbita wiązka była kierowana na fotodiodę BPW34, która została sprzężona z modułem wzmacniacza AGC Max4466.
+
+Zarówno wskaźnik laserowy, jak i fotodetektor umieszczono na statywach fotograficznych w celu zapewnienia odpowiedniej stabilności mechanicznej oraz precyzyjnego ustawienia geometrii układu. Zasilanie wzmacniacza realizowano z baterii, co pozwoliło ograniczyć poziom szumów wynikających z zasilania sieciowego i poprawić jakość sygnału.
+
+Zasada działania
+
+Zasada działania mikrofonu laserowego opiera się na modulacji promienia odbitego od powierzchni szyby. Drgania akustyczne powodują niewielkie zmiany położenia oraz kąta odbicia promienia laserowego. Zmiany te są rejestrowane przez fotodiodę BPW34, która przetwarza sygnał optyczny na elektryczny. Następnie sygnał jest wzmacniany przez układ Max4466 i kierowany do zewnętrznej karty dźwiękowej.
+
+W praktyce nawet bardzo małe drgania tafli szklanej mogą generować mierzalne zmiany sygnału, co umożliwia odtworzenie dźwięku w programie do analizy audio.
+
+Rejestracja sygnału
+
+Do akwizycji danych wykorzystano zewnętrzną kartę dźwiękową oraz program Audacity. Takie rozwiązanie pozwoliło na bezpośredni zapis sygnału analogowego i jego dalszą analizę w dziedzinie czasu. W trakcie testów obserwowano przebieg sygnału odpowiadający drganiom szyby, co potwierdziło poprawność działania układu.
+
+Wyniki
+
+Eksperyment wykazał, że wykonany mikrofon laserowy umożliwia detekcję drgań powierzchni szklanej i ich przekształcenie w sygnał akustyczny. Najlepsze rezultaty uzyskano przy stabilnym ustawieniu lasera i fotodetektora oraz przy możliwie sztywnym mocowaniu całego toru pomiarowego. Zastosowanie zasilania bateryjnego poprawiło stosunek sygnału do szumu.
+
+Wnioski
+
+Zbudowany układ potwierdził, że prosta konstrukcja oparta na dostępnych elementach elektronicznych może posłużyć do demonstracji zasady działania mikrofonu laserowego. Kluczowe znaczenie miały: stabilność mechaniczna, prawidłowe ustawienie geometrii odbicia oraz ograniczenie szumów w torze wzmacniającym. Eksperyment stanowi praktyczny przykład zastosowania metod optycznych do rejestracji drgań mechanicznych.
