@@ -202,5 +202,51 @@
       }
     ],
     "videos": []
+  },
+  {
+    "id": "6",
+    "title": "Lotniskowce klasy Ford",
+    "date": "2025-04-04",
+    "category": "Militaria",
+    "cover": "articles/lotniskowce_ford/6_grafika_1.jpg",
+    "docx": "articles/lotniskowce_ford/1_lotniskowce_ford.docx",
+    "text": "articles/lotniskowce_ford/1_lotniskowce_ford.txt",
+    "lead": "Opis nowoczesnych lotniskowców klasy Ford i ich najważniejszych cech konstrukcyjnych.",
+    "excerpt": "Artykuł przedstawia lotniskowce klasy Ford, ich konstrukcję, systemy pokładowe oraz znaczenie operacyjne we współczesnej Marynarce Wojennej USA.",
+    "images": [
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_1.jpg",
+        "title": "Widok ogólny lotniskowca klasy Ford"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_2.jpg",
+        "title": "Pokład lotniczy"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_3.jpg",
+        "title": "Wyspa lotniskowca"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_4.jpg",
+        "title": "Start samolotu z pokładu"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_5.jpg",
+        "title": "Lądowanie na pokładzie"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_6.jpg",
+        "title": "Hangar i infrastruktura pokładowa"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_7.jpg",
+        "title": "Widok z boku jednostki"
+      },
+      {
+        "src": "articles/lotniskowce_ford/6_grafika_8.jpg",
+        "title": "Lotniskowiec klasy Ford na morzu"
+      }
+    ],
+    "videos": []
   }
 ]
